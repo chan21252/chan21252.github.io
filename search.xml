@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[git自动部署hexo博客到服务器]]></title>
+    <url>%2F2018%2F12%2F09%2Fgit%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2hexo%E5%8D%9A%E5%AE%A2%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[环境搭建 本地(Windows) node.js hexo 远程服务器(Linux) git nginx Linux安装git：https://chan21252.github.io/2018/12/09/Linux%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85git/Linux安装nginx：https://chan21252.github.io/2018/12/09/Linux%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85nginx/ git设置git命令添加软连接如果git没有安装在/usr/bin/git，需要为/git/bin目录下的命令添加软连接。否则，d```时会出现**git-receive-pack:command not found** 错误。123456789``` bash# 我的git安装在了/opt目录下ln -s /opt/git/bin/git-upload-pack /usr/bin/git-upload-packln -s /opt/git/bin/git-upload-archive /usr/bin/git-upload-archiveln -s /opt/git/bin/git-shell /usr/bin/git-shellln -s /opt/git/bin/git-receive-pack /usr/bin/git-receive-packln -s /opt/git/bin/gitk /usr/bin/gitkln -s /opt/git/bin/git-cvsserver /usr/bin/git-cvsserverln -s /opt/git/bin/git /usr/bin/git 初始化git仓库12345678910# 切换到git 用户su git# 创建仓库cd /home/gitmkdir hexo.git#初始化仓库cd hexo.gitgit init --bare 配置SSH将本地的公钥复制到/home/git/.ssh/authorized_keys文件中。 测试ssh登录1ssh -i [公钥路径] -p [端口号] git@服务器ip 创建SSH config文件如果服务器修改了SSH默认端口，可以在本地的.ssh目录下创建config文件，方便hexo deploy时访问指定端口。配置文件内容如下：12345Host 服务器ipHostName 服务器ipUser gitPort SSH端口号IdentityFile ~/.ssh/git_rsa 配置git Hooks创建post-receive文件12cd /home/git/hexo.git/hooksvim post-receive 编辑文件内容12345678#!/bin/bashGIT_REPO=/home/git/hexo.gitTMP_GIT_CLONE=/tmp/hexoPUBLIC_WWW=/var/www/htmlrm -rf $&#123;TMP_GIT_CLONE&#125;git clone $GIT_REPO $TMP_GIT_CLONErm -rf $&#123;PUBLIC_WWW&#125;/*cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125; 确认文件权限post-receive文件中提到了三个目录： /home/git/hexo.git /tmp/hexo /var/www/html需求确保以上三个目录和目录中所有的文件拥有者为git。可以通过chown命令修改拥有者。12sudo chown git:git -R /var/wwwsudo chown git:git -R /home/git/hexo.git 配置本地hexo修改本地hexo目录下的_config.ym，修改deploy配置：12345678910# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: - type: git repo: git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git branch: master - type: git repo: &lt;username&gt;@服务器ip:hexo.git branch: master 本地操作本地执行hexo d命令，博客成功同步到服务器的/var/www/html中，则搭建成功。]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>git</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux源代码安装nodejs]]></title>
     <url>%2F2018%2F12%2F09%2FLinux%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85nodejs%2F</url>
     <content type="text"><![CDATA[下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz 安装依赖工具1yum install python gcc make g++ wget 解压编译安装12345678#解压tar -zvxf node-v10.14.1.tar.gz# 编译&amp;安装cd node-v10.14.1/./configure --prefix=/opt/nodejsmake prefix=/opt/nodejsmake prefix=/opt/nodejs install 编译报错1234which: no python2.7 in (/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/git/bin:/root/bin)ERROR: Did not find a new enough assembler, install one or build with --openssl-no-asm. Please refer to BUILDING.md 安装python2.7123456789101112131415#下载cd /usr/local/srccurl https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tgz -o python-2.7.14.tgz# 解压tar -zxvf Python-2.7.14.tgzcd Python-2.7.14./configure# 编译&amp;安装makemake install#查看版本python --version 查看版本12node -vnpm -v]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>nodejs</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Linux源代码安装nginx]]></title>
     <url>%2F2018%2F12%2F09%2FLinux%E6%BA%90%E4%BB%A3%E7%A0%81%E5%AE%89%E8%A3%85nginx%2F</url>
     <content type="text"><![CDATA[本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2 一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib zlib-devel openssl openssl-devel pcre 手动安装依赖，举例pcre库1234567cd /usr/local/srcwget https://ftp.pcre.org/pub/pcre/pcre-8.36.tar.gztar -zxvf pcre-8.36.tar.gzcd pcre-8.36./configuremakemake install 三、编译和安装12345678# 解压tar -zvxf nginx-1.14.2.tar.gz# 编译和安装cd nginx-1.14.2./configure --prefix=/opt/nginx make prefix=/opt/nginxmake prefix=/opt/nginx install 四、启动nginx1/opt/nginx/sbin/nginx 访问浏览器，输入IP，显示“Welcome to nginx!”。 五、添加nginx到系统服务1、编写nginx文件在/etc/init.d目录下编写nginx文件1vim /etc/init.d/nginx nginx文件内容如下123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101#!/bin/bash# nginx Startup script for the Nginx HTTP Server# this script create it by caffreyxin at 2007.10.15.# it is v.0.0.1 version.# if you find any errors on this scripts, please contact caffreyxin.# and send mail to xinyflove at sina dot com.## chkconfig: - 85 15# description: Nginx is a high-performance web and proxy server.# It has a lot of features, but it's not for everyone.# processname: nginx# pidfile: /var/run/nginx.pid# config: /usr/local/nginx/conf/nginx.conf# nginx directorynginxd=/opt/nginx/sbin/nginxnginx_config=/opt/nginx/conf/nginx.confnginx_pid=/var/run/nginx.pidRETVAL=0prog="nginx"# Source function library.. /etc/rc.d/init.d/functions# Source networking configuration.. /etc/sysconfig/network# Check that networking is up.[ $&#123;NETWORKING&#125; = "no" ] &amp;&amp; exit 0[ -x $nginxd ] || exit 0# Start nginx daemons functions.start() &#123; if [ -e $nginx_pid ];then echo "nginx already running...." exit 1 fi echo -n $"Starting $prog: " daemon $nginxd -c $&#123;nginx_config&#125; RETVAL=$? echo [ $RETVAL = 0 ] &amp;&amp; touch /var/lock/subsys/nginx return $RETVAL&#125;# Stop nginx daemons functions.stop() &#123; echo -n $"Stopping $prog: " killproc $nginxd RETVAL=$? echo [ $RETVAL = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /var/run/nginx.pid&#125;# reload nginx service functions.reload() &#123; echo -n $"Reloading $prog: " #kill -HUP `cat $&#123;nginx_pid&#125;` killproc $nginxd -HUP RETVAL=$? echo&#125;# See how we were called.case "$1" instart) start ;;stop) stop ;;reload) reload ;;restart) stop start ;;status) status $prog RETVAL=$? ;;*) echo $"Usage: $prog &#123;start|stop|restart|reload|status|help&#125;" exit 1esacexit $RETVAL 2、添加到系统服务1234567# 添加到系统服务chkconfig --add /etc/init.d/nginxchmod 755 /etc/init.d/nginxchkconfig --add nginx# 设置开机自启动/sbin/chkconfig --level 345 nginx on 3、启动、停止、无间断重启1234# 可选 start | stop | restart | reload | status | helpservice nginx startservice nginx stopservice nginx reload]]></content>
       <categories>
-        <category>nginx</category>
+        <category>linux</category>
       </categories>
       <tags>
         <tag>linux</tag>
@@ -25,8 +45,8 @@
         <category>git</category>
       </categories>
       <tags>
-        <tag>git</tag>
         <tag>linux</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
