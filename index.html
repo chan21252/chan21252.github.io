@@ -314,6 +314,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/09/Linux源代码安装nodejs/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/09/Linux源代码安装nodejs/" itemprop="url">Linux源代码安装nodejs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T16:01:44+08:00">
+                2018-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装依赖工具"><a href="#安装依赖工具" class="headerlink" title="安装依赖工具"></a>安装依赖工具</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install python gcc make g++ wget</span><br></pre></td></tr></table></figure>
+<h2 id="解压编译安装"><a href="#解压编译安装" class="headerlink" title="解压编译安装"></a>解压编译安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解压</span></span><br><span class="line">tar -zvxf node-v10.14.1.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译&amp;安装</span></span><br><span class="line"><span class="built_in">cd</span> node-v10.14.1/</span><br><span class="line">./configure --prefix=/opt/nodejs</span><br><span class="line">make prefix=/opt/nodejs</span><br><span class="line">make prefix=/opt/nodejs install</span><br></pre></td></tr></table></figure>
+<h3 id="编译报错"><a href="#编译报错" class="headerlink" title="编译报错"></a>编译报错</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span>: no python2.7 <span class="keyword">in</span> (/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/git/bin:/root/bin)</span><br><span class="line">ERROR: Did not find a new enough assembler, install one or build with</span><br><span class="line">       --openssl-no-asm.</span><br><span class="line">       Please refer to BUILDING.md</span><br></pre></td></tr></table></figure>
+<h3 id="安装python2-7"><a href="#安装python2-7" class="headerlink" title="安装python2.7"></a>安装python2.7</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line">curl https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tgz -o python-2.7.14.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf Python-2.7.14.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.14</span><br><span class="line">./configure</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译&amp;安装</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看版本</span></span><br><span class="line">python --version</span><br></pre></td></tr></table></figure>
+<h2 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/09/Linux源代码安装nginx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -570,7 +695,7 @@
 <h2 id="四、编译安装"><a href="#四、编译安装" class="headerlink" title="四、编译安装"></a>四、编译安装</h2><p>安装包上传到/opt目录，然后解压安装。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zvxf git-2.19.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line"><span class="built_in">cd</span> git-2.19.2</span><br><span class="line">make prefix=/opt/git all</span><br><span class="line">sudo make prefix=/opt/git install</span><br></pre></td></tr></table></figure>
 <p>安装成功后会在/opt目录下出现/git文件夹。</p>
-<h2 id="五、git配置环境变量"><a href="#五、git配置环境变量" class="headerlink" title="五、git配置环境变量"></a>五、git配置环境变量</h2><p>为了便于使用git命令，还需要将git添加到环境变量中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改环境变量配置文件</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件末尾添加</span></span><br><span class="line"><span class="comment"># git_HOME</span></span><br><span class="line">git_HOME=/opt/git/bin</span><br><span class="line">PATH=<span class="variable">$PATH</span>:<span class="variable">$git_HOME</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出环境变量</span></span><br><span class="line"><span class="built_in">export</span> <span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使配置文件修改生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></p>
+<h2 id="五、git配置环境变量"><a href="#五、git配置环境变量" class="headerlink" title="五、git配置环境变量"></a>五、git配置环境变量</h2><p>为了便于使用git命令，还需要将git添加到环境变量中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改环境变量配置文件</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件末尾添加</span></span><br><span class="line"><span class="comment"># GIT_HOME</span></span><br><span class="line"><span class="built_in">export</span> GIT_HOME=/opt/git/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GIT_HOME</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出环境变量</span></span><br><span class="line"><span class="built_in">export</span> <span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使配置文件修改生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></p>
 <h2 id="六、git命令"><a href="#六、git命令" class="headerlink" title="六、git命令"></a>六、git命令</h2><h3 id="1、查看git版本，确认安装和环境变量配置成功。"><a href="#1、查看git版本，确认安装和环境变量配置成功。" class="headerlink" title="1、查看git版本，确认安装和环境变量配置成功。"></a>1、查看git版本，确认安装和环境变量配置成功。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
 <h3 id="2、初始化仓库"><a href="#2、初始化仓库" class="headerlink" title="2、初始化仓库"></a>2、初始化仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在/home/git下新建文件夹</span></span><br><span class="line"><span class="built_in">cd</span> /home/git</span><br><span class="line">mkdir Hellogit</span><br><span class="line"><span class="built_in">cd</span> Hellogit/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化仓库</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
 
@@ -784,7 +909,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
