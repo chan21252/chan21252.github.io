@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="linux,nginx,">
+  <meta name="keywords" content="linux,git,hexo,">
 
 
 
@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib">
-<meta name="keywords" content="linux,nginx">
+<meta name="description" content="环境搭建 本地(Windows) node.js hexo   远程服务器(Linux) git nginx    相关文章：  Linux安装git Linux安装nginx  git设置git命令添加软连接如果git没有安装在/usr/bin/git，需要为/git/bin目录下的命令添加软连接。否则，同步时会出现git-receive-pack:command not found错误。 12">
+<meta name="keywords" content="linux,git,hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux源代码安装nginx">
-<meta property="og:url" content="https://blog.5460cc.com/2018/12/09/Linux源代码安装nginx/index.html">
+<meta property="og:title" content="git自动部署hexo博客到服务器">
+<meta property="og:url" content="https://blog.5460cc.com/2018/12/09/deploy-hexo2server-by-git/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib">
+<meta property="og:description" content="环境搭建 本地(Windows) node.js hexo   远程服务器(Linux) git nginx    相关文章：  Linux安装git Linux安装nginx  git设置git命令添加软连接如果git没有安装在/usr/bin/git，需要为/git/bin目录下的命令添加软连接。否则，同步时会出现git-receive-pack:command not found错误。 12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T10:27:56.619Z">
+<meta property="og:updated_time" content="2018-12-12T16:03:53.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux源代码安装nginx">
-<meta name="twitter:description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib">
+<meta name="twitter:title" content="git自动部署hexo博客到服务器">
+<meta name="twitter:description" content="环境搭建 本地(Windows) node.js hexo   远程服务器(Linux) git nginx    相关文章：  Linux安装git Linux安装nginx  git设置git命令添加软连接如果git没有安装在/usr/bin/git，需要为/git/bin目录下的命令添加软连接。否则，同步时会出现git-receive-pack:command not found错误。 12">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.5460cc.com/2018/12/09/Linux源代码安装nginx/">
+  <link rel="canonical" href="https://blog.5460cc.com/2018/12/09/deploy-hexo2server-by-git/">
 
 
 
 
 
-  <title>Linux源代码安装nginx | Chan's Blog</title>
+  <title>git自动部署hexo博客到服务器 | Chan's Blog</title>
   
 
 
@@ -319,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/09/Linux源代码安装nginx/">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/09/deploy-hexo2server-by-git/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chan">
@@ -336,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux源代码安装nginx</h1>
+          <h1 class="post-title" itemprop="name headline">git自动部署hexo博客到服务器</h1>
         
 
         <div class="post-meta">
@@ -348,7 +348,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T13:49:48+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T18:25:36+08:00">
                 2018-12-09
               </time>
             
@@ -371,8 +371,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -408,20 +408,41 @@
       
 
       
-        <blockquote>
-<p>本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2</p>
-</blockquote>
-<h2 id="一、下载源代码"><a href="#一、下载源代码" class="headerlink" title="一、下载源代码"></a>一、下载源代码</h2><p>官网：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.14.2.tar.gz</span><br></pre></td></tr></table></figure>
-<h2 id="二、安装依赖工具"><a href="#二、安装依赖工具" class="headerlink" title="二、安装依赖工具"></a>二、安装依赖工具</h2><p>yum安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ autoconf automake zlib zlib-devel openssl openssl-devel pcre</span><br></pre></td></tr></table></figure></p>
-<p>手动安装依赖，举例pcre库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line">wget https://ftp.pcre.org/pub/pcre/pcre-8.36.tar.gz</span><br><span class="line">tar -zxvf pcre-8.36.tar.gz</span><br><span class="line"><span class="built_in">cd</span> pcre-8.36</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
-<h2 id="三、编译和安装"><a href="#三、编译和安装" class="headerlink" title="三、编译和安装"></a>三、编译和安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zvxf nginx-1.14.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译和安装</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.14.2</span><br><span class="line">./configure --prefix=/opt/nginx </span><br><span class="line">make prefix=/opt/nginx</span><br><span class="line">make prefix=/opt/nginx install</span><br></pre></td></tr></table></figure>
-<h2 id="四、启动nginx"><a href="#四、启动nginx" class="headerlink" title="四、启动nginx"></a>四、启动nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
-<p>访问浏览器，输入IP，显示“Welcome to nginx!”。</p>
-<h2 id="五、添加nginx到系统服务"><a href="#五、添加nginx到系统服务" class="headerlink" title="五、添加nginx到系统服务"></a>五、添加nginx到系统服务</h2><h3 id="1、编写nginx文件"><a href="#1、编写nginx文件" class="headerlink" title="1、编写nginx文件"></a>1、编写nginx文件</h3><p>在/etc/init.d目录下编写nginx文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/init.d/nginx</span><br></pre></td></tr></table></figure></p>
-<p>nginx文件内容如下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># nginx Startup script for the Nginx HTTP Server</span></span><br><span class="line"><span class="comment"># this script create it by caffreyxin at 2007.10.15.</span></span><br><span class="line"><span class="comment"># it is v.0.0.1 version.</span></span><br><span class="line"><span class="comment"># if you find any errors on this scripts, please contact caffreyxin.</span></span><br><span class="line"><span class="comment"># and send mail to xinyflove at sina dot com.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chkconfig: - 85 15</span></span><br><span class="line"><span class="comment"># description: Nginx is a high-performance web and proxy server.</span></span><br><span class="line"><span class="comment">#              It has a lot of features, but it's not for everyone.</span></span><br><span class="line"><span class="comment"># processname: nginx</span></span><br><span class="line"><span class="comment"># pidfile: /var/run/nginx.pid</span></span><br><span class="line"><span class="comment"># config: /usr/local/nginx/conf/nginx.conf</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># nginx directory</span></span><br><span class="line">nginxd=/opt/nginx/sbin/nginx</span><br><span class="line">nginx_config=/opt/nginx/conf/nginx.conf</span><br><span class="line">nginx_pid=/var/run/nginx.pid</span><br><span class="line"></span><br><span class="line">RETVAL=0</span><br><span class="line">prog=<span class="string">"nginx"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Source function library.</span></span><br><span class="line">. /etc/rc.d/init.d/<span class="built_in">functions</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Source networking configuration.</span></span><br><span class="line">. /etc/sysconfig/network</span><br><span class="line"></span><br><span class="line"><span class="comment"># Check that networking is up.</span></span><br><span class="line">[ <span class="variable">$&#123;NETWORKING&#125;</span> = <span class="string">"no"</span> ] &amp;&amp; <span class="built_in">exit</span> 0</span><br><span class="line"></span><br><span class="line">[ -x <span class="variable">$nginxd</span> ] || <span class="built_in">exit</span> 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Start nginx daemons functions.</span></span><br><span class="line"><span class="function"><span class="title">start</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ -e <span class="variable">$nginx_pid</span> ];<span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"nginx already running...."</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Starting <span class="variable">$prog</span>: "</span></span><br><span class="line">    daemon <span class="variable">$nginxd</span> -c <span class="variable">$&#123;nginx_config&#125;</span></span><br><span class="line">    RETVAL=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    [ <span class="variable">$RETVAL</span> = 0 ] &amp;&amp; touch /var/lock/subsys/nginx</span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$RETVAL</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Stop nginx daemons functions.</span></span><br><span class="line"><span class="function"><span class="title">stop</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Stopping <span class="variable">$prog</span>: "</span></span><br><span class="line">    killproc <span class="variable">$nginxd</span></span><br><span class="line">    RETVAL=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    [ <span class="variable">$RETVAL</span> = 0 ] &amp;&amp; rm -f /var/lock/subsys/nginx /var/run/nginx.pid</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># reload nginx service functions.</span></span><br><span class="line"><span class="function"><span class="title">reload</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Reloading <span class="variable">$prog</span>: "</span></span><br><span class="line">    <span class="comment">#kill -HUP `cat $&#123;nginx_pid&#125;`</span></span><br><span class="line">    killproc <span class="variable">$nginxd</span> -HUP</span><br><span class="line">    RETVAL=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># See how we were called.</span></span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">start)</span><br><span class="line">        start</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">stop)</span><br><span class="line">        stop</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">reload)</span><br><span class="line">        reload</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">restart)</span><br><span class="line">        stop</span><br><span class="line">        start</span><br><span class="line">        ;;</span><br><span class="line"></span><br><span class="line">status)</span><br><span class="line">        status <span class="variable">$prog</span></span><br><span class="line">        RETVAL=$?</span><br><span class="line">        ;;</span><br><span class="line">*)</span><br><span class="line">        <span class="built_in">echo</span> $<span class="string">"Usage: <span class="variable">$prog</span> &#123;start|stop|restart|reload|status|help&#125;"</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> <span class="variable">$RETVAL</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2、添加到系统服务"><a href="#2、添加到系统服务" class="headerlink" title="2、添加到系统服务"></a>2、添加到系统服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加到系统服务</span></span><br><span class="line">chkconfig --add /etc/init.d/nginx</span><br><span class="line">chmod 755 /etc/init.d/nginx</span><br><span class="line">chkconfig --add nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机自启动</span></span><br><span class="line">/sbin/chkconfig --level 345 nginx on</span><br></pre></td></tr></table></figure>
-<h3 id="3、启动、停止、无间断重启"><a href="#3、启动、停止、无间断重启" class="headerlink" title="3、启动、停止、无间断重启"></a>3、启动、停止、无间断重启</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可选 start | stop | restart | reload | status |  help</span></span><br><span class="line">service nginx start</span><br><span class="line">service nginx stop</span><br><span class="line">service nginx reload</span><br></pre></td></tr></table></figure>
+        <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+<li>本地(Windows)<ul>
+<li>node.js</li>
+<li>hexo</li>
+</ul>
+</li>
+<li>远程服务器(Linux)<ul>
+<li>git</li>
+<li>nginx</li>
+</ul>
+</li>
+</ul>
+<p>相关文章：</p>
+<ul>
+<li><a href="http://blog.5460cc.com/2018/12/09/install-git-on-centos/">Linux安装git</a></li>
+<li><a href="http://blog.5460cc.com/2018/12/09/install-nginx-on-centos/">Linux安装nginx</a></li>
+</ul>
+<h2 id="git设置"><a href="#git设置" class="headerlink" title="git设置"></a>git设置</h2><h3 id="git命令添加软连接"><a href="#git命令添加软连接" class="headerlink" title="git命令添加软连接"></a>git命令添加软连接</h3><p>如果git没有安装在/usr/bin/git，需要为/git/bin目录下的命令添加软连接。否则，同步时会出现<em>git-receive-pack:command not found</em>错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 我的git安装在了/opt目录下</span></span><br><span class="line">ln -s /opt/git/bin/git-upload-pack /usr/bin/git-upload-pack</span><br><span class="line">ln -s /opt/git/bin/git-upload-archive /usr/bin/git-upload-archive</span><br><span class="line">ln -s /opt/git/bin/git-shell /usr/bin/git-shell</span><br><span class="line">ln -s /opt/git/bin/git-receive-pack /usr/bin/git-receive-pack</span><br><span class="line">ln -s /opt/git/bin/gitk /usr/bin/gitk</span><br><span class="line">ln -s /opt/git/bin/git-cvsserver /usr/bin/git-cvsserver</span><br><span class="line">ln -s /opt/git/bin/git /usr/bin/git</span><br></pre></td></tr></table></figure>
+<h3 id="初始化git仓库"><a href="#初始化git仓库" class="headerlink" title="初始化git仓库"></a>初始化git仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到git 用户</span></span><br><span class="line">su git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建仓库</span></span><br><span class="line"><span class="built_in">cd</span> /home/git</span><br><span class="line">mkdir hexo.git</span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化仓库</span></span><br><span class="line"><span class="built_in">cd</span> hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+<h2 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h2><p>将本地的公钥复制到<strong>/home/git/.ssh/authorized_keys</strong>文件中。</p>
+<h3 id="测试SSH登录"><a href="#测试SSH登录" class="headerlink" title="测试SSH登录"></a>测试SSH登录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i [公钥路径] -p [端口号] git@服务器ip</span><br></pre></td></tr></table></figure>
+<h3 id="创建SSH-config文件"><a href="#创建SSH-config文件" class="headerlink" title="创建SSH config文件"></a>创建SSH config文件</h3><p>如果服务器修改了SSH默认端口，可以在本地的.ssh目录下创建config文件，方便hexo deploy时访问指定端口。<br>配置文件内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host 服务器ip</span><br><span class="line">HostName 服务器ip</span><br><span class="line">User git</span><br><span class="line">Port SSH端口号</span><br><span class="line">IdentityFile ~/.ssh/git_rsa</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置git-Hooks"><a href="#配置git-Hooks" class="headerlink" title="配置git Hooks"></a>配置git Hooks</h2><h3 id="创建post-receive文件"><a href="#创建post-receive文件" class="headerlink" title="创建post-receive文件"></a>创建post-receive文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/git/hexo.git/hooks</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+<h3 id="编辑文件内容"><a href="#编辑文件内容" class="headerlink" title="编辑文件内容"></a>编辑文件内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/html</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="确认文件权限"><a href="#确认文件权限" class="headerlink" title="确认文件权限"></a>确认文件权限</h3><p>post-receive文件中提到了三个目录：</p>
+<ul>
+<li>/home/git/hexo.git</li>
+<li>/tmp/hexo</li>
+<li>/var/www/html</li>
+</ul>
+<p>需确保以上三个目录和目录中所有的文件拥有者为<strong>git</strong>。<br>可以通过<strong>chown</strong>命令修改拥有者。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown git:git -R /var/www</span><br><span class="line">sudo chown git:git -R /home/git/hexo.git</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置本地hexo"><a href="#配置本地hexo" class="headerlink" title="配置本地hexo"></a>配置本地hexo</h2><p>修改本地hexo目录下的_config.ym，修改deploy配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/deployment.html</span><br><span class="line"></span><br><span class="line">deploy:</span><br><span class="line">  - type: git</span><br><span class="line">    repo: git@github.com:&lt;username&gt;/&lt;username&gt;.github.io.git</span><br><span class="line">    branch: master</span><br><span class="line">  - type: git</span><br><span class="line">    repo: &lt;username&gt;@服务器ip:hexo.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure></p>
+<h2 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h2><p>本地执行<code>hexo d</code>命令，博客成功同步到服务器的/var/www/html中，则搭建成功。</p>
+
       
     </div>
     
@@ -440,7 +461,9 @@
           
             <a href="/tags/linux/" rel="tag"># linux</a>
           
-            <a href="/tags/nginx/" rel="tag"># nginx</a>
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
           
         </div>
       
@@ -453,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/09/Linux源代码安装git/" rel="next" title="Linux源代码安装git">
-                <i class="fa fa-chevron-left"></i> Linux源代码安装git
+              <a href="/2018/12/09/install-nodejs-on-centos/" rel="next" title="Linux源代码安装nodejs">
+                <i class="fa fa-chevron-left"></i> Linux源代码安装nodejs
               </a>
             
           </div>
@@ -463,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/09/Linux源代码安装nodejs/" rel="prev" title="Linux源代码安装nodejs">
-                Linux源代码安装nodejs <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/12/install-mysql-binary-on-centos/" rel="prev" title="Linux二进制文件安装mysql">
+                Linux二进制文件安装mysql <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,7 +567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -555,7 +578,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 
               </div>
@@ -566,7 +589,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -615,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、下载源代码"><span class="nav-number">1.</span> <span class="nav-text">一、下载源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装依赖工具"><span class="nav-number">2.</span> <span class="nav-text">二、安装依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、编译和安装"><span class="nav-number">3.</span> <span class="nav-text">三、编译和安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、启动nginx"><span class="nav-number">4.</span> <span class="nav-text">四、启动nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、添加nginx到系统服务"><span class="nav-number">5.</span> <span class="nav-text">五、添加nginx到系统服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、编写nginx文件"><span class="nav-number">5.1.</span> <span class="nav-text">1、编写nginx文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、添加到系统服务"><span class="nav-number">5.2.</span> <span class="nav-text">2、添加到系统服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、启动、停止、无间断重启"><span class="nav-number">5.3.</span> <span class="nav-text">3、启动、停止、无间断重启</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git设置"><span class="nav-number">2.</span> <span class="nav-text">git设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#git命令添加软连接"><span class="nav-number">2.1.</span> <span class="nav-text">git命令添加软连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化git仓库"><span class="nav-number">2.2.</span> <span class="nav-text">初始化git仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置SSH"><span class="nav-number">3.</span> <span class="nav-text">配置SSH</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试SSH登录"><span class="nav-number">3.1.</span> <span class="nav-text">测试SSH登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建SSH-config文件"><span class="nav-number">3.2.</span> <span class="nav-text">创建SSH config文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置git-Hooks"><span class="nav-number">4.</span> <span class="nav-text">配置git Hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建post-receive文件"><span class="nav-number">4.1.</span> <span class="nav-text">创建post-receive文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑文件内容"><span class="nav-number">4.2.</span> <span class="nav-text">编辑文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确认文件权限"><span class="nav-number">4.3.</span> <span class="nav-text">确认文件权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置本地hexo"><span class="nav-number">5.</span> <span class="nav-text">配置本地hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步"><span class="nav-number">6.</span> <span class="nav-text">同步</span></a></li></ol></div>
             
 
           </div>
