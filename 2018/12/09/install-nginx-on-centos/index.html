@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib">
+<meta name="description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz">
 <meta name="keywords" content="linux,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux源代码安装nginx">
 <meta property="og:url" content="https://blog.5460cc.com/2018/12/09/install-nginx-on-centos/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib">
+<meta property="og:description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T10:27:56.619Z">
+<meta property="og:updated_time" content="2018-12-16T04:34:07.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux源代码安装nginx">
-<meta name="twitter:description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz 二、安装依赖工具yum安装1yum -y install gcc gcc-c++ autoconf automake zlib">
+<meta name="twitter:description" content="本文安装环境 Centos6.8 64位，安装版本 nginx 1.14.2  一、下载源代码官网：http://nginx.org/en/download.html 1wget http://nginx.org/download/nginx-1.14.2.tar.gz">
 
 
 
@@ -241,16 +241,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            公益404
           </a>
         </li>
       
@@ -413,6 +403,7 @@
 </blockquote>
 <h2 id="一、下载源代码"><a href="#一、下载源代码" class="headerlink" title="一、下载源代码"></a>一、下载源代码</h2><p>官网：<a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">http://nginx.org/en/download.html</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.14.2.tar.gz</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="二、安装依赖工具"><a href="#二、安装依赖工具" class="headerlink" title="二、安装依赖工具"></a>二、安装依赖工具</h2><p>yum安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++ autoconf automake zlib zlib-devel openssl openssl-devel pcre</span><br></pre></td></tr></table></figure></p>
 <p>手动安装依赖，举例pcre库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line">wget https://ftp.pcre.org/pub/pcre/pcre-8.36.tar.gz</span><br><span class="line">tar -zxvf pcre-8.36.tar.gz</span><br><span class="line"><span class="built_in">cd</span> pcre-8.36</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
 <h2 id="三、编译和安装"><a href="#三、编译和安装" class="headerlink" title="三、编译和安装"></a>三、编译和安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zvxf nginx-1.14.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译和安装</span></span><br><span class="line"><span class="built_in">cd</span> nginx-1.14.2</span><br><span class="line">./configure --prefix=/opt/nginx </span><br><span class="line">make prefix=/opt/nginx</span><br><span class="line">make prefix=/opt/nginx install</span><br></pre></td></tr></table></figure>
@@ -544,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -554,10 +545,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -565,10 +556,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -653,7 +644,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
 
 
 

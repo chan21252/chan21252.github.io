@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz 安装依赖工具1yum install python gcc make g++ wget 解压编译安装12345678#解压tar -zvxf node-v10.14.1.tar.gz# 编译&amp;a">
+<meta name="description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz">
 <meta name="keywords" content="linux,nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux源代码安装nodejs">
 <meta property="og:url" content="https://blog.5460cc.com/2018/12/09/install-nodejs-on-centos/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz 安装依赖工具1yum install python gcc make g++ wget 解压编译安装12345678#解压tar -zvxf node-v10.14.1.tar.gz# 编译&amp;a">
+<meta property="og:description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T10:27:41.440Z">
+<meta property="og:updated_time" content="2018-12-16T04:37:44.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux源代码安装nodejs">
-<meta name="twitter:description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz 安装依赖工具1yum install python gcc make g++ wget 解压编译安装12345678#解压tar -zvxf node-v10.14.1.tar.gz# 编译&amp;a">
+<meta name="twitter:description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz">
 
 
 
@@ -241,16 +241,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            公益404
           </a>
         </li>
       
@@ -409,6 +399,7 @@
 
       
         <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h2 id="安装依赖工具"><a href="#安装依赖工具" class="headerlink" title="安装依赖工具"></a>安装依赖工具</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install python gcc make g++ wget</span><br></pre></td></tr></table></figure>
 <h2 id="解压编译安装"><a href="#解压编译安装" class="headerlink" title="解压编译安装"></a>解压编译安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解压</span></span><br><span class="line">tar -zvxf node-v10.14.1.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译&amp;安装</span></span><br><span class="line"><span class="built_in">cd</span> node-v10.14.1/</span><br><span class="line">./configure --prefix=/opt/nodejs</span><br><span class="line">make prefix=/opt/nodejs</span><br><span class="line">make prefix=/opt/nodejs install</span><br></pre></td></tr></table></figure>
 <h3 id="编译报错"><a href="#编译报错" class="headerlink" title="编译报错"></a>编译报错</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span>: no python2.7 <span class="keyword">in</span> (/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/git/bin:/root/bin)</span><br><span class="line">ERROR: Did not find a new enough assembler, install one or build with</span><br><span class="line">       --openssl-no-asm.</span><br><span class="line">       Please refer to BUILDING.md</span><br></pre></td></tr></table></figure>
@@ -537,7 +528,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -547,10 +538,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -558,10 +549,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -646,7 +637,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
 
 
 

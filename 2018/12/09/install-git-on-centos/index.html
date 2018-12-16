@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download 二、安装依赖工具git的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。Centos">
+<meta name="description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download">
 <meta name="keywords" content="linux,git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux源代码安装git">
 <meta property="og:url" content="https://blog.5460cc.com/2018/12/09/install-git-on-centos/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download 二、安装依赖工具git的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。Centos">
+<meta property="og:description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T10:28:14.306Z">
+<meta property="og:updated_time" content="2018-12-16T04:33:53.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux源代码安装git">
-<meta name="twitter:description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download 二、安装依赖工具git的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。Centos">
+<meta name="twitter:description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download">
 
 
 
@@ -241,16 +241,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
-            
-            公益404
           </a>
         </li>
       
@@ -412,6 +402,7 @@
 <p>本文安装环境 Centos6.8 64位，安装版本 git-2.19.2</p>
 </blockquote>
 <h2 id="一、下载git源代码"><a href="#一、下载git源代码" class="headerlink" title="一、下载git源代码"></a>一、下载git源代码</h2><p>github：<a href="https://github.com/git/git/releases" target="_blank" rel="noopener">https://github.com/git/git/releases</a><br>官网：<a href="http://git-scm.com/download" target="_blank" rel="noopener">http://git-scm.com/download</a></p>
+<a id="more"></a>
 <h2 id="二、安装依赖工具"><a href="#二、安装依赖工具" class="headerlink" title="二、安装依赖工具"></a>二、安装依赖工具</h2><p>git的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。<br>Centos安装有yum，可以使用以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install curl-devel expat-devel gettext-devel \</span><br><span class="line">  openssl-devel zlib-devel</span><br></pre></td></tr></table></figure></p>
 <h2 id="三、创建git用户添加root权限"><a href="#三、创建git用户添加root权限" class="headerlink" title="三、创建git用户添加root权限"></a>三、创建git用户添加root权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建用户</span></span><br><span class="line">useradd git</span><br><span class="line"></span><br><span class="line"><span class="comment"># sudoers文件添加写入、执行权限</span></span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改sudoers文件</span></span><br><span class="line">vim /etc/sudoers</span><br><span class="line"><span class="comment"># 在/etc/sudoers找到root    ALL=(ALL)       ALL，</span></span><br><span class="line"><span class="comment"># 在下面添加一行：git    ALL=(ALL)       ALL</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sudoers文件恢复只读权限</span></span><br><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
 <h2 id="四、编译安装"><a href="#四、编译安装" class="headerlink" title="四、编译安装"></a>四、编译安装</h2><p>安装包上传到/opt目录，然后解压安装。</p>
@@ -451,10 +442,6 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/12/08/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
             
           </div>
 
@@ -543,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -553,10 +540,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -564,10 +551,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -652,7 +639,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
 
 
 
