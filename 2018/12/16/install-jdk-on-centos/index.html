@@ -91,13 +91,13 @@
 <meta property="og:site_name" content="Chan&#39;s Blog">
 <meta property="og:description" content="本文环境 Centos6.8 64位，安装版本 jdk1.8.0_191  下载jdk官网下载下载地址：https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html选择jdk-8u191-linux-x64.tar.gz下载。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-jdk-on-centos/001.jpg">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-jdk-on-centos/002.jpg">
-<meta property="og:updated_time" content="2018-12-16T05:05:46.129Z">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-jdk-on-centos/001.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-jdk-on-centos/002.jpg">
+<meta property="og:updated_time" content="2019-01-04T02:21:56.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux安装jdk">
 <meta name="twitter:description" content="本文环境 Centos6.8 64位，安装版本 jdk1.8.0_191  下载jdk官网下载下载地址：https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html选择jdk-8u191-linux-x64.tar.gz下载。">
-<meta name="twitter:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-jdk-on-centos/001.jpg">
+<meta name="twitter:image" content="http://image.5460cc.com/image/blog/install-jdk-on-centos/001.jpg">
 
 
 
@@ -406,12 +406,12 @@
 </blockquote>
 <h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><h3 id="官网下载"><a href="#官网下载" class="headerlink" title="官网下载"></a>官网下载</h3><p>下载地址：<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>选择<strong>jdk-8u191-linux-x64.tar.gz</strong>下载。</p>
 <a id="more"></a>
-<p><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-jdk-on-centos/001.jpg" alt="下载jdk" title="下载jdk"></p>
+<p><img src="http://image.5460cc.com/image/blog/install-jdk-on-centos/001.jpg" alt="下载jdk" title="下载jdk"></p>
 <h3 id="wget命令下载"><a href="#wget命令下载" class="headerlink" title="wget命令下载"></a>wget命令下载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压到/opt/java/jdk1.8.0_191目录下</span></span><br><span class="line">tar -zvxf jdk-8u191-linux-x64.tar.gz -C /opt/java/</span><br></pre></td></tr></table></figure>
 <h2 id="配置jdk环境变量"><a href="#配置jdk环境变量" class="headerlink" title="配置jdk环境变量"></a>配置jdk环境变量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编辑全局变量文件</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件末尾添加如下内容：</span></span><br><span class="line"><span class="comment"># JAVA_HOME</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/java/jdk1.8.0_191</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib/</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使全局变量文件生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
 <h2 id="检查安装成功"><a href="#检查安装成功" class="headerlink" title="检查安装成功"></a>检查安装成功</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看jdk版本</span></span><br><span class="line">java -version</span><br></pre></td></tr></table></figure>
-<p><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-jdk-on-centos/002.jpg" alt="jdk版本" title="查看jdk版本"></p>
+<p><img src="http://image.5460cc.com/image/blog/install-jdk-on-centos/002.jpg" alt="jdk版本" title="查看jdk版本"></p>
 
       
     </div>
@@ -535,7 +535,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +546,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -557,7 +557,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -626,7 +626,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

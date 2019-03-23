@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0099ff">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#0099ff">
+
+
+
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原文地址：http://logging.apache.org/log4j/1.2/manual.html  摘要本文档描述了log4j的API，它的特性和设计原理。Log4j是一个基于众多作者成果的开源项目。它允许开发者控制以任意粒度输出日志语句。它在运行时可以使用外部配置文件进行完全配置。最棒的是，log4j有一个平滑的学习曲线。注意：从用户的反馈看，它也很容易上瘾。 引言几乎所有的大型应用都">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="log4j——java日志框架">
+<meta property="og:url" content="https://blog.5460cc.com/2018/12/31/java-logging-log4j/index.html">
+<meta property="og:site_name" content="Chan&#39;s Blog">
+<meta property="og:description" content="原文地址：http://logging.apache.org/log4j/1.2/manual.html  摘要本文档描述了log4j的API，它的特性和设计原理。Log4j是一个基于众多作者成果的开源项目。它允许开发者控制以任意粒度输出日志语句。它在运行时可以使用外部配置文件进行完全配置。最棒的是，log4j有一个平滑的学习曲线。注意：从用户的反馈看，它也很容易上瘾。 引言几乎所有的大型应用都">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/java-logging-log4j/001.png">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/java-logging-log4j/002.png">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/java-logging-log4j/003.png">
+<meta property="og:updated_time" content="2019-01-04T02:22:33.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="log4j——java日志框架">
+<meta name="twitter:description" content="原文地址：http://logging.apache.org/log4j/1.2/manual.html  摘要本文档描述了log4j的API，它的特性和设计原理。Log4j是一个基于众多作者成果的开源项目。它允许开发者控制以任意粒度输出日志语句。它在运行时可以使用外部配置文件进行完全配置。最棒的是，log4j有一个平滑的学习曲线。注意：从用户的反馈看，它也很容易上瘾。 引言几乎所有的大型应用都">
+<meta name="twitter:image" content="http://image.5460cc.com/image/blog/java-logging-log4j/001.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.5460cc.com/2018/12/31/java-logging-log4j/">
+
+
+
+
+
+  <title>log4j——java日志框架 | Chan's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd1564acaf23a2ba8e613e37ec60ee29";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/31/java-logging-log4j/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">log4j——java日志框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T18:27:25+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文地址：<a href="http://logging.apache.org/log4j/1.2/manual.html" target="_blank" rel="noopener">http://logging.apache.org/log4j/1.2/manual.html</a></p>
+</blockquote>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文档描述了log4j的API，它的特性和设计原理。Log4j是一个基于众多作者成果的开源项目。它允许开发者控制以任意粒度输出日志语句。它在运行时可以使用外部配置文件进行完全配置。最棒的是，log4j有一个平滑的学习曲线。注意：从用户的反馈看，它也很容易上瘾。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>几乎所有的大型应用都包含了它自身的日志或者跟踪API。根据这条规则，在1996年初<em>E.U. SEMPER</em>项目决定编写自己的跟踪API。经过无数次的改进、几次改版和众多工作，这些API演变成了log4j,一个受欢迎的java日志包。这个软件包在<a href="http://logging.apache.org/log4j/1.2/license.html" target="_blank" rel="noopener">Apache软件许可证</a>下发行。Apache 软件许可证是一个经<a href="https://opensource.org/" target="_blank" rel="noopener">open source</a>认证完全成熟的开源许可证。最新的log4j版本，包含全部源代码、class文件和文档可以在<a href="http://logging.apache.org/log4j/" target="_blank" rel="noopener">http://logging.apache.org/log4j/</a>找到。顺便说一句，log4j已被移植到C，C ++，C＃，Perl，Python，Ruby和Eiffel语言。</p>
+<a id="more"></a>
+<p>在代码中插入日志语句是调试代码的一种低技术含量方法。这可能也是唯一的方法，因为调试器总会有不可用和不适用的时候。多线程应用和分布式应用通常就是这种情况。</p>
+<p>经验表明，日志是开发周期中的一个重要组成部分。日志有几个优点。它提供了有关应用运行的精确上下文。日志预计一旦插入到代码，日志的输出生成就不需要人为干预。而且，日志输出可以保持在持久介质中以便日后研究。除了在开发周期使用以外，一个足够丰富的日志包可以被视为审计工具。</p>
+<p>正如Brian W. Kernighan和Rob Pike在他们的优秀著作《编程实践》中所说：</p>
+<blockquote>
+<p>As personal choice, we tend not to use debuggers beyond getting a stack trace or the value of a variable or two. One reason is that it is easy to get lost in details of complicated data structures and control flow; we find stepping through a program less productive than thinking harder and adding output statements and self-checking code at critical places. Clicking over statements takes longer than scanning the output of judiciously-placed displays. It takes less<br>time to decide where to put print statements than to single-step to the critical section of code, even assuming we know where that is. More important, debugging statements stay with the program;debugging sessions are transient.</p>
+</blockquote>
+<p>日志记录也有缺点，它会拖慢应用的速度。如果过于冗余，它会引发盲目地回滚。为了缓解这些问题，log4j被设计为可靠、快速和可扩展的。由于日志记录并不是应用程序的主要关注点，log4j API力求易于理解和使用。</p>
+<h2 id="Loggers-Appenders和Layouts"><a href="#Loggers-Appenders和Layouts" class="headerlink" title="Loggers, Appenders和Layouts"></a>Loggers, Appenders和Layouts</h2><p>Log4j有三个主要组件：logger，appenders和layouts。这三类组件协同工作，使开发者能根据消息类型和级别在运行时控制这些消息的输出格式和位置。</p>
+<h3 id="Logger的层次结构"><a href="#Logger的层次结构" class="headerlink" title="Logger的层次结构"></a>Logger的层次结构</h3><p>任何日志API优于<em>System.out.println</em>最明显也是最重要的地方在于，它们可以禁用某些日志语句，同时运行其他语句打印不受影响。假定了日志空间，即所有可能的日志语句的空间的功能可以根据开发者的某些选择条件进行分类。作为软件包的核心理念，它很有前瞻性地让我们选择分类。然而，从1.2版本以后，Logger类已经取代了Category类。对于熟悉log4j早期版本的人来说，Logger类可以被视为Category类的别名。</p>
+<p>Logger是有名称的实体。Logger的名称区分大小写，遵循分层命名规则：</p>
+<blockquote>
+<p>如果跟在一个“.”号后面的logger名称是后代logger名称的前缀，这个logger被称作另个一个logger的祖先。如果在logger和它的后代logger之间没有祖先，则称这个logger是子logger的父代。</p>
+</blockquote>
+<p>举个例子，叫做“com.foo”的logger是“com.foo.Bar”logger的父亲。相似地，“java”是“java.util”和“java.util.Vector”的祖先。大多数开发者都很熟悉这种命名方案。</p>
+<p>root logger是logger级别中的最高级，它有以下2点特征：</p>
+<ol>
+<li>总是存在</li>
+<li>无法通过名称检索</li>
+</ol>
+<p>调用静态方法<em>Logger.getRootLogger</em>可以检索root logger。其他的logger可以通过<em>Logger.getLogger</em>方法实例化和检索。此方法将想要的logger作为参数。Logger的一些基础的方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.log4j;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Creation &amp; retrieval methods:</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Logger <span class="title">getRootLogger</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Logger <span class="title">getLogger</span><span class="params">(String name)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// printing methods:</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">trace</span><span class="params">(Object message)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">debug</span><span class="params">(Object message)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">(Object message)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">warn</span><span class="params">(Object message)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">error</span><span class="params">(Object message)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fatal</span><span class="params">(Object message)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// generic printing method:</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(Level l, Object message)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以给logger分配等级，可用的等级有：</p>
+<ul>
+<li>TRACE</li>
+<li>DEBUG</li>
+<li>INFO</li>
+<li>WARN</li>
+<li>ERROR</li>
+<li>FATAL</li>
+</ul>
+<p>这些都被定义在<em>org.apache.log4j.Level</em>类中。尽管我们不推荐您这么做，你可以通过定义<em>Level</em>的子类定义自己的等级。稍后将讲述一个更好的方法。</p>
+<p>如果给定的logger没有分配级别，那么它将从具有指定级别的最近祖先继承一个级别。更正式的说：</p>
+<blockquote>
+<p>一个给定的logger C的继承等级，等于logger层次结构中的第一个非空级别，从C开始并且向上追溯直到root logger。</p>
+</blockquote>
+<p>为确保所有logger最终都能继承一个级别，root logger始终具有指定的级别。</p>
+<p>下面是四个表，其中包含各种已分配的级别值以及根据上述规则生成的继承级别。</p>
+<p><img src="http://image.5460cc.com/image/blog/java-logging-log4j/001.png" alt=""></p>
+<p>日志记录请求通过调用logger实例的一种打印方法来实现。打印方法有<em>debug, info, warn, error, fatal, log</em>。</p>
+<p>根据定义，打印方法确定日志记录请求的级别。例如，如果c是logger实例，则语句<em>c.info（“..”）</em>是级别INFO的记录请求。</p>
+<p>如果日志记录请求的级别高于或等于其logger的级别，则称其是已启用的。否则，该请求被禁用。没有指定级别的logger将从层次结构中继承一个级别。该规则总结如下：</p>
+<blockquote>
+<p>在级别q的logger（被指定的或者继承的，以实际为准）中，进行级别p的记录请求，如果p&gt;=q，则该记录请求被启用。</p>
+</blockquote>
+<p>该规则是log4j的核心。log4j指定的基本是有序的。对标准的级别，排序是<strong>DEBUG &lt; INFO &lt; WARN &lt; ERROR &lt; FATAL</strong>。</p>
+<p>这是一个该规则的示例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// get a logger instance named "com.foo"</span></span><br><span class="line">Logger  logger = Logger.getLogger(<span class="string">"com.foo"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Now set its level. Normally you do not need to set the</span></span><br><span class="line"><span class="comment">// level of a logger programmatically. This is usually done</span></span><br><span class="line"><span class="comment">// in configuration files.</span></span><br><span class="line">logger.setLevel(Level.INFO);</span><br><span class="line"></span><br><span class="line">Logger barlogger = Logger.getLogger(<span class="string">"com.foo.Bar"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// This request is enabled, because WARN &gt;= INFO.</span></span><br><span class="line">logger.warn(<span class="string">"Low fuel level."</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// This request is disabled, because DEBUG &lt; INFO.</span></span><br><span class="line">logger.debug(<span class="string">"Starting search for nearest gas station."</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// The logger instance barlogger, named "com.foo.Bar",</span></span><br><span class="line"><span class="comment">// will inherit its level from the logger named</span></span><br><span class="line"><span class="comment">// "com.foo" Thus, the following request is enabled</span></span><br><span class="line"><span class="comment">// because INFO &gt;= INFO.</span></span><br><span class="line">barlogger.info(<span class="string">"Located nearest gas station."</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// This request is disabled, because DEBUG &lt; INFO.</span></span><br><span class="line">barlogger.debug(<span class="string">"Exiting gas station search"</span>);</span><br></pre></td></tr></table></figure>
+<p>调用相同名称的<em>getlogger</em>方法总会返回相同logger对象的引用。例如，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Logger x = Logger.getLogger(<span class="string">"wombat"</span>);</span><br><span class="line">Logger y = Logger.getLogger(<span class="string">"wombat"</span>);</span><br></pre></td></tr></table></figure>
+<p>x,y指向了相同的logger对象。</p>
+<p>因此，可以配置一个logger，然后在代码中检索相同的实例，而不用传递引用。和生物学的父子关系（父母总是先于孩子）不同，log4j可以以任意顺序创建和配置logger。特别地，父logger会查找并链接到其后代，即使父logger在后代logger之后被实例化。</p>
+<p>log4j的环境配置通常在程序初始化时完成。更好的方法是读取一个配置文件。这个方法很快会介绍。</p>
+<p>log4j使得通过程序组件命名logger非常简单。这可以通过在每个类中静态实例化一个logger完成，logger名称等于该类的完全限定名称。这是一个非常有效且直截了当的定义logger的方法。由于日志输出带有生成日志logger的名称，这种命名策略可以轻松识别日志消息的来源。但是，这只是一个可能的logger命名策略，尽管很常见。log4j不限制logger的名称，开发者可以根据需要自由命名。</p>
+<p>尽管如此，遵循logger所在的类命名logger似乎是目前已知的最佳策略。</p>
+<h3 id="Appenders-and-Layouts"><a href="#Appenders-and-Layouts" class="headerlink" title="Appenders and Layouts"></a>Appenders and Layouts</h3><p>基于logger，选择性地启用或禁用日志记录请求只是一部分。log4j允许日志记录请求打印到多个目标。在log4j中，输出目的地被称作<em>appender</em>。当前，存在控制台、文件、GUI组件、远程套接字服务器、JMS、NT Event Loggers和远程UNIX Syslog守护程序的appender。它也可以异步记录。</p>
+<p>一个logger可以链接多个appender。</p>
+<p><em>addAppender</em>方法添加一个appender到给定的logger中。<strong>一个给定logger中，每个启用的日志记录请求会被转发给它所有的appender以及更高层次结构logger的appender。</strong>换句话说，appender可以从logger层级结构中额外被继承。比如，一个控制台appender被添加到root logger，所以所有启用的日志记录请求至少被打印到控制台。如果添加一个文件appender到一个叫做C的logger中，C和C的祖先logger中启用的日志记录请求会被打印到文件和控制台中。通过设置additivity标记为false，可以覆盖默认行为，从而appender不再是累积的。</p>
+<p>有关appender可加性的规则总结如下：</p>
+<blockquote>
+<p>logger C的一条日志语句输出会到达C和C祖先的所有appender中。但是，如果一个logger C的祖先，叫做P，它的additivity标记设置为false，那么C的输出会被定向到C和C祖先（追溯到且包括P的）的所有appender中，但P的祖先不在其中。</p>
+</blockquote>
+<p>下面的表格展示了一个示例：<br><img src="http://image.5460cc.com/image/blog/java-logging-log4j/002.png" alt=""></p>
+<p>通常，用户希望自定义的不仅仅是输出目的地，还有输出格式。自定义输出格式可以通过给appender关联layout实现。根据用户的期望，layout负责格式化日志记录请求，而appender负责发送格式化的输出到它的目的地。</p>
+<p><em>PatternLayout</em>，是标准log4j发行版本的一部分，它允许用户根据类似C语言<em>printf</em>函数的转换模式指定输出格式。</p>
+<p>比如。转换模式为“%r [%t] %-5p %c - %m%n”的PatternLayout将进行类似于这样的输出：</p>
+<blockquote>
+<p>176 [main] INFO  org.foo.Bar - Located nearest gas station.</p>
+</blockquote>
+<p>第一个字段是自程序启动开始已经过去的毫秒数。第二个字段是发出日志请求的线程。第三个字段是日志语句的等级。第四个字段是和日志请求相关的logger。在“-”之后的文字是语句消息。</p>
+<p>同样重要的是，log4j根据用户指定的标准渲染日志消息的内容。比如，如果你经常要记录日志<em>Orange</em>，你当前项目中的一个对象类型，你可以注册一个<em>OrangeRender</em>，它会在Orange需要被记录时被调用。</p>
+<p>对象渲染遵循类层次结构。举个例子，假设橙子是水果，如果你注册一个<em>FruitRender</em>，所有水果包括橙子都会<em>FruitRender</em>被渲染，当然除非你给橙子指定了<em>OrangeRender</em>。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在程序代码中插入日志请求需要相当多的规划和功夫。调查显示，大约4%的代码被专门用来记录日志。因此，即便是中等规模的程序都会在其代码中嵌入数以千计的日志记录语句。鉴于语句的数量，不用手动修改来管理日志记录语句就变得势在必行。</p>
+<p>log4j环境可以通过编程完全配置，但是使用配置文件配置log4j就灵活的多。目前，配置文件可以用XML和Java Properties（键=值）方式配置。</p>
+<p>让我们在一个使用log4j的假想应用程序MyApp的帮助下，看看配置是如何实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.foo.Bar;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Import log4j classes.</span></span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.BasicConfigurator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Define a static logger variable so that it references the</span></span><br><span class="line">    <span class="comment">// Logger instance named "MyApp".</span></span><br><span class="line">    <span class="keyword">static</span> Logger logger = Logger.getLogger(MyApp.class);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set up a simple configuration that logs on the console.</span></span><br><span class="line">        BasicConfigurator.configure();</span><br><span class="line"></span><br><span class="line">        logger.info(<span class="string">"Entering application."</span>);</span><br><span class="line">        Bar bar = <span class="keyword">new</span> Bar();</span><br><span class="line">        bar.doIt();</span><br><span class="line">        logger.info(<span class="string">"Exiting application."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>MyApp</em>首先导入log4j相关的类。然后它用<em>MyApp</em>类的完全限定名称定义了一个静态logger变量。</p>
+<p><em>MyApp</em>使用了定义在<em>com.foo</em>中的<em>Bar</em>类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.foo;</span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Logger logger = Logger.getLogger(Bar.class);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doIt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        logger.debug(<span class="string">"Did it again!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>调用BasicConfigurator.configure方法创建了一个相当简单的log4j设置。这个方法将root logger硬连线到<em>ConsoleAppender</em>。使用<em>PatternLayout</em>“%-4r [%t] %-5p %c %x - %m%n”来格式化输出。</p>
+<p>注意，root logger默认被指定为<em>Level DEBUG</em>。</p>
+<p>MyApp的输出如下：</p>
+<blockquote>
+<p>0    [main] INFO  MyApp  - Entering application.<br>36   [main] DEBUG com.foo.Bar  - Did it again!<br>51   [main] INFO  MyApp  - Exiting application.</p>
+</blockquote>
+<p>下图描绘了在调用了<em>BasicConfigurator.configure</em>后，<em>MyApp</em>的对象图。</p>
+<p><img src="http://image.5460cc.com/image/blog/java-logging-log4j/003.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/31/java-logging-slf4j/" rel="next" title="slf4j——java日志门面">
+                <i class="fa fa-chevron-left"></i> slf4j——java日志门面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/09/java-maven-in-five-minutes/" rel="prev" title="Maven5分钟快速入门">
+                Maven5分钟快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Chan">
+            
+              <p class="site-author-name" itemprop="name">Chan</p>
+              <p class="site-description motion-element" itemprop="description">辜负了锦绣年华</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chan21252" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="chanjobs21252@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">2.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loggers-Appenders和Layouts"><span class="nav-number">3.</span> <span class="nav-text">Loggers, Appenders和Layouts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Logger的层次结构"><span class="nav-number">3.1.</span> <span class="nav-text">Logger的层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Appenders-and-Layouts"><span class="nav-number">3.2.</span> <span class="nav-text">Appenders and Layouts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">4.</span> <span class="nav-text">配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

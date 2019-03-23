@@ -91,16 +91,16 @@
 <meta property="og:site_name" content="Chan&#39;s Blog">
 <meta property="og:description" content="本文环境 Centos6.8 64位，安装版本 tomcat8.5.35  环境依赖tomcat运行需要jvm（java虚拟机），因此需确认系统已经安装jdk。参考文档：Linux安装jdk 如下是tomcat和jdk的版本对应关系：官网文档：http://tomcat.apache.org/whichversion.html">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/002.jpg">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/001.jpg">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/003.jpg">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/004.jpg">
-<meta property="og:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/005.jpg">
-<meta property="og:updated_time" content="2018-12-16T05:58:13.990Z">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-tomcat-on-centos/002.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-tomcat-on-centos/001.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-tomcat-on-centos/003.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-tomcat-on-centos/004.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/install-tomcat-on-centos/005.jpg">
+<meta property="og:updated_time" content="2019-01-04T02:22:06.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux安装tomcat">
 <meta name="twitter:description" content="本文环境 Centos6.8 64位，安装版本 tomcat8.5.35  环境依赖tomcat运行需要jvm（java虚拟机），因此需确认系统已经安装jdk。参考文档：Linux安装jdk 如下是tomcat和jdk的版本对应关系：官网文档：http://tomcat.apache.org/whichversion.html">
-<meta name="twitter:image" content="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/002.jpg">
+<meta name="twitter:image" content="http://image.5460cc.com/image/blog/install-tomcat-on-centos/002.jpg">
 
 
 
@@ -408,16 +408,16 @@
 <p>本文环境 Centos6.8 64位，安装版本 tomcat8.5.35</p>
 </blockquote>
 <h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><p>tomcat运行需要jvm（java虚拟机），因此需确认系统已经安装jdk。<br>参考文档：<a href="http://blog.5460cc.com/2018/12/16/install-jdk-on-centos/">Linux安装jdk</a></p>
-<p>如下是tomcat和jdk的版本对应关系：<br><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/002.jpg" alt="tomcat-jdk"><br>官网文档：<a href="http://tomcat.apache.org/whichversion.html" target="_blank" rel="noopener">http://tomcat.apache.org/whichversion.html</a></p>
+<p>如下是tomcat和jdk的版本对应关系：<br><img src="http://image.5460cc.com/image/blog/install-tomcat-on-centos/002.jpg" alt="tomcat-jdk"><br>官网文档：<a href="http://tomcat.apache.org/whichversion.html" target="_blank" rel="noopener">http://tomcat.apache.org/whichversion.html</a></p>
 <a id="more"></a>
 <h2 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h2><h3 id="官网下载"><a href="#官网下载" class="headerlink" title="官网下载"></a>官网下载</h3><p>下载地址：<a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">https://tomcat.apache.org/download-80.cgi</a></p>
-<p><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/001.jpg" alt="下载tomcat" title="下载tomcat"></p>
+<p><img src="http://image.5460cc.com/image/blog/install-tomcat-on-centos/001.jpg" alt="下载tomcat" title="下载tomcat"></p>
 <h3 id="wget下载"><a href="#wget下载" class="headerlink" title="wget下载"></a>wget下载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35.tar.gz</span><br></pre></td></tr></table></figure>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压到/opt/tomcat目录下</span></span><br><span class="line">tar -zvxf apache-tomcat-8.5.35.tar.gz -C /opt/tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动tomcat,运行startup脚本</span></span><br><span class="line">/opt/tomcat/apache-tomcat-8.5.35/bin/startup.sh</span><br></pre></td></tr></table></figure>
-<p>查看/logs目录下的<strong>catalina.{yyyy-mm-dd}.log</strong>日志文件，出现如下信息启动成功：<br><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/003.jpg" alt="tomcat启动日志"></p>
+<p>查看/logs目录下的<strong>catalina.{yyyy-mm-dd}.log</strong>日志文件，出现如下信息启动成功：<br><img src="http://image.5460cc.com/image/blog/install-tomcat-on-centos/003.jpg" alt="tomcat启动日志"></p>
 <h2 id="配置启动脚本"><a href="#配置启动脚本" class="headerlink" title="配置启动脚本"></a>配置启动脚本</h2><h3 id="修改catalina-sh脚本"><a href="#修改catalina-sh脚本" class="headerlink" title="修改catalina.sh脚本"></a>修改catalina.sh脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/tomcat/apache-tomcat-8.5.35/bin/catalina.sh</span><br></pre></td></tr></table></figure>
 <p>在文件头部添加如下内容：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Tomcat service</span></span><br><span class="line"><span class="comment">#chkconfig:2345 10 90</span></span><br><span class="line"><span class="comment">#description:Tomcat service</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> CATALINA_HOME=/opt/tomcat/apache-tomcat-8.5.35</span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/java/jdk1.8.0_191</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/004.jpg" alt=""></p>
+<p><img src="http://image.5460cc.com/image/blog/install-tomcat-on-centos/004.jpg" alt=""></p>
 <p>chkconfig 2345 10 90：分别定义了tomcat的启动级别、关闭和启动优先级。<br>CATALINA_HOME：tomcat目录<br>JAVA_HOME：jdk目录</p>
 <h2 id="添加系统服务"><a href="#添加系统服务" class="headerlink" title="添加系统服务"></a>添加系统服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加启动脚本到服务脚本文件夹</span></span><br><span class="line">ln -s /opt/tomcat/apache-tomcat-8.5.35/bin/catalina.sh /etc/init.d/tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到系统服务</span></span><br><span class="line">chkconfig --add tomcat</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置开机启动</span></span><br><span class="line">chkconfig tomcat on</span><br></pre></td></tr></table></figure>
 <h2 id="服务命令"><a href="#服务命令" class="headerlink" title="服务命令"></a>服务命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">service tomcat start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">service tomcat stop</span><br></pre></td></tr></table></figure>
@@ -426,7 +426,7 @@
 </blockquote>
 <h2 id="配置防火墙端口"><a href="#配置防火墙端口" class="headerlink" title="配置防火墙端口"></a>配置防火墙端口</h2><p>tomcat默认端口是8080，配置防火墙打开对应端口。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/iptables</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启防火墙</span></span><br><span class="line">service iptables restart</span><br></pre></td></tr></table></figure></p>
 <p>如果是阿里云服务器，还需要在安全组规则中开启8080端口。</p>
-<h2 id="访问tomcat服务器"><a href="#访问tomcat服务器" class="headerlink" title="访问tomcat服务器"></a>访问tomcat服务器</h2><p>tomcat默认网页目录是../apache-tomcat-8.5.35/webapp。<br>在浏览器中输入<strong>ip:8080</strong>，出现如下页面，则tomcat访问成功。<br><img src="http://pjj1fddwq.bkt.clouddn.com/image/blog/install-tomcat-on-centos/005.jpg" alt=""></p>
+<h2 id="访问tomcat服务器"><a href="#访问tomcat服务器" class="headerlink" title="访问tomcat服务器"></a>访问tomcat服务器</h2><p>tomcat默认网页目录是../apache-tomcat-8.5.35/webapp。<br>在浏览器中输入<strong>ip:8080</strong>，出现如下页面，则tomcat访问成功。<br><img src="http://image.5460cc.com/image/blog/install-tomcat-on-centos/005.jpg" alt=""></p>
 
       
     </div>
@@ -470,6 +470,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/22/redis-base/" rel="prev" title="redis 基础">
+                redis 基础 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -548,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -559,7 +563,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -570,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -639,7 +643,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

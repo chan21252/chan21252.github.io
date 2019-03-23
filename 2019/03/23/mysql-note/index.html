@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0099ff">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#0099ff">
+
+
+
+
+
+  <meta name="keywords" content="mysql,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[toc] SQL定义结构化查询语言(Structured Query Language)简称SQL，是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；同时也是数据库脚本文件的扩展名。 结构化查询语言是高级的非过程化编程语言，允许用户在高层数据结构上工作。它不要求用户指定对数据的存放方法，也不需要用户了解具体的数据存放方式，所以具有完全不同底">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql基础学习笔记">
+<meta property="og:url" content="https://blog.5460cc.com/2019/03/23/mysql-note/index.html">
+<meta property="og:site_name" content="Chan&#39;s Blog">
+<meta property="og:description" content="[toc] SQL定义结构化查询语言(Structured Query Language)简称SQL，是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；同时也是数据库脚本文件的扩展名。 结构化查询语言是高级的非过程化编程语言，允许用户在高层数据结构上工作。它不要求用户指定对数据的存放方法，也不需要用户了解具体的数据存放方式，所以具有完全不同底">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-23T08:28:56.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mysql基础学习笔记">
+<meta name="twitter:description" content="[toc] SQL定义结构化查询语言(Structured Query Language)简称SQL，是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；同时也是数据库脚本文件的扩展名。 结构化查询语言是高级的非过程化编程语言，允许用户在高层数据结构上工作。它不要求用户指定对数据的存放方法，也不需要用户了解具体的数据存放方式，所以具有完全不同底">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.5460cc.com/2019/03/23/mysql-note/">
+
+
+
+
+
+  <title>Mysql基础学习笔记 | Chan's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd1564acaf23a2ba8e613e37ec60ee29";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/03/23/mysql-note/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mysql基础学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T09:54:45+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[toc]</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>结构化查询语言(Structured Query Language)简称SQL，是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统；同时也是数据库脚本文件的扩展名。</p>
+<p>结构化查询语言是高级的非过程化编程语言，允许用户在高层数据结构上工作。它不要求用户指定对数据的存放方法，也不需要用户了解具体的数据存放方式，所以具有完全不同底层结构的不同数据库系统, 可以使用相同的结构化查询语言作为数据输入与管理的接口。结构化查询语言语句可以嵌套，这使它具有极大的灵活性和强大的功能。</p>
+<a id="more"></a>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><ol>
+<li>SQL语句可以单行或多行书写，以分号结尾。</li>
+<li>使用空格和缩进来增加可读性。</li>
+<li>mysql的SQL语句不区分大小写，但是建议关键字使用大小写。</li>
+<li>注释<ul>
+<li>单行注释 – 注释内容，# 注释内容</li>
+<li>多行注释 /* 注释内容 */</li>
+</ul>
+</li>
+</ol>
+<h3 id="SQL分类"><a href="#SQL分类" class="headerlink" title="SQL分类"></a>SQL分类</h3><ol>
+<li>DDL<br> 数据定义语言，用来定义数据库对象：数据库，表，列等，关键字CRTEATE, DROP, ALTER 等。</li>
+<li>DML<br> 数据操作语言，用来对数据表的数据记录进行增删改，关键字INSERT, DELETE, UPDATE 等。</li>
+<li>DQL<br> 数据查询语言，用来对数据表的数据记录进行查询，关键字SELECT, WHERE 等。</li>
+<li>DCL<br> 数据控制语言，用来定义数据库的访问权限和安全级别，创建用户。关键字GRANT, REVOKE 等。</li>
+</ol>
+<h3 id="DDL：操作数据库表"><a href="#DDL：操作数据库表" class="headerlink" title="DDL：操作数据库表"></a>DDL：操作数据库表</h3><h4 id="操作数据库：CURD"><a href="#操作数据库：CURD" class="headerlink" title="操作数据库：CURD"></a>操作数据库：CURD</h4><ol>
+<li>create</li>
+<li>retrieve：查询</li>
+<li>update</li>
+<li>delete</li>
+<li>使用数据库</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 查询数据库 */</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>;                     <span class="comment"># 查询所有数据库名称</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [数据库名称];   <span class="comment"># 查询数据库创建语句</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建数据库 */</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> [数据库名称];</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [数据库名称] <span class="keyword">SET</span> <span class="built_in">CHARACTER</span> GBK;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> [数据库名称] <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span> <span class="keyword">set</span> <span class="built_in">character</span> [字符集];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改数据库 */</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">database</span> [数据库名称] <span class="built_in">character</span> <span class="keyword">set</span> utf8;      修改字符集</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除数据库 */</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">database</span> <span class="keyword">if</span> <span class="keyword">exists</span> [数据库名称];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 使用数据库 */</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATABASE</span>();      <span class="comment"># 查询当前使用的数据库名称</span></span><br><span class="line"><span class="keyword">USE</span> [数据库名称];</span><br></pre></td></tr></table></figure>
+<h4 id="操作数据表"><a href="#操作数据表" class="headerlink" title="操作数据表"></a>操作数据表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 查询表 */</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>;      <span class="comment"># 查询数据库中所有的表</span></span><br><span class="line">desc [表名];      <span class="comment"># 查询表结构</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建表 */</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [表名](</span><br><span class="line">    列名<span class="number">1</span> 数据类型<span class="number">1</span>,</span><br><span class="line">    列名<span class="number">2</span> 数据类型<span class="number">2</span>,</span><br><span class="line">    ...</span><br><span class="line">    列名n 数据类型n</span><br><span class="line">);</span><br><span class="line"><span class="comment"># 最后一列不需要加逗号（,）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [复制的表名] <span class="keyword">like</span> [源表名];    <span class="comment"># 创建一张和其他表结构一致的表</span></span><br><span class="line"><span class="comment">/* 删除表 */</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">if</span> <span class="keyword">exists</span> [表名];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 修改表 */</span></span><br><span class="line"><span class="comment"># 修改表名</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> [表名] <span class="keyword">rename</span> <span class="keyword">to</span> [新表名];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改表的字符集</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> [表名];</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> [表名] <span class="built_in">character</span> <span class="keyword">set</span> [utf8];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新增一列</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> [表名] <span class="keyword">add</span> [列名] [数据类型];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改列名称，数据类型</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> [表名] <span class="keyword">change</span> [列名] [新列名] [数据类型];</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> [表名] <span class="keyword">modify</span> [列名] [新数据类型];</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除列</span></span><br><span class="line">alert table [表名] <span class="keyword">drop</span> [列名];</span><br><span class="line">alert table [表名] <span class="keyword">drop</span> <span class="keyword">if</span> <span class="keyword">exists</span> [列名];</span><br></pre></td></tr></table></figure>
+<p>创建表时用到的SQL数据类型：<a href="http://www.w3school.com.cn/sql/sql_datatypes.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/sql/sql_datatypes.asp</a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 练习 --</span></span><br><span class="line"><span class="keyword">USE</span> db1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">	stu_name <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">	age <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">18</span>,</span><br><span class="line">	sex <span class="built_in">VARCHAR</span>(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student1 <span class="keyword">LIKE</span> student;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">TABLES</span>;</span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student;</span><br><span class="line">DESC student;</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student1 <span class="keyword">RENAME</span> <span class="keyword">TO</span> student2;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">CHANGE</span> sex gender <span class="built_in">BOOLEAN</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">MODIFY</span> gender <span class="built_in">VARCHAR</span>(<span class="number">4</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">ADD</span> address <span class="built_in">VARCHAR</span>(<span class="number">255</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student <span class="keyword">DROP</span> address;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> student2;</span><br></pre></td></tr></table></figure>
+<h3 id="DML：增删改数据记录"><a href="#DML：增删改数据记录" class="headerlink" title="DML：增删改数据记录"></a>DML：增删改数据记录</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- 添加记录 ---</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> [表名] (列<span class="number">1</span>, 列<span class="number">2</span>, ..., 列n) <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ..., 值n);</span><br><span class="line"></span><br><span class="line"><span class="comment">--- 删除记录 ---</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">FROM</span> [表名] <span class="keyword">WHERE</span> 列名=值;      <span class="comment"># 如果不加WHERE条件，则删除表中所有数据！！！</span></span><br><span class="line"><span class="keyword">truncate</span> [表名];                    <span class="comment">#删除表，并创建一张一样的表</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--- 修改记录 ---</span></span><br><span class="line"><span class="keyword">UPDATE</span> [表名] <span class="keyword">SET</span> 列名<span class="number">1</span>=值<span class="number">1</span>, 列名<span class="number">2</span>=值<span class="number">2</span> <span class="keyword">WHERE</span> 列名=值;  <span class="comment"># 如果不加WHERE条件，则修改表中所有数据！！！</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- 练习 ---</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student (<span class="keyword">id</span>, stu_name, age, gender) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">'张无忌'</span>, <span class="number">18</span>, <span class="string">'男'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student (<span class="keyword">id</span>, stu_name, age, gender) <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">'赵敏'</span>, <span class="number">18</span>, <span class="string">'女'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student (<span class="keyword">id</span>, stu_name, age, gender) <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="string">'宋青书'</span>, <span class="number">18</span>, <span class="string">'男'</span>);</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student;</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> age=<span class="number">15</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">2</span>;</span><br><span class="line"><span class="keyword">TRUNCATE</span> student;</span><br></pre></td></tr></table></figure>
+<h3 id="DQL：查询数据记录"><a href="#DQL：查询数据记录" class="headerlink" title="DQL：查询数据记录"></a>DQL：查询数据记录</h3><h4 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span></span><br><span class="line">    字段列表</span><br><span class="line"><span class="keyword">from</span></span><br><span class="line">    表名列表</span><br><span class="line"><span class="keyword">where</span></span><br><span class="line">    条件列表</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span></span><br><span class="line">    分组字段</span><br><span class="line"><span class="keyword">having</span></span><br><span class="line">    分组之后的条件限定</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span></span><br><span class="line">    排序</span><br><span class="line"><span class="keyword">limit</span></span><br><span class="line">    分页限定</span><br></pre></td></tr></table></figure>
+<h4 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, address <span class="keyword">FROM</span> student;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">distinct</span> address <span class="keyword">FROM</span> student;   <span class="comment">-- 去除重复查询结果</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">distinct</span> <span class="keyword">name</span>, address <span class="keyword">FROM</span> student;</span><br><span class="line"><span class="keyword">SELECT</span> math + english <span class="keyword">FROM</span> student;     <span class="comment">-- 计算列</span></span><br><span class="line"><span class="keyword">SELECT</span> english <span class="keyword">as</span> en <span class="keyword">FROM</span> student;      <span class="comment">-- 起别名</span></span><br></pre></td></tr></table></figure>
+<h4 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h4><ol>
+<li>where 后面跟查询条件</li>
+<li>条件运算符<ul>
+<li>>、&lt;、&gt;=、&lt;=、=、&lt;&gt;</li>
+<li>BETWEEN…AND…</li>
+<li>IN (集合)</li>
+<li>LIKE：模糊查询<ul>
+<li>占位符：<ul>
+<li>_：单个任意字符</li>
+<li>%：多个任意字符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>IS NULL/IS NOT NULL</li>
+<li>AND 或 &amp;&amp;</li>
+<li>OR 或 ||</li>
+<li>NOT 或 !</li>
+</ul>
+</li>
+</ol>
+<h4 id="高级查询"><a href="#高级查询" class="headerlink" title="高级查询"></a>高级查询</h4><ol>
+<li>排序查询<br> 语法：ORDER BY 排序字段1 排序方式1, 排序字段2 排序方式2, 排序字段3 排序方式3, …;<br> 升序 ASC,降序 DESC，缺省 ASC。<br> 如果有多个排序条件，前面的值一样才会比较下一个值。</li>
+<li>聚合函数<ul>
+<li>COUNT</li>
+<li>MAX</li>
+<li>MIN</li>
+<li>SUM</li>
+<li>AVG<br>聚合函数计算会排除null值； 解决方案：IFNULL函数。</li>
+</ul>
+</li>
+<li>分组查询<br> 语法：GROUP BY 分组字段;<br> 分组查询的字段：分组字段、聚合函数。<br> where和having的区别：<pre><code>- where在分组前限定，不满足不参与分组。having在分组后限定，不满足不被查询。
+- where后不可以跟聚合函数，having可以。
+</code></pre></li>
+<li>分页查询<br> 语法：LIMIT 开始的索引，每页显示的条数。<br> 公式：每页开始的索引 = (当前页码 - 1) * 每页的条数。<br> 不同的数据库对分页操作的实现可能不同，LIMIT适用于mysql。</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- 练习 ---</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="keyword">if</span> <span class="keyword">exists</span> student;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">int</span>,</span><br><span class="line">	<span class="keyword">name</span> <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">	sex <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">	age <span class="built_in">int</span>,</span><br><span class="line">	address <span class="built_in">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">	math <span class="built_in">int</span>,</span><br><span class="line">	english <span class="built_in">int</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`student`</span> (<span class="string">`id`</span>, <span class="string">`name`</span>, <span class="string">`sex`</span>, <span class="string">`age`</span>, <span class="string">`address`</span>, <span class="string">`math`</span>, <span class="string">`english`</span>) <span class="keyword">VALUES</span>(<span class="string">'1'</span>,<span class="string">'赵云'</span>,<span class="string">'男'</span>,<span class="string">'18'</span>,<span class="string">'蜀'</span>,<span class="string">'99'</span>,<span class="string">'98'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`student`</span> (<span class="string">`id`</span>, <span class="string">`name`</span>, <span class="string">`sex`</span>, <span class="string">`age`</span>, <span class="string">`address`</span>, <span class="string">`math`</span>, <span class="string">`english`</span>) <span class="keyword">VALUES</span>(<span class="string">'2'</span>,<span class="string">'诸葛亮'</span>,<span class="string">'男'</span>,<span class="string">'22'</span>,<span class="string">'蜀'</span>,<span class="string">'100'</span>,<span class="string">'88'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`student`</span> (<span class="string">`id`</span>, <span class="string">`name`</span>, <span class="string">`sex`</span>, <span class="string">`age`</span>, <span class="string">`address`</span>, <span class="string">`math`</span>, <span class="string">`english`</span>) <span class="keyword">VALUES</span>(<span class="string">'3'</span>,<span class="string">'周瑜'</span>,<span class="string">'男'</span>,<span class="string">'18'</span>,<span class="string">'吴'</span>,<span class="string">'95'</span>,<span class="string">'90'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`student`</span> (<span class="string">`id`</span>, <span class="string">`name`</span>, <span class="string">`sex`</span>, <span class="string">`age`</span>, <span class="string">`address`</span>, <span class="string">`math`</span>, <span class="string">`english`</span>) <span class="keyword">VALUES</span>(<span class="string">'4'</span>,<span class="string">'孙尚香'</span>,<span class="string">'女'</span>,<span class="string">'15'</span>,<span class="string">'吴'</span>,<span class="string">'88'</span>,<span class="string">'90'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`student`</span> (<span class="string">`id`</span>, <span class="string">`name`</span>, <span class="string">`sex`</span>, <span class="string">`age`</span>, <span class="string">`address`</span>, <span class="string">`math`</span>, <span class="string">`english`</span>) <span class="keyword">VALUES</span>(<span class="string">'5'</span>,<span class="string">'典韦'</span>,<span class="string">'男'</span>,<span class="string">'17'</span>,<span class="string">'魏'</span>,<span class="string">'84'</span>,<span class="string">'63'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="string">`student`</span> (<span class="string">`id`</span>, <span class="string">`name`</span>, <span class="string">`sex`</span>, <span class="string">`age`</span>, <span class="string">`address`</span>, <span class="string">`math`</span>, <span class="string">`english`</span>) <span class="keyword">VALUES</span>(<span class="string">'6'</span>,<span class="string">'貂蝉'</span>,<span class="string">'女'</span>,<span class="string">'14'</span>,<span class="string">'汉朝'</span>,<span class="string">'72'</span>,<span class="string">'100'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>, math, english;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">id</span>) <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> address=<span class="string">'蜀'</span>;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="keyword">id</span>) count_id, <span class="keyword">AVG</span>(english) avg_en, address <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> english&gt;<span class="number">70</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> address <span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(<span class="keyword">id</span>)&gt;<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每页显示三条记录</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">3</span>;    <span class="comment">-- 第1页</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> student <span class="keyword">LIMIT</span> <span class="number">3</span>,<span class="number">3</span>;    <span class="comment">-- 第2页</span></span><br></pre></td></tr></table></figure>
+<h3 id="表的约束"><a href="#表的约束" class="headerlink" title="表的约束"></a>表的约束</h3><p>概念：对表中的数据进行限定，保证数据的正确性，有效性，完整性。</p>
+<p>分类：</p>
+<ol>
+<li>主键约束：primary key</li>
+<li>非空约束：not null</li>
+<li>唯一约束：unique</li>
+<li>外键约束：foreign key</li>
+</ol>
+<p>非空约束：</p>
+<ul>
+<li>创建表时候添加：<code>字段名 数据类型 NOT NULL</code></li>
+<li>创建表后添加：<code>alter table [表名] modify [字段名] [数据类型] NOT NULL;</code></li>
+<li>删除：<code>alter table [表名] modify [字段名] [数据类型];</code></li>
+</ul>
+<p>唯一约束：</p>
+<ul>
+<li>创建表时候添加：<code>字段名 数据类型 UNIQUE</code></li>
+<li>创建表后添加：<code>alter table [表名] modify [字段名] [数据类型] UNIQUE;</code></li>
+<li>删除：<code>alter table [表名] modify [字段名] [数据类型];</code></li>
+<li>*UNIQUE约束的字段可以有多个NULL值。</li>
+</ul>
+<p>主键约束：</p>
+<ul>
+<li>含义：表中记录的唯一标识，非空且唯一，一张表只有一个主键。</li>
+<li>创建表时添加：<code>字段名 数据类型 PRIMARY KEY</code></li>
+<li>创建表后添加：<code>alter table [表名] modify [字段名] [数据类型] primary key;</code></li>
+<li>删除主键：<code>alter table [表名] drop primary key;</code></li>
+<li>自动增长：<code>id INT PRIMARY KEY AUTO_INCREMENT</code></li>
+<li>删除自动增长：<code>alter table [表名] modify [字段名] [数据类型];</code></li>
+</ul>
+<p>外键约束：</p>
+<ul>
+<li>创建表时添加外键：<code>外键列,constraint 外键名 foreign key (外键列名) references 主表名(主表列名)</code></li>
+<li>创建表后添加：<code>ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (外键列名) REFERENCES 主表名(主表列名);</code></li>
+<li>删除外键：<code>ALTER TABLE 表名 DROP FOREIGN KEY 外键名;</code></li>
+<li>*级联操作，级联更新，级联删除：<code>ALTER TABLE 表名 ADD CONSTRAINT 外键名 FOREIGN KEY (外键列名) REFERENCES 主表名(主表列名) ON UPDATE CASCADE ON DELETE CASCADE;</code></li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--- 练习 ---</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> department;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> employee;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> department(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">	<span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">	location <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> employee(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">	<span class="keyword">NAME</span> <span class="built_in">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">	age <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">	dep_id <span class="built_in">INT</span>,</span><br><span class="line">	<span class="keyword">CONSTRAINT</span> emp_dept_fk <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (dep_id) <span class="keyword">REFERENCES</span> department(<span class="keyword">id</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> department <span class="keyword">VALUES</span>(<span class="literal">NULL</span>, <span class="string">'研发部'</span>, <span class="string">'广州'</span>),(<span class="literal">NULL</span>, <span class="string">'销售部'</span>, <span class="string">'深圳'</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'张三'</span>, <span class="number">20</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'李四'</span>, <span class="number">21</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'王五'</span>, <span class="number">20</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'老王'</span>, <span class="number">20</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'大王'</span>, <span class="number">22</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'小王'</span>, <span class="number">18</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> employee;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> department;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> department;  <span class="comment">--错误</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(<span class="keyword">NAME</span>, age, dep_id) <span class="keyword">VALUES</span> (<span class="string">'王炸'</span>, <span class="number">18</span>, <span class="number">5</span>);   <span class="comment">--错误</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employee <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> emp_dept_fk;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employee <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> emp_dept_fk <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (dep_id) <span class="keyword">REFERENCES</span> department(<span class="keyword">id</span>) <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CASCADE</span> <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="数据库的设计"><a href="#数据库的设计" class="headerlink" title="数据库的设计"></a>数据库的设计</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/16/install-tomcat-on-cetos/" rel="next" title="Linux安装tomcat">
+                <i class="fa fa-chevron-left"></i> Linux安装tomcat
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Chan">
+            
+              <p class="site-author-name" itemprop="name">Chan</p>
+              <p class="site-description motion-element" itemprop="description">辜负了锦绣年华</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chan21252" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="chanjobs21252@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">1.</span> <span class="nav-text">SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.2.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL分类"><span class="nav-number">1.3.</span> <span class="nav-text">SQL分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DDL：操作数据库表"><span class="nav-number">1.4.</span> <span class="nav-text">DDL：操作数据库表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作数据库：CURD"><span class="nav-number">1.4.1.</span> <span class="nav-text">操作数据库：CURD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作数据表"><span class="nav-number">1.4.2.</span> <span class="nav-text">操作数据表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DML：增删改数据记录"><span class="nav-number">1.5.</span> <span class="nav-text">DML：增删改数据记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DQL：查询数据记录"><span class="nav-number">1.6.</span> <span class="nav-text">DQL：查询数据记录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法："><span class="nav-number">1.6.1.</span> <span class="nav-text">语法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础查询"><span class="nav-number">1.6.2.</span> <span class="nav-text">基础查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件查询"><span class="nav-number">1.6.3.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级查询"><span class="nav-number">1.6.4.</span> <span class="nav-text">高级查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表的约束"><span class="nav-number">1.7.</span> <span class="nav-text">表的约束</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的设计"><span class="nav-number">2.</span> <span class="nav-text">数据库的设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
