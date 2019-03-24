@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="linux,git,">
+  <meta name="keywords" content="mysql,java,">
 
 
 
@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download">
-<meta name="keywords" content="linux,git">
+<meta name="description" content="JDBC概念：JDBC是SUN公司定义的一套操作所有关系型数据库的java接口，各个数据库厂商去实现接口">
+<meta name="keywords" content="mysql,java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux源代码安装git">
-<meta property="og:url" content="https://blog.5460cc.com/2018/12/09/install-git-on-centos/index.html">
+<meta property="og:title" content="jdbc">
+<meta property="og:url" content="https://blog.5460cc.com/2019/03/23/jdbc/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download">
+<meta property="og:description" content="JDBC概念：JDBC是SUN公司定义的一套操作所有关系型数据库的java接口，各个数据库厂商去实现接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-16T04:33:53.779Z">
+<meta property="og:updated_time" content="2019-03-23T10:55:14.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux源代码安装git">
-<meta name="twitter:description" content="本文安装环境 Centos6.8 64位，安装版本 git-2.19.2  一、下载git源代码github：https://github.com/git/git/releases官网：http://git-scm.com/download">
+<meta name="twitter:title" content="jdbc">
+<meta name="twitter:description" content="JDBC概念：JDBC是SUN公司定义的一套操作所有关系型数据库的java接口，各个数据库厂商去实现接口">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.5460cc.com/2018/12/09/install-git-on-centos/">
+  <link rel="canonical" href="https://blog.5460cc.com/2019/03/23/jdbc/">
 
 
 
 
 
-  <title>Linux源代码安装git | Chan's Blog</title>
+  <title>jdbc | Chan's Blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/09/install-git-on-centos/">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/03/23/jdbc/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chan">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux源代码安装git</h1>
+          <h1 class="post-title" itemprop="name headline">jdbc</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T12:54:01+08:00">
-                2018-12-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T18:48:09+08:00">
+                2019-03-23
               </time>
             
 
@@ -361,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -398,19 +398,7 @@
       
 
       
-        <blockquote>
-<p>本文安装环境 Centos6.8 64位，安装版本 git-2.19.2</p>
-</blockquote>
-<h2 id="一、下载git源代码"><a href="#一、下载git源代码" class="headerlink" title="一、下载git源代码"></a>一、下载git源代码</h2><p>github：<a href="https://github.com/git/git/releases" target="_blank" rel="noopener">https://github.com/git/git/releases</a><br>官网：<a href="http://git-scm.com/download" target="_blank" rel="noopener">http://git-scm.com/download</a></p>
-<a id="more"></a>
-<h2 id="二、安装依赖工具"><a href="#二、安装依赖工具" class="headerlink" title="二、安装依赖工具"></a>二、安装依赖工具</h2><p>git的工作需要调用 curl，zlib，openssl，expat，libiconv 等库的代码，所以需要先安装这些依赖工具。<br>Centos安装有yum，可以使用以下命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install curl-devel expat-devel gettext-devel \</span><br><span class="line">  openssl-devel zlib-devel</span><br></pre></td></tr></table></figure></p>
-<h2 id="三、创建git用户添加root权限"><a href="#三、创建git用户添加root权限" class="headerlink" title="三、创建git用户添加root权限"></a>三、创建git用户添加root权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建用户</span></span><br><span class="line">useradd git</span><br><span class="line"></span><br><span class="line"><span class="comment"># sudoers文件添加写入、执行权限</span></span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改sudoers文件</span></span><br><span class="line">vim /etc/sudoers</span><br><span class="line"><span class="comment"># 在/etc/sudoers找到root    ALL=(ALL)       ALL，</span></span><br><span class="line"><span class="comment"># 在下面添加一行：git    ALL=(ALL)       ALL</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sudoers文件恢复只读权限</span></span><br><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
-<h2 id="四、编译安装"><a href="#四、编译安装" class="headerlink" title="四、编译安装"></a>四、编译安装</h2><p>安装包上传到/opt目录，然后解压安装。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zvxf git-2.19.2.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译安装</span></span><br><span class="line"><span class="built_in">cd</span> git-2.19.2</span><br><span class="line">make prefix=/opt/git all</span><br><span class="line">sudo make prefix=/opt/git install</span><br></pre></td></tr></table></figure>
-<p>安装成功后会在/opt目录下出现/git文件夹。</p>
-<h2 id="五、git配置环境变量"><a href="#五、git配置环境变量" class="headerlink" title="五、git配置环境变量"></a>五、git配置环境变量</h2><p>为了便于使用git命令，还需要将git添加到环境变量中。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改环境变量配置文件</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件末尾添加</span></span><br><span class="line"><span class="comment"># GIT_HOME</span></span><br><span class="line"><span class="built_in">export</span> GIT_HOME=/opt/git/bin</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$GIT_HOME</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出环境变量</span></span><br><span class="line"><span class="built_in">export</span> <span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使配置文件修改生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></p>
-<h2 id="六、git命令"><a href="#六、git命令" class="headerlink" title="六、git命令"></a>六、git命令</h2><h3 id="1、查看git版本，确认安装和环境变量配置成功。"><a href="#1、查看git版本，确认安装和环境变量配置成功。" class="headerlink" title="1、查看git版本，确认安装和环境变量配置成功。"></a>1、查看git版本，确认安装和环境变量配置成功。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-<h3 id="2、初始化仓库"><a href="#2、初始化仓库" class="headerlink" title="2、初始化仓库"></a>2、初始化仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在/home/git下新建文件夹</span></span><br><span class="line"><span class="built_in">cd</span> /home/git</span><br><span class="line">mkdir Hellogit</span><br><span class="line"><span class="built_in">cd</span> Hellogit/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化仓库</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+        <h2 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h2><p>概念：JDBC是SUN公司定义的一套操作所有关系型数据库的java接口，各个数据库厂商去实现接口</p>
 
       
     </div>
@@ -428,9 +416,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"># linux</a>
+            <a href="/tags/mysql/" rel="tag"># mysql</a>
           
-            <a href="/tags/git/" rel="tag"># git</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -443,15 +431,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/03/23/mysql-note-base/" rel="next" title="Mysql基础学习笔记">
+                <i class="fa fa-chevron-left"></i> Mysql基础学习笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/09/install-nginx-on-centos/" rel="prev" title="Linux源代码安装nginx">
-                Linux源代码安装nginx <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -601,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、下载git源代码"><span class="nav-number">1.</span> <span class="nav-text">一、下载git源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装依赖工具"><span class="nav-number">2.</span> <span class="nav-text">二、安装依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、创建git用户添加root权限"><span class="nav-number">3.</span> <span class="nav-text">三、创建git用户添加root权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、编译安装"><span class="nav-number">4.</span> <span class="nav-text">四、编译安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、git配置环境变量"><span class="nav-number">5.</span> <span class="nav-text">五、git配置环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、git命令"><span class="nav-number">6.</span> <span class="nav-text">六、git命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、查看git版本，确认安装和环境变量配置成功。"><span class="nav-number">6.1.</span> <span class="nav-text">1、查看git版本，确认安装和环境变量配置成功。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、初始化仓库"><span class="nav-number">6.2.</span> <span class="nav-text">2、初始化仓库</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC"><span class="nav-number">1.</span> <span class="nav-text">JDBC</span></a></li></ol></div>
             
 
           </div>
