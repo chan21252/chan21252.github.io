@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#0099ff">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#0099ff">
+
+
+
+
+
+  <meta name="keywords" content="java,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、会话1.1 概念在计算机术语中，会话是指一个终端用户与交互系统进行通讯的过程，比如从输入账户密码进入操作系统到退出操作系统就是一个会话过程。会话较多用于网络上，TCP的三次握手就创建了一个会话，TCP关闭连接就是关闭会话。 Session代表服务器与浏览器的一次会话过程，这个过程是连续的，也可以时断时续的。在Servlet中，当JSP页面没有显式禁止session的时候，在打开浏览器第一次请求">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaEE-Cookie和Session">
+<meta property="og:url" content="https://blog.5460cc.com/2019/04/01/javaee-cookie-session/index.html">
+<meta property="og:site_name" content="Chan&#39;s Blog">
+<meta property="og:description" content="一、会话1.1 概念在计算机术语中，会话是指一个终端用户与交互系统进行通讯的过程，比如从输入账户密码进入操作系统到退出操作系统就是一个会话过程。会话较多用于网络上，TCP的三次握手就创建了一个会话，TCP关闭连接就是关闭会话。 Session代表服务器与浏览器的一次会话过程，这个过程是连续的，也可以时断时续的。在Servlet中，当JSP页面没有显式禁止session的时候，在打开浏览器第一次请求">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/javaee-cookie-session/01.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/blog/javaee-cookie-session/02.jpg">
+<meta property="og:updated_time" content="2019-04-02T11:42:41.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaEE-Cookie和Session">
+<meta name="twitter:description" content="一、会话1.1 概念在计算机术语中，会话是指一个终端用户与交互系统进行通讯的过程，比如从输入账户密码进入操作系统到退出操作系统就是一个会话过程。会话较多用于网络上，TCP的三次握手就创建了一个会话，TCP关闭连接就是关闭会话。 Session代表服务器与浏览器的一次会话过程，这个过程是连续的，也可以时断时续的。在Servlet中，当JSP页面没有显式禁止session的时候，在打开浏览器第一次请求">
+<meta name="twitter:image" content="http://image.5460cc.com/image/blog/javaee-cookie-session/01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.5460cc.com/2019/04/01/javaee-cookie-session/">
+
+
+
+
+
+  <title>JavaEE-Cookie和Session | Chan's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bd1564acaf23a2ba8e613e37ec60ee29";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chan's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/04/01/javaee-cookie-session/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaEE-Cookie和Session</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-01T15:43:43+08:00">
+                2019-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、会话"><a href="#一、会话" class="headerlink" title="一、会话"></a>一、会话</h2><h3 id="1-1-概念"><a href="#1-1-概念" class="headerlink" title="1.1 概念"></a>1.1 概念</h3><p>在计算机术语中，会话是指一个终端用户与交互系统进行通讯的过程，比如从输入账户密码进入操作系统到退出操作系统就是一个会话过程。会话较多用于网络上，TCP的三次握手就创建了一个会话，TCP关闭连接就是关闭会话。</p>
+<p>Session代表服务器与浏览器的一次会话过程，这个过程是连续的，也可以时断时续的。在Servlet中，当JSP页面没有显式禁止session的时候，在打开浏览器第一次请求该jsp的时候，服务器会自动为其创建一个session，并赋予其一个sessionID，发送给客户端的浏览器。以后客户端接着请求本应用中其他资源的时候，会自动在请求头上添加：（Cookie:SESSIONID=客户端第一次拿到的session ID）。这样，服务器端在接到请求时候，就会收到session ID，并根据ID在内存中找到之前创建的session对象，提供给请求使用。</p>
+<p>简单的说，一次会话包含多次请求和响应，浏览器第一次请求服务器时，会话建立，直到一方断开连接。</p>
+<h3 id="1-2-功能"><a href="#1-2-功能" class="headerlink" title="1.2 功能"></a>1.2 功能</h3><p>在一次会话范围内的多次请求间，共享数据。</p>
+<p>技术实现方式：</p>
+<ol>
+<li>客户端会话技术：cookie</li>
+<li>服务端会话技术：session</li>
+</ol>
+<a id="more"></a>
+<h2 id="二、Cookie"><a href="#二、Cookie" class="headerlink" title="二、Cookie"></a>二、Cookie</h2><h3 id="2-1-概念"><a href="#2-1-概念" class="headerlink" title="2.1 概念"></a>2.1 概念</h3><p>客户端会话技术，将数据保存到客户端。</p>
+<p>Cookie（复数形态Cookies），又称为“小甜饼”。类型为“小型文本文件”，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。</p>
+<p>Cookie总是保存在客户端中，按在客户端中的存储位置，可分为内存Cookie和硬盘Cookie。</p>
+<p>内存Cookie由浏览器维护，保存在内存中，浏览器关闭后就消失了，其存在时间是短暂的。硬盘Cookie保存在硬盘里，有一个过期时间，除非用户手工清理或到了过期时间，硬盘Cookie不会被删除，其存在时间是长期的。所以，按存在时间，可分为非持久Cookie和持久Cookie。</p>
+<h3 id="2-2-快速入门"><a href="#2-2-快速入门" class="headerlink" title="2.2 快速入门"></a>2.2 快速入门</h3><ol>
+<li>创建Cookie对象，绑定数据</li>
+<li>response发送Cookie对象</li>
+<li>request获取Cookie，读取Cookie内容</li>
+</ol>
+<h3 id="2-3-实现原理"><a href="#2-3-实现原理" class="headerlink" title="2.3 实现原理"></a>2.3 实现原理</h3><blockquote>
+<p>基于响应头set-cookie和请求头cookie实现</p>
+</blockquote>
+<p><img src="http://image.5460cc.com/image/blog/javaee-cookie-session/01.jpg" alt=""></p>
+<h3 id="2-4-常见的cookie问题"><a href="#2-4-常见的cookie问题" class="headerlink" title="2.4 常见的cookie问题"></a>2.4 常见的cookie问题</h3><h4 id="1-一次响应是否可以发送多个cookie？"><a href="#1-一次响应是否可以发送多个cookie？" class="headerlink" title="1.一次响应是否可以发送多个cookie？"></a>1.一次响应是否可以发送多个cookie？</h4><ul>
+<li>可以。</li>
+<li>可以创建多个Cookie对象，多次调用response.addCookie方法发送cookie即可。</li>
+</ul>
+<h4 id="2-cookie在浏览器中可以保持多久？"><a href="#2-cookie在浏览器中可以保持多久？" class="headerlink" title="2.cookie在浏览器中可以保持多久？"></a>2.cookie在浏览器中可以保持多久？</h4><ul>
+<li>默认情况，cook存储在内存中，浏览器关闭即销毁。</li>
+<li>可以通过setMaxAge(int second)实现持久化存储：<ul>
+<li>正数：将cookie数据写入硬盘，存储second秒。</li>
+<li>负数：默认值。</li>
+<li>0：删除该cookie。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-cookie是否能存中文"><a href="#3-cookie是否能存中文" class="headerlink" title="3. cookie是否能存中文"></a>3. cookie是否能存中文</h4><ul>
+<li>tomcat8以前的版本，cookie不能直接存储中文，需要将中午编码（建议urlencode）。</li>
+<li>tomcat8开始，cookie支持中文。</li>
+</ul>
+<h4 id="4-一个tomcat服务器中，不同的web项目之间是否可以共享cookie？"><a href="#4-一个tomcat服务器中，不同的web项目之间是否可以共享cookie？" class="headerlink" title="4. 一个tomcat服务器中，不同的web项目之间是否可以共享cookie？"></a>4. 一个tomcat服务器中，不同的web项目之间是否可以共享cookie？</h4><ul>
+<li>默认情况下，不能共享</li>
+<li>可以通过setPath(String path)设置cookie的获取范围，实现不同web项目共享cookie</li>
+</ul>
+<h4 id="5-不同的tomcat服务器cookie是否可以共享？"><a href="#5-不同的tomcat服务器cookie是否可以共享？" class="headerlink" title="5. 不同的tomcat服务器cookie是否可以共享？"></a>5. 不同的tomcat服务器cookie是否可以共享？</h4><ul>
+<li>setDomain(String path)，如果设置的一级域名相同，那么多个服务器之间的cookie可以共享。</li>
+<li>比如，<code>setDomain(&quot;.baidu.com&quot;);</code>，那么<em>tieba.baidu.com</em>和<em>news.baidu.com</em>的cookie可以共享。</li>
+</ul>
+<h3 id="2-5-Cookie的特点和作用"><a href="#2-5-Cookie的特点和作用" class="headerlink" title="2.5 Cookie的特点和作用"></a>2.5 Cookie的特点和作用</h3><p>特点：</p>
+<ol>
+<li>cookie存储在客户端浏览器；</li>
+<li>浏览器对于单个cookie的大小有限制，对于同个域名下的cookie数量有限制。</li>
+</ol>
+<p>作用：</p>
+<ol>
+<li>cookie一般用于存储量少而不敏感的数据；</li>
+<li>在不登录的情况下，完成服务器对客户端身份的识别。</li>
+</ol>
+<h3 id="2-6-案例：cookie记住上一次访问的时间"><a href="#2-6-案例：cookie记住上一次访问的时间" class="headerlink" title="2.6 案例：cookie记住上一次访问的时间"></a>2.6 案例：cookie记住上一次访问的时间</h3><h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><ol>
+<li>访问一个servlet，如果是首次访问，显示您好！欢迎您首次访问。</li>
+<li>如果是重复访问，显示欢迎回来，您上次访问时间为${上次访问时间}。</li>
+</ol>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p><a href="https://github.com/chan21252/JavaeeLearnDemo/tree/master/01_Cookie_RememberViewTime" target="_blank" rel="noopener">https://github.com/chan21252/JavaeeLearnDemo/tree/master/01_Cookie_RememberViewTime</a></p>
+<h2 id="三、Session"><a href="#三、Session" class="headerlink" title="三、Session"></a>三、Session</h2><h3 id="3-1-概念"><a href="#3-1-概念" class="headerlink" title="3.1 概念"></a>3.1 概念</h3><p>服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器对象（HttpSession）中。</p>
+<p>Session:在计算机中，尤其是在网络应用中，称为“会话控制”。Session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当用户请求来自应用程序的 Web 页时，如果该用户还没有会话，则 Web 服务器将自动创建一个 Session 对象。当会话过期或被放弃后，服务器将终止该会话。</p>
+<h3 id="3-2-快速入门"><a href="#3-2-快速入门" class="headerlink" title="3.2 快速入门"></a>3.2 快速入门</h3><ol>
+<li>获取HttpSession对象:<code>HttpSession session = request.getSession();</code></li>
+<li>存储数据：<code>session.setAttribute(String s, Object o);</code></li>
+<li>获取数据：<code>session.getAttribute(String s);</code></li>
+<li>删除数据：<code>session.removeAttribute(String s);</code></li>
+</ol>
+<h3 id="3-3-原理"><a href="#3-3-原理" class="headerlink" title="3.3 原理"></a>3.3 原理</h3><blockquote>
+<p>session的实现依赖cookie。</p>
+</blockquote>
+<p><img src="http://image.5460cc.com/image/blog/javaee-cookie-session/02.jpg" alt=""></p>
+<h3 id="3-3-常见问题"><a href="#3-3-常见问题" class="headerlink" title="3.3 常见问题"></a>3.3 常见问题</h3><h5 id="1-服务端不关闭，关闭客户端后重新打开，两次获取的session是否是同一个？"><a href="#1-服务端不关闭，关闭客户端后重新打开，两次获取的session是否是同一个？" class="headerlink" title="1. 服务端不关闭，关闭客户端后重新打开，两次获取的session是否是同一个？"></a>1. 服务端不关闭，关闭客户端后重新打开，两次获取的session是否是同一个？</h5><ul>
+<li>默认情况，不是。</li>
+<li>可以通过设置键为“JESSIONID”的Cookie，并持久化，使得两次的session相同</li>
+</ul>
+<h5 id="2-客户端不关闭，服务器关闭并重启，客户端刷新后，获取的session还是同一个吗？"><a href="#2-客户端不关闭，服务器关闭并重启，客户端刷新后，获取的session还是同一个吗？" class="headerlink" title="2. 客户端不关闭，服务器关闭并重启，客户端刷新后，获取的session还是同一个吗？"></a>2. 客户端不关闭，服务器关闭并重启，客户端刷新后，获取的session还是同一个吗？</h5><ul>
+<li>不是同一个，但是session保存的内容不变。</li>
+<li>tomcat会完成以下工作：<ul>
+<li>服务器正常关闭前，session对象序列化到硬盘上，tomcat的work目录中。</li>
+<li>服务器启动后，session文件读取到内存的session对象中</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-session什么时候被销毁？"><a href="#3-session什么时候被销毁？" class="headerlink" title="3. session什么时候被销毁？"></a>3. session什么时候被销毁？</h5><ul>
+<li>服务器被关闭</li>
+<li>session对象调用invalidate()</li>
+<li>session默认失效时间 30min<ul>
+<li>可以修改web.xml的配置&lt;session-config>&lt;/session-config></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-4-案例：验证码校验"><a href="#3-4-案例：验证码校验" class="headerlink" title="3.4 案例：验证码校验"></a>3.4 案例：验证码校验</h3><p>代码：<a href="https://github.com/chan21252/VerifyCodeDemo" target="_blank" rel="noopener">https://github.com/chan21252/VerifyCodeDemo</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/28/javaee-verify-code-demo/" rel="next" title="Java实现图片验证码功能">
+                <i class="fa fa-chevron-left"></i> Java实现图片验证码功能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/02/javee-jsp-base/" rel="prev" title="JavaEE-jsp基础">
+                JavaEE-jsp基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Chan">
+            
+              <p class="site-author-name" itemprop="name">Chan</p>
+              <p class="site-description motion-element" itemprop="description">辜负了锦绣年华</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chan21252" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="chanjobs21252@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、会话"><span class="nav-number">1.</span> <span class="nav-text">一、会话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-功能"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Cookie"><span class="nav-number">2.</span> <span class="nav-text">二、Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-概念"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-快速入门"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-实现原理"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-常见的cookie问题"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 常见的cookie问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-一次响应是否可以发送多个cookie？"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.一次响应是否可以发送多个cookie？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-cookie在浏览器中可以保持多久？"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.cookie在浏览器中可以保持多久？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-cookie是否能存中文"><span class="nav-number">2.4.3.</span> <span class="nav-text">3. cookie是否能存中文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-一个tomcat服务器中，不同的web项目之间是否可以共享cookie？"><span class="nav-number">2.4.4.</span> <span class="nav-text">4. 一个tomcat服务器中，不同的web项目之间是否可以共享cookie？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-不同的tomcat服务器cookie是否可以共享？"><span class="nav-number">2.4.5.</span> <span class="nav-text">5. 不同的tomcat服务器cookie是否可以共享？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Cookie的特点和作用"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Cookie的特点和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-案例：cookie记住上一次访问的时间"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 案例：cookie记住上一次访问的时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需求"><span class="nav-number">2.6.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">2.6.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Session"><span class="nav-number">3.</span> <span class="nav-text">三、Session</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-概念"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-快速入门"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-原理"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-常见问题"><span class="nav-number">3.4.</span> <span class="nav-text">3.3 常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-服务端不关闭，关闭客户端后重新打开，两次获取的session是否是同一个？"><span class="nav-number">3.4.0.1.</span> <span class="nav-text">1. 服务端不关闭，关闭客户端后重新打开，两次获取的session是否是同一个？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-客户端不关闭，服务器关闭并重启，客户端刷新后，获取的session还是同一个吗？"><span class="nav-number">3.4.0.2.</span> <span class="nav-text">2. 客户端不关闭，服务器关闭并重启，客户端刷新后，获取的session还是同一个吗？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-session什么时候被销毁？"><span class="nav-number">3.4.0.3.</span> <span class="nav-text">3. session什么时候被销毁？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-案例：验证码校验"><span class="nav-number">3.5.</span> <span class="nav-text">3.4 案例：验证码校验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.lazyload/1.9.3/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/velocity/1.2.3/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
