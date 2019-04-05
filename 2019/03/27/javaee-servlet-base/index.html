@@ -92,7 +92,7 @@
 <meta property="og:description" content="一、Servlet1.1 概念Server applet，运行在服务器端的小程序。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。Servlet运行于支持Java的应用服务器中。从原理上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来扩展基于HTTP协议的We">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://image.5460cc.com/image/blog/servlet-base/01.jpg">
-<meta property="og:updated_time" content="2019-04-02T11:42:41.544Z">
+<meta property="og:updated_time" content="2019-04-05T10:16:35.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaEE-Servlet基础">
 <meta name="twitter:description" content="一、Servlet1.1 概念Server applet，运行在服务器端的小程序。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。Servlet运行于支持Java的应用服务器中。从原理上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来扩展基于HTTP协议的We">
@@ -570,6 +570,70 @@
 <li><code>this.getServletContext();</code></li>
 </ol>
 <p>获取服务器的资源<br><code>servletContext.getRealPath(String file)</code></p>
+<h2 id="六、Filter过滤器"><a href="#六、Filter过滤器" class="headerlink" title="六、Filter过滤器"></a>六、Filter过滤器</h2><h3 id="6-1-概念："><a href="#6-1-概念：" class="headerlink" title="6.1 概念："></a>6.1 概念：</h3><p>Servlet 过滤器可以动态地拦截请求和响应，以变换或使用包含在请求或响应中的信息。</p>
+<p>可以将一个或多个 Servlet 过滤器附加到一个 Servlet 或一组 Servlet。Servlet 过滤器也可以附加到 JavaServer Pages (JSP) 文件和 HTML 页面。调用 Servlet 前调用所有附加的 Servlet 过滤器。</p>
+<p>Servlet 过滤器是可用于 Servlet 编程的 Java 类，可以实现以下目的：</p>
+<p>在客户端的请求访问后端资源之前，拦截这些请求。<br>在服务器的响应发送回客户端之前，处理这些响应。</p>
+<h3 id="6-2-快速入门："><a href="#6-2-快速入门：" class="headerlink" title="6.2 快速入门："></a>6.2 快速入门：</h3><ol>
+<li>定义一个类实现Filter接口</li>
+<li>重写方法<ol start="3">
+<li>设置放行：<code>filterChain.doFilter(request, response)</code></li>
+</ol>
+</li>
+<li>配置拦截路径<ol>
+<li>web.xml</li>
+<li>注解 <code>@WebFilter(&quot;/&quot;)</code></li>
+</ol>
+</li>
+</ol>
+<h3 id="6-3-过滤器技术细节"><a href="#6-3-过滤器技术细节" class="headerlink" title="6.3 过滤器技术细节"></a>6.3 过滤器技术细节</h3><h4 id="1-web-xml配置"><a href="#1-web-xml配置" class="headerlink" title="1. web.xml配置"></a>1. web.xml配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--web.xml--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span><span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span><span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span><span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span><span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-过滤器执行流程"><a href="#2-过滤器执行流程" class="headerlink" title="2. 过滤器执行流程"></a>2. 过滤器执行流程</h4><ol>
+<li>执行过滤器，处理请求</li>
+<li>放行</li>
+<li>继续执行放行后的代码，主要处理响应</li>
+</ol>
+<h4 id="3-过滤器生命周期"><a href="#3-过滤器生命周期" class="headerlink" title="3. 过滤器生命周期"></a>3. 过滤器生命周期</h4><ol>
+<li>init：服务器启动后，创建Filter对象，执行init()方法，仅执行一次。</li>
+<li>doFilter：每一次请求拦截资源时，会执行</li>
+<li>destroy：服务器关闭后，Filter对象被销毁，如果是正常关闭，会执行destroy方法。只执行一次。</li>
+</ol>
+<h4 id="4-过滤器配置详解"><a href="#4-过滤器配置详解" class="headerlink" title="4. 过滤器配置详解"></a>4. 过滤器配置详解</h4><ol>
+<li>拦截路径配置<ol>
+<li>具体资源路径：/index.jsp</li>
+<li>目录拦截：/user/*</li>
+<li>后缀名拦截：*.jsp</li>
+<li>拦截所有资源：*</li>
+</ol>
+</li>
+<li>拦截方式配置：资源被访问的方式过滤<br>设置dispatcherTypes属性：</li>
+</ol>
+<ul>
+<li>REQUEST：默认值，浏览器直接请求资源</li>
+<li>FORWARD：转发访问资源</li>
+<li>INCLUDE：包含访问资源</li>
+<li>ERROR：错误跳转资源</li>
+<li>ASYNC：异步访问资源</li>
+</ul>
+<h4 id="5-过滤器链"><a href="#5-过滤器链" class="headerlink" title="5. 过滤器链"></a>5. 过滤器链</h4><p>执行顺序，如果有两个过滤器，过滤器1和2</p>
+<ol>
+<li>过滤器1</li>
+<li>过滤器2</li>
+<li>资源执行</li>
+<li>过滤器2</li>
+<li>过滤器1</li>
+</ol>
+<p>过滤器执行先后顺序</p>
+<ol>
+<li>注解配置：按照类名的字符串比较规则比较，值小的先执行</li>
+<li>web.xml配置：<filter-mapping>谁定义在前面，谁先执行</filter-mapping></li>
+</ol>
+<h2 id="七、Listener"><a href="#七、Listener" class="headerlink" title="七、Listener"></a>七、Listener</h2><p>概念：<br>事件监听机制，事件、事件源、监听器绑定在一起，事件源发生某个事件后，执行监听器代码。</p>
+<p>快速实现：</p>
+<ol>
+<li>定义一个类，实现监听器接口</li>
+<li>复写方法</li>
+<li>配置监听器</li>
+</ol>
 
       
     </div>
@@ -762,7 +826,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Servlet"><span class="nav-number">1.</span> <span class="nav-text">一、Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-示例"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Servlet执行原理"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Servlet执行原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Servlet的生命周期"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Servlet的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Servlet3-0"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Servlet3.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-Servlet体系结构"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Servlet体系结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Http"><span class="nav-number">2.</span> <span class="nav-text">二、Http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-概念"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-请求消息数据格式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 请求消息数据格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求行"><span class="nav-number">2.2.1.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求头"><span class="nav-number">2.2.2.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求空行"><span class="nav-number">2.2.3.</span> <span class="nav-text">请求空行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求体（正文）"><span class="nav-number">2.2.4.</span> <span class="nav-text">请求体（正文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求消息数据示例"><span class="nav-number">2.2.5.</span> <span class="nav-text">请求消息数据示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-响应消息数据格式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 响应消息数据格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Request"><span class="nav-number">3.</span> <span class="nav-text">三、Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#request对象和response对象的原理"><span class="nav-number">3.1.</span> <span class="nav-text">request对象和response对象的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request对象继承关系"><span class="nav-number">3.2.</span> <span class="nav-text">request对象继承关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request功能"><span class="nav-number">3.3.</span> <span class="nav-text">request功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Response"><span class="nav-number">4.</span> <span class="nav-text">四、Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-功能："><span class="nav-number">4.1.</span> <span class="nav-text">4.1 功能：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、ServletContext"><span class="nav-number">5.</span> <span class="nav-text">五、ServletContext</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Servlet"><span class="nav-number">1.</span> <span class="nav-text">一、Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-快速入门"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-示例"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Servlet执行原理"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 Servlet执行原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Servlet的生命周期"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 Servlet的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Servlet3-0"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Servlet3.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-Servlet体系结构"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Servlet体系结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Http"><span class="nav-number">2.</span> <span class="nav-text">二、Http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-概念"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-请求消息数据格式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 请求消息数据格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求行"><span class="nav-number">2.2.1.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求头"><span class="nav-number">2.2.2.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求空行"><span class="nav-number">2.2.3.</span> <span class="nav-text">请求空行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求体（正文）"><span class="nav-number">2.2.4.</span> <span class="nav-text">请求体（正文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求消息数据示例"><span class="nav-number">2.2.5.</span> <span class="nav-text">请求消息数据示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-响应消息数据格式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 响应消息数据格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Request"><span class="nav-number">3.</span> <span class="nav-text">三、Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#request对象和response对象的原理"><span class="nav-number">3.1.</span> <span class="nav-text">request对象和response对象的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request对象继承关系"><span class="nav-number">3.2.</span> <span class="nav-text">request对象继承关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#request功能"><span class="nav-number">3.3.</span> <span class="nav-text">request功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、Response"><span class="nav-number">4.</span> <span class="nav-text">四、Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-功能："><span class="nav-number">4.1.</span> <span class="nav-text">4.1 功能：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、ServletContext"><span class="nav-number">5.</span> <span class="nav-text">五、ServletContext</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、Filter过滤器"><span class="nav-number">6.</span> <span class="nav-text">六、Filter过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-概念："><span class="nav-number">6.1.</span> <span class="nav-text">6.1 概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-快速入门："><span class="nav-number">6.2.</span> <span class="nav-text">6.2 快速入门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-过滤器技术细节"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 过滤器技术细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-web-xml配置"><span class="nav-number">6.3.1.</span> <span class="nav-text">1. web.xml配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-过滤器执行流程"><span class="nav-number">6.3.2.</span> <span class="nav-text">2. 过滤器执行流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-过滤器生命周期"><span class="nav-number">6.3.3.</span> <span class="nav-text">3. 过滤器生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-过滤器配置详解"><span class="nav-number">6.3.4.</span> <span class="nav-text">4. 过滤器配置详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-过滤器链"><span class="nav-number">6.3.5.</span> <span class="nav-text">5. 过滤器链</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、Listener"><span class="nav-number">7.</span> <span class="nav-text">七、Listener</span></a></li></ol></div>
             
 
           </div>
