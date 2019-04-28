@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="java,">
+  <meta name="keywords" content="java,javase,">
 
 
 
@@ -83,18 +83,30 @@
 
 
 
-<meta name="description" content="原文地址：http://commons.apache.org/proper/commons-fileupload/index.html  概览Commons FileUpload 让添加健壮、高性能的文件上传功能到你的servlet和web应用程序中变得十分容易。 FileUpload解析符合RFC 1867（HTML中基于表单的文件上传）的请求。就是说，如果一个HTTP请求，是用POST方法提">
-<meta name="keywords" content="java">
+<meta name="description" content="一、JDK下载安装1.1 下载Java是Sun公司推出的产品，Sun公司现已被Oracle公司收购。我们可以去Oracle的官网下载Java开发工具（JDK）。Oracle官网：https://www.oracle.com/index.html。接着选择Menu-&amp;gt;Products-&amp;gt;Java-&amp;gt;JavaSE，在页面底部找到Java for developer进行下载。目前JDK">
+<meta name="keywords" content="java,javase">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java-commons-fileupload">
-<meta property="og:url" content="https://blog.5460cc.com/2019/01/22/java-commons-fileupload/index.html">
+<meta property="og:title" content="JAVASE学习笔记——001 环境配置和HelloWorld">
+<meta property="og:url" content="https://blog.5460cc.com/2019/04/28/javase-001-environment-config/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="原文地址：http://commons.apache.org/proper/commons-fileupload/index.html  概览Commons FileUpload 让添加健壮、高性能的文件上传功能到你的servlet和web应用程序中变得十分容易。 FileUpload解析符合RFC 1867（HTML中基于表单的文件上传）的请求。就是说，如果一个HTTP请求，是用POST方法提">
+<meta property="og:description" content="一、JDK下载安装1.1 下载Java是Sun公司推出的产品，Sun公司现已被Oracle公司收购。我们可以去Oracle的官网下载Java开发工具（JDK）。Oracle官网：https://www.oracle.com/index.html。接着选择Menu-&amp;gt;Products-&amp;gt;Java-&amp;gt;JavaSE，在页面底部找到Java for developer进行下载。目前JDK">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-23T09:48:28.684Z">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/01.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/02.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/03.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/04.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/05.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/06.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/07.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/08.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/09.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/10.jpg">
+<meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/11.jpg">
+<meta property="og:updated_time" content="2019-04-28T13:16:36.724Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java-commons-fileupload">
-<meta name="twitter:description" content="原文地址：http://commons.apache.org/proper/commons-fileupload/index.html  概览Commons FileUpload 让添加健壮、高性能的文件上传功能到你的servlet和web应用程序中变得十分容易。 FileUpload解析符合RFC 1867（HTML中基于表单的文件上传）的请求。就是说，如果一个HTTP请求，是用POST方法提">
+<meta name="twitter:title" content="JAVASE学习笔记——001 环境配置和HelloWorld">
+<meta name="twitter:description" content="一、JDK下载安装1.1 下载Java是Sun公司推出的产品，Sun公司现已被Oracle公司收购。我们可以去Oracle的官网下载Java开发工具（JDK）。Oracle官网：https://www.oracle.com/index.html。接着选择Menu-&amp;gt;Products-&amp;gt;Java-&amp;gt;JavaSE，在页面底部找到Java for developer进行下载。目前JDK">
+<meta name="twitter:image" content="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/01.jpg">
 
 
 
@@ -124,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.5460cc.com/2019/01/22/java-commons-fileupload/">
+  <link rel="canonical" href="https://blog.5460cc.com/2019/04/28/javase-001-environment-config/">
 
 
 
 
 
-  <title>java-commons-fileupload | Chan's Blog</title>
+  <title>JAVASE学习笔记——001 环境配置和HelloWorld | Chan's Blog</title>
   
 
 
@@ -309,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/01/22/java-commons-fileupload/">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/04/28/javase-001-environment-config/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chan">
@@ -326,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java-commons-fileupload</h1>
+          <h1 class="post-title" itemprop="name headline">JAVASE学习笔记——001 环境配置和HelloWorld</h1>
         
 
         <div class="post-meta">
@@ -338,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-22T15:46:26+08:00">
-                2019-01-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T19:13:45+08:00">
+                2019-04-28
               </time>
             
 
@@ -398,61 +410,66 @@
       
 
       
-        <blockquote>
-<p>原文地址：<a href="http://commons.apache.org/proper/commons-fileupload/index.html" target="_blank" rel="noopener">http://commons.apache.org/proper/commons-fileupload/index.html</a></p>
-</blockquote>
-<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>Commons FileUpload 让添加健壮、高性能的文件上传功能到你的servlet和web应用程序中变得十分容易。</p>
-<p>FileUpload解析符合RFC 1867（HTML中基于表单的文件上传）的请求。就是说，如果一个HTTP请求，是用POST方法提交的，并且内容类型为“multipart/form-data”，FileUpload就可以解析这个请求，并且让结果易于调用者使用。</p>
-<p>从1.3版本开始，FileUpload处理RFC 2047编码的header值。<br><a id="more"></a><br>发送一个multipart/form-data请求到服务器最简单的方式是通过web表单，即：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span> <span class="attr">action</span>=<span class="string">"fup.cgi"</span>&gt;</span></span><br><span class="line">    File to upload: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"upfile"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    Notes about the file: <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"note"</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Press"</span>&gt;</span> to upload the file!</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="使用FileUpload"><a href="#使用FileUpload" class="headerlink" title="使用FileUpload"></a>使用FileUpload</h2><p>FileUpload可以有许多用法，看你应用的需要。最简单的，你可以调用一个独立的方法解析servlet请求，然后处理适用于程序的对象列表。另一方面，你可能决定自定义FileUpload来完全控制各个对象的存储方式，比如，你决定将内容流传输到数据库。</p>
-<p>在这里，我们将介绍FileUpload的基本原理，并说明一些简单的、最常见的使用模式。自定义FileUpload将在别处说明。</p>
-<p>FileUpload依赖于Commons IO，因此确保在类路径中有<a href="http://commons.apache.org/proper/commons-fileupload/dependencies.html" target="_blank" rel="noopener">依赖页</a>提到的Commons IO版本。</p>
-<h2 id="如何工作"><a href="#如何工作" class="headerlink" title="如何工作"></a>如何工作</h2><p>文件上传请求包含了一个根据<a href="http://www.ietf.org/rfc/rfc1867.txt" target="_blank" rel="noopener">RFC 1867</a>编码的有序item列表。FileUpload可以解析请求，并且向你的应用提供单文件上传item的列表。无论其底层如何，每个item都实现了<strong>FileItem</strong>接口。</p>
-<p>本文描述了commons fileupload库的传统API。传统API是一个便捷的方法，但是为了追求更佳的性能，你会更喜欢<a href="http://commons.apache.org/proper/commons-fileupload/streaming.html" target="_blank" rel="noopener">Stream API</a>。</p>
-<p>每个文件item拥有许多你的应用会涉及到的属性。举例，每个item有名称和内容类型，可以提供<strong>InputStream</strong>获取它的数据。另一方面，你可能需要分别处理item，取决于item是否是常规的表单字段——就是说，数据是来自普通的文本框或类似的HTML字段，或者是一个上传的文件。FileItem接口提供了判定方法，并且以最合适的方式获取数据。</p>
-<p>FileUpload用<strong>FileItemFactory</strong>来创建新的文件item。这就是FileUpload最大的灵活性。工厂最终控制每个item的创建方式。FileUpload附带的工厂实现存储item数据到内存或磁盘中，这取决于item的大小（比如数据的字节）。但是，可以自定义此行为以适合您的应用程序。</p>
-<h2 id="Servlets-和-Portlets"><a href="#Servlets-和-Portlets" class="headerlink" title="Servlets 和 Portlets"></a>Servlets 和 Portlets</h2><p>从1.1版本开始，FileUpload支持servlet和porlet环境中的文件上传请求。在两个环境中的用法几乎相同，因此本文档的其余部分仅涉及servlet环境。</p>
-<p>如果要构建portlet应用程序，以下是在阅读本文档时应该注意两个区别：</p>
-<ul>
-<li>在您看到对<strong>ServletFileUpload</strong>类的引用，请替换为<strong>PortletFileUpload</strong>类。</li>
-<li>在您看到对<strong>HttpServletRequest</strong>类的引用，请替换为<strong>ActionRequest</strong>类。</li>
-</ul>
-<h2 id="解析请求"><a href="#解析请求" class="headerlink" title="解析请求"></a>解析请求</h2><p>在处理上传的item之前，你需要解析请求。确保是请求是文件上传请求很简单，FileUpload提供了一个静态方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Check that we have a file upload request</span></span><br><span class="line"><span class="keyword">boolean</span> isMultipart = ServletFileUpload.isMultipartContent(request);</span><br></pre></td></tr></table></figure>
-<p>现在我们准备将请求解析为item组成。</p>
-<h2 id="最简单的示例"><a href="#最简单的示例" class="headerlink" title="最简单的示例"></a>最简单的示例</h2><p>最简单的使用方案如下：</p>
-<ul>
-<li>相当小的上传item应该被保存在内存中</li>
-<li>较大的item应该被写入到磁盘的临时文件中</li>
-<li>不应允许非常大的文件上传请求</li>
-<li>要保存在内存中的item文件的默认最大值、允许上传请求的最大值和临时文件的位置是合适的</li>
-</ul>
-<p>这种处理请求的方案可能不是最简单的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a factory for disk-based file items</span></span><br><span class="line">DiskFileItemFactory factory = <span class="keyword">new</span> DiskFileItemFactory();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Configure a repository (to ensure a secure temp location is used)</span></span><br><span class="line">ServletContext servletContext = <span class="keyword">this</span>.getServletConfig().getServletContext();</span><br><span class="line">File repository = (File) servletContext.getAttribute(<span class="string">"javax.servlet.context.tempdir"</span>);</span><br><span class="line">factory.setRepository(repository);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a new file upload handler</span></span><br><span class="line">ServletFileUpload upload = <span class="keyword">new</span> ServletFileUpload(factory);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parse the request</span></span><br><span class="line">List&lt;FileItem&gt; items = upload.parseRequest(request);</span><br></pre></td></tr></table></figure>
-<p>这就是所有要做的，真的。</p>
-<p>解析结果是一个文件item的<strong>List</strong>，它的每个元素实现了<strong>FileItem</strong>接口。接下来讨论处理item。</p>
-<h2 id="实践更多的控制"><a href="#实践更多的控制" class="headerlink" title="实践更多的控制"></a>实践更多的控制</h2><p>如果你的使用方案和上面提到最简单的例子相近，但是你需要一些更多的控制，你可以自定义上传处理程序或者文件item工厂。下面的例子展示了几个配置项：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a factory for disk-based file items</span></span><br><span class="line">DiskFileItemFactory factory = <span class="keyword">new</span> DiskFileItemFactory();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set factory constraints</span></span><br><span class="line">factory.setSizeThreshold(yourMaxMemorySize);</span><br><span class="line">factory.setRepository(yourTempDirectory);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a new file upload handler</span></span><br><span class="line">ServletFileUpload upload = <span class="keyword">new</span> ServletFileUpload(factory);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set overall request size constraint</span></span><br><span class="line">upload.setSizeMax(yourMaxRequestSize);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Parse the request</span></span><br><span class="line">List&lt;FileItem&gt; items = upload.parseRequest(request);</span><br></pre></td></tr></table></figure>
-<p>当然，每种配置方法都独立于其他配置方法。但是如果你想一次性配置工厂，你可以用构造函数来完成，像这样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create a factory for disk-based file items</span></span><br><span class="line">DiskFileItemFactory factory = <span class="keyword">new</span> DiskFileItemFactory(yourMaxMemorySize, yourTempDirectory);</span><br></pre></td></tr></table></figure>
-<p>如果你想更多地控制请求解析过程，比如存储item到其他位置——数据库中，你可以查看<a href="http://commons.apache.org/proper/commons-fileupload/customizing.html" target="_blank" rel="noopener">自定义FileUpload</a>。</p>
-<h2 id="处理要上传的item"><a href="#处理要上传的item" class="headerlink" title="处理要上传的item"></a>处理要上传的item</h2><p>一旦解析完成，你会得到一个待处理文件item的<strong>List</strong>。大多数情况下，你会想要从常规的表单字段中分别处理文件上传，因此，你可能像这样处理list：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Process the uploaded items</span></span><br><span class="line">Iterator&lt;FileItem&gt; iter = items.iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">    FileItem item = iter.next();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (item.isFormField()) &#123;</span><br><span class="line">        processFormField(item);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        processUploadedFile(item);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对一个常规的表单字段，你很可能只对item的名称和String值感兴趣。如你所愿，处理这些非常简单：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Process a regular form field</span></span><br><span class="line"><span class="keyword">if</span> (item.isFormField()) &#123;</span><br><span class="line">    String name = item.getFieldName();</span><br><span class="line">    String value = item.getString();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对文件上传，在处理内容前，有几个不同的事情你可能需要了解线下。这有一个你会感兴趣的方法示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Process a file upload</span></span><br><span class="line"><span class="keyword">if</span> (!item.isFormField()) &#123;</span><br><span class="line">    String fieldName = item.getFieldName();</span><br><span class="line">    String fileName = item.getName();</span><br><span class="line">    String contentType = item.getContentType();</span><br><span class="line">    <span class="keyword">boolean</span> isInMemory = item.isInMemory();</span><br><span class="line">    <span class="keyword">long</span> sizeInBytes = item.getSize();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于上传的文件，您通常不希望通过内存访问它们，除非它们很小，或者除非您没有其他选择。相反，您需要将内容作为流处理，或将整个文件写入其最终位置。 FileUpload提供了完成这两者的简单方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Process a file upload</span></span><br><span class="line"><span class="keyword">if</span> (writeToFile) &#123;</span><br><span class="line">    File uploadedFile = <span class="keyword">new</span> File(...);</span><br><span class="line">    item.write(uploadedFile);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    InputStream uploadedStream = item.getInputStream();</span><br><span class="line">    ...</span><br><span class="line">    uploadedStream.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，FileUpload的默认实现，<strong>write()</strong>会尝试重命名文件为指定目标，如果数据已经在临时文件中。实际上只有因为某些原因重命名失败或者数据已经在内存中，才会复制数据。</p>
-<p>如果确实需要访问内存中的上传数据，只需调用get（）方法即可将数据作为字节数组获取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Process a file upload in memory</span></span><br><span class="line"><span class="keyword">byte</span>[] data = item.get();</span><br></pre></td></tr></table></figure>
-<h2 id="资源清理"><a href="#资源清理" class="headerlink" title="资源清理"></a>资源清理</h2><p>本节仅适用于使用<strong>DiskFileItem</strong>的情况。换句话说，如果您上传的文件在处理之前写入临时文件，则适用。</p>
-<p>这些临时文件会自动删除，如果它们不再被使用（更确切地，<strong>DiskFileItem</strong>实例是垃圾回收，这是由<strong>org.apache.commons.io.FileCleanerTracker</strong>类悄悄完成的，它启动了一个收割线程）。</p>
-<p>如果不再需要，则应停止此收割者线程。在servlet环境中，这是通过使用名为FileCleanerCleanup的特殊servlet上下文侦听器来完成的。为此，请在web.xml中添加如下部分：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span></span><br><span class="line">      org.apache.commons.fileupload.servlet.FileCleanerCleanup</span><br><span class="line">    <span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建-DiskFileItemFactory"><a href="#创建-DiskFileItemFactory" class="headerlink" title="创建 DiskFileItemFactory"></a>创建 DiskFileItemFactory</h3><p>FileCleanerCleanup提供了org.apache.commons.io.FileCleaningTracker的实例。创建org.apache.commons.fileupload.disk.DiskFileItemFactory时必须使用此实例。这应该通过调用如下方法来完成：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DiskFileItemFactory <span class="title">newDiskFileItemFactory</span><span class="params">(ServletContext context,</span></span></span><br><span class="line"><span class="function"><span class="params">                                                         File repository)</span> </span>&#123;</span><br><span class="line">    FileCleaningTracker fileCleaningTracker</span><br><span class="line">        = FileCleanerCleanup.getFileCleaningTracker(context);</span><br><span class="line">    DiskFileItemFactory factory</span><br><span class="line">        = <span class="keyword">new</span> DiskFileItemFactory(DiskFileItemFactory.DEFAULT_SIZE_THRESHOLD,</span><br><span class="line">                                  repository);</span><br><span class="line">    factory.setFileCleaningTracker(fileCleaningTracker);</span><br><span class="line">    <span class="keyword">return</span> factory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="禁用清除临时文件"><a href="#禁用清除临时文件" class="headerlink" title="禁用清除临时文件"></a>禁用清除临时文件</h3><p>要禁用对临时文件的跟踪，可以将FileCleaningTracker设置为null。因此，将不再跟踪创建的文件。特别是，它们将不再自动删除。</p>
+        <h2 id="一、JDK下载安装"><a href="#一、JDK下载安装" class="headerlink" title="一、JDK下载安装"></a>一、JDK下载安装</h2><h3 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1 下载"></a>1.1 下载</h3><p>Java是Sun公司推出的产品，Sun公司现已被Oracle公司收购。我们可以去Oracle的官网下载Java开发工具（JDK）。Oracle官网：<a href="https://www.oracle.com/index.html" target="_blank" rel="noopener">https://www.oracle.com/index.html</a>。接着选择Menu-&gt;Products-&gt;Java-&gt;JavaSE，在页面底部找到<strong>Java for developer</strong>进行下载。目前JDK7和8版本使用比较广泛，这里下载的是JDK8的Windows版本。</p>
+<a id="more"></a>
+<p>具体步骤如图：<br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/01.jpg" alt=""><br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/02.jpg" alt=""><br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/03.jpg" alt=""><br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/04.jpg" alt=""></p>
+<h3 id="1-2-安装"><a href="#1-2-安装" class="headerlink" title="1.2 安装"></a>1.2 安装</h3><p>// to-do</p>
+<h2 id="二、配置Windows系统环境变量"><a href="#二、配置Windows系统环境变量" class="headerlink" title="二、配置Windows系统环境变量"></a>二、配置Windows系统环境变量</h2><h3 id="2-1-环境变量的概念："><a href="#2-1-环境变量的概念：" class="headerlink" title="2.1 环境变量的概念："></a>2.1 环境变量的概念：</h3><p>环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。例如Windows和DOS操作系统中的path环境变量，当要求系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应到path中指定的路径去找。用户通过设置环境变量，来更好的运行进程。</p>
+<h3 id="2-2-配置环境变量"><a href="#2-2-配置环境变量" class="headerlink" title="2.2 配置环境变量"></a>2.2 配置环境变量</h3><p>步骤：</p>
+<ol>
+<li>配置JAVA_HOME环境变量</li>
+<li>配置系统环境变量的path值</li>
+<li>测试Java环境安装是否成功</li>
+</ol>
+<p>本案例是win10系统。</p>
+<h3 id="2-3-打开环境变量"><a href="#2-3-打开环境变量" class="headerlink" title="2.3 打开环境变量"></a>2.3 打开环境变量</h3><p>打开Windows的【系统】页面，选择【高级系统设置】，在弹出菜单中选择【环境变量】。<br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/05.jpg" alt=""></p>
+<h4 id="2-4-新建JAVA-HOME环境变量"><a href="#2-4-新建JAVA-HOME环境变量" class="headerlink" title="2.4 新建JAVA_HOME环境变量"></a>2.4 新建JAVA_HOME环境变量</h4><p>配置环境变量，如果给当前账户使用，在用户变量下选择【新建】；如果给所有用户使用，在系统变量下【新建】。<br>变量名输入：JAVA_HOME，变量值输入JDK的安装目录，如D:\Program Files\Java\jdk1.8.0_162<br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/06.jpg" alt=""></p>
+<h4 id="2-5-设置path环境变量"><a href="#2-5-设置path环境变量" class="headerlink" title="2.5 设置path环境变量"></a>2.5 设置path环境变量</h4><p>在系统变量中，选择【path】，将JDK目录下的bin\和jre\bin目录加入到path中。</p>
+<p><strong>注意</strong>：据本人测试，win7系统可以写【%JAVA_HOME%\bin】和【%JAVA_HOME%\jre\bin】,win10这样写在cmd下执行javac命令会提示错误，因此win10就没有用JAVA_HOME变量+路径的写法。</p>
+<p><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/07.jpg" alt=""></p>
+<p>启动cmd，输入java -version，显示jdk版本。输入java和javac显示如下信息，则环境配置成功。<br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/08.jpg" alt=""><br><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/09.jpg" alt=""></p>
+<h2 id="三、第一个java程序，HelloWorld"><a href="#三、第一个java程序，HelloWorld" class="headerlink" title="三、第一个java程序，HelloWorld"></a>三、第一个java程序，HelloWorld</h2><p>实现一个能够在控制台界面输出“Hello World!”的java程序。</p>
+<p>步骤：</p>
+<ol>
+<li>编写源代码（HelloWorld.java）</li>
+<li>编译源代码，得到字节码文件（HelloWorld.class）</li>
+<li>执行字节码文件</li>
+</ol>
+<h3 id="编写源代码。"><a href="#编写源代码。" class="headerlink" title="编写源代码。"></a>编写源代码。</h3><p>第一次建议使用记事本编写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//HelloWorld.java</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//所有的java文件都是有类组成的</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span></span>&#123;</span><br><span class="line">    <span class="comment">//java程序开始执行的地方</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//在控制台输出Hello World!</span></span><br><span class="line">        System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译源代码："><a href="#编译源代码：" class="headerlink" title="编译源代码："></a>编译源代码：</h3><ol>
+<li>启动cmd，进入源代码文件（HelloWorld.java）所在的文件夹，输入javac HelloWorld.java，进行编译，这里其实是使用的jdk/bin/目录下的javac.exe进行编译。</li>
+<li>成功没有提示信息，在当前目录下会生成一个字节码文件（HelloWorld.class），如果代码有错误会有提示信息。</li>
+</ol>
+<h3 id="执行程序："><a href="#执行程序：" class="headerlink" title="执行程序："></a>执行程序：</h3><ol>
+<li>继续输入java HelloWorld</li>
+<li>运行成功会输出Hello World!</li>
+</ol>
+<p><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/10.jpg" alt=""></p>
+<h2 id="四、java程序的编写，编译和执行过程"><a href="#四、java程序的编写，编译和执行过程" class="headerlink" title="四、java程序的编写，编译和执行过程"></a>四、java程序的编写，编译和执行过程</h2><p><img src="http://image.5460cc.com/image/jpg/java/javase/001-environment-config/11.jpg" alt=""></p>
+<p>涉及到的编程词语：</p>
+<ol>
+<li>源文件：程序员用文本编辑器编写的代码文件。</li>
+<li>字节码文件（类文件）：源文件由java编译器编译后生成的字节码文件，是可执行文件。</li>
+<li>编译：对源文件进行编译，生成字节码文件。</li>
+<li>解释：java解释器对字节码文件进行解释，字节码文件就可以执行。</li>
+<li>main方法（主方法）:一个普通java程序执行的入口点。</li>
+<li>控制台输出语句（System.out.println(“Hello World!”);）系统向控制台打印引号内的内容。</li>
+</ol>
+<h2 id="五、作业"><a href="#五、作业" class="headerlink" title="五、作业"></a>五、作业</h2><h3 id="任务1"><a href="#任务1" class="headerlink" title="任务1"></a>任务1</h3><p>从Oracle官方网站下载JDK8版本并安装到操作系统中，设置系统环境变量java_home 及 将java目录下的bin目录路径添加到系统环境变量path值当中；<br>在cmd命令行窗口使用javac 和 java 测试JDK是否安装成功。</p>
+<h3 id="任务2"><a href="#任务2" class="headerlink" title="任务2"></a>任务2</h3><ol>
+<li>编写经典HelloWorld Java控制台应用程序，在cmd命令提示符窗口使用javac 编译HelloWorld源文件，使用java 解释器执行HelloWorld字节码文件，调试运行此控制台程序，理解java程序的编写，编译及执行过程。</li>
+<li>模仿以上HelloWorld程序编写一个能够打印自己信息的java控制台程序要求输出如下信息:<br>我叫: XXX<br>我是男（女）生<br>我今年XX岁<br>我是XX地方的人<br>我爱学习Java</li>
+</ol>
+<h2 id="六、题外话——非技术的自我提升"><a href="#六、题外话——非技术的自我提升" class="headerlink" title="六、题外话——非技术的自我提升"></a>六、题外话——非技术的自我提升</h2><h3 id="程序员应具备的基本标准"><a href="#程序员应具备的基本标准" class="headerlink" title="程序员应具备的基本标准"></a>程序员应具备的基本标准</h3><ol>
+<li>规范的代码书写</li>
+<li>严谨的编程态度</li>
+</ol>
+<h3 id="学习编程应以手动实践为主"><a href="#学习编程应以手动实践为主" class="headerlink" title="学习编程应以手动实践为主"></a>学习编程应以手动实践为主</h3><ol>
+<li>每天保证一定的代码实践</li>
+<li>行动力，我想做，必须做，马上做</li>
+<li>代码量随着技能的熟练性和技能点增加而逐渐增多</li>
+</ol>
 
       
     </div>
@@ -472,6 +489,8 @@
           
             <a href="/tags/java/" rel="tag"># java</a>
           
+            <a href="/tags/javase/" rel="tag"># javase</a>
+          
         </div>
       
 
@@ -483,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/09/java-maven-in-five-minutes/" rel="next" title="Maven5分钟快速入门">
-                <i class="fa fa-chevron-left"></i> Maven5分钟快速入门
+              <a href="/2019/04/21/javase-exception-assert-log/" rel="next" title="java核心技术卷1读书笔记——异常、断言和日志">
+                <i class="fa fa-chevron-left"></i> java核心技术卷1读书笔记——异常、断言和日志
               </a>
             
           </div>
@@ -492,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/23/mysql-note-base/" rel="prev" title="Mysql基础学习笔记">
-                Mysql基础学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -645,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概览"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用FileUpload"><span class="nav-number">2.</span> <span class="nav-text">使用FileUpload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何工作"><span class="nav-number">3.</span> <span class="nav-text">如何工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlets-和-Portlets"><span class="nav-number">4.</span> <span class="nav-text">Servlets 和 Portlets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析请求"><span class="nav-number">5.</span> <span class="nav-text">解析请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的示例"><span class="nav-number">6.</span> <span class="nav-text">最简单的示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践更多的控制"><span class="nav-number">7.</span> <span class="nav-text">实践更多的控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理要上传的item"><span class="nav-number">8.</span> <span class="nav-text">处理要上传的item</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源清理"><span class="nav-number">9.</span> <span class="nav-text">资源清理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-DiskFileItemFactory"><span class="nav-number">9.1.</span> <span class="nav-text">创建 DiskFileItemFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用清除临时文件"><span class="nav-number">9.2.</span> <span class="nav-text">禁用清除临时文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、JDK下载安装"><span class="nav-number">1.</span> <span class="nav-text">一、JDK下载安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-下载"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-安装"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、配置Windows系统环境变量"><span class="nav-number">2.</span> <span class="nav-text">二、配置Windows系统环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-环境变量的概念："><span class="nav-number">2.1.</span> <span class="nav-text">2.1 环境变量的概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-配置环境变量"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 配置环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-打开环境变量"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 打开环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-新建JAVA-HOME环境变量"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.4 新建JAVA_HOME环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-设置path环境变量"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.5 设置path环境变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、第一个java程序，HelloWorld"><span class="nav-number">3.</span> <span class="nav-text">三、第一个java程序，HelloWorld</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写源代码。"><span class="nav-number">3.1.</span> <span class="nav-text">编写源代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译源代码："><span class="nav-number">3.2.</span> <span class="nav-text">编译源代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行程序："><span class="nav-number">3.3.</span> <span class="nav-text">执行程序：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、java程序的编写，编译和执行过程"><span class="nav-number">4.</span> <span class="nav-text">四、java程序的编写，编译和执行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、作业"><span class="nav-number">5.</span> <span class="nav-text">五、作业</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务1"><span class="nav-number">5.1.</span> <span class="nav-text">任务1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务2"><span class="nav-number">5.2.</span> <span class="nav-text">任务2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、题外话——非技术的自我提升"><span class="nav-number">6.</span> <span class="nav-text">六、题外话——非技术的自我提升</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序员应具备的基本标准"><span class="nav-number">6.1.</span> <span class="nav-text">程序员应具备的基本标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习编程应以手动实践为主"><span class="nav-number">6.2.</span> <span class="nav-text">学习编程应以手动实践为主</span></a></li></ol></li></ol></div>
             
 
           </div>
