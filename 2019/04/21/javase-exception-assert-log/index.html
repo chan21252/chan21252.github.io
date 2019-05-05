@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Chan&#39;s Blog">
 <meta property="og:description" content="一、异常程序的运行状态不会一直处于理想状态，比如用户输入错误、要打开的文件找不到等等，程序本身也有可能存在BUG。这些都有可能引起程序崩溃或用户数据丢失，这让用户非常沮丧。避免这样的情况产生，程序员至少要做到以下三点：  告知用户错误 保存已有的数据结果 告诉用户出现错误该如何操作或退出程序  java采用了异常处理的错误捕获机制。 1.1 java的异常继承体系 Throwable Error">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-21T14:08:35.207Z">
+<meta property="og:updated_time" content="2019-05-04T15:15:07.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java核心技术卷1读书笔记——异常、断言和日志">
 <meta name="twitter:description" content="一、异常程序的运行状态不会一直处于理想状态，比如用户输入错误、要打开的文件找不到等等，程序本身也有可能存在BUG。这些都有可能引起程序崩溃或用户数据丢失，这让用户非常沮丧。避免这样的情况产生，程序员至少要做到以下三点：  告知用户错误 保存已有的数据结果 告诉用户出现错误该如何操作或退出程序  java采用了异常处理的错误捕获机制。 1.1 java的异常继承体系 Throwable Error">
@@ -466,7 +466,21 @@
 <p>JavaSE7开始，实现了AutoCloseable接口的资源，放在try语句中，无论正常执行还是发生异常，都会自动调用close方法关闭资源，不需要在finally中关闭资源。</p>
 </blockquote>
 <h3 id="1-5-分析堆栈轨迹元素"><a href="#1-5-分析堆栈轨迹元素" class="headerlink" title="1.5 分析堆栈轨迹元素"></a>1.5 分析堆栈轨迹元素</h3><p>//to-do</p>
-
+<h2 id="二、断言"><a href="#二、断言" class="headerlink" title="二、断言"></a>二、断言</h2><p>假设某个属性符合要求，程序的执行依赖属性，那么可以使用断言来测试属性是否符合要求。</p>
+<h3 id="2-1-断言语法："><a href="#2-1-断言语法：" class="headerlink" title="2.1 断言语法："></a>2.1 断言语法：</h3><ol>
+<li>assert 条件;</li>
+<li>assert 条件:表达式;</li>
+</ol>
+<p>条件为false，程序会抛出AssertionError，第二种形式中表达式的值会传给AssertionError</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = -<span class="number">1</span>;</span><br><span class="line"><span class="keyword">assert</span> x&gt;=<span class="number">0</span>:<span class="string">"x不能小于0"</span>;</span><br><span class="line"></span><br><span class="line">Math.sqrt(x);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Exception in thread "main" java.lang.AssertionError: x不能小于0</span></span><br><span class="line"><span class="comment">	at c07.AseertDemo01.main(AseertDemo01.java:6)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-启用和禁用断言"><a href="#2-2-启用和禁用断言" class="headerlink" title="2.2 启用和禁用断言"></a>2.2 启用和禁用断言</h3><p>jvm默认禁用断言，启用和禁用断言是类加载器的功能，断言被禁用时，类加载器会跳过断言代码。</p>
+<ul>
+<li>启用断言：java -enableassertions MyApp</li>
+<li>禁用断言：java -disableassertions MyApp</li>
+<li>对某个包/类使用断言：java -enableassertions:com.my.assert -ea:MyClass MyApp</li>
+</ul>
+<h3 id="2-3-断言的使用场景"><a href="#2-3-断言的使用场景" class="headerlink" title="2.3 断言的使用场景"></a>2.3 断言的使用场景</h3><p>断言失败是致命的，不可恢复的错误；<br>断言检查只用于开发和测试阶段；<br>断言只用来确定程序内部的错误位置，不能用于向程序其他部分发送消息或者告知用户错误。</p>
+<h2 id="三、日志"><a href="#三、日志" class="headerlink" title="三、日志"></a>三、日志</h2>
       
     </div>
     
@@ -658,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、异常"><span class="nav-number">1.</span> <span class="nav-text">一、异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-java的异常继承体系"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 java的异常继承体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-抛出异常"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 抛出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明抛出异常"><span class="nav-number">1.2.1.</span> <span class="nav-text">声明抛出异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主动选择时机抛出异常"><span class="nav-number">1.2.2.</span> <span class="nav-text">主动选择时机抛出异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">1.2.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-捕获异常"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 捕获异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获多个异常"><span class="nav-number">1.3.1.</span> <span class="nav-text">捕获多个异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#catch再次抛出异常"><span class="nav-number">1.3.2.</span> <span class="nav-text">catch再次抛出异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-finally子句"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 finally子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-分析堆栈轨迹元素"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 分析堆栈轨迹元素</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、异常"><span class="nav-number">1.</span> <span class="nav-text">一、异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-java的异常继承体系"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 java的异常继承体系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-抛出异常"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 抛出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明抛出异常"><span class="nav-number">1.2.1.</span> <span class="nav-text">声明抛出异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主动选择时机抛出异常"><span class="nav-number">1.2.2.</span> <span class="nav-text">主动选择时机抛出异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义异常"><span class="nav-number">1.2.3.</span> <span class="nav-text">自定义异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-捕获异常"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 捕获异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#捕获多个异常"><span class="nav-number">1.3.1.</span> <span class="nav-text">捕获多个异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#catch再次抛出异常"><span class="nav-number">1.3.2.</span> <span class="nav-text">catch再次抛出异常</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-finally子句"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 finally子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-分析堆栈轨迹元素"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 分析堆栈轨迹元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、断言"><span class="nav-number">2.</span> <span class="nav-text">二、断言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-断言语法："><span class="nav-number">2.1.</span> <span class="nav-text">2.1 断言语法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-启用和禁用断言"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 启用和禁用断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-断言的使用场景"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 断言的使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、日志"><span class="nav-number">3.</span> <span class="nav-text">三、日志</span></a></li></ol></div>
             
 
           </div>

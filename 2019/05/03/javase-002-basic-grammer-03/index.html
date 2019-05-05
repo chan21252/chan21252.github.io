@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="一、Java中的运算符 赋值运算符 算数运算符 关系运算符 逻辑运算符 位运算符 特殊运算符">
+<meta name="description" content="一、Java中的运算符 赋值运算符 算术运算符 关系运算符 逻辑运算符 位运算符 特殊运算符">
 <meta name="keywords" content="java,javase">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JAVASE学习笔记—002 Java语法基础—（3）运算符和表达式">
 <meta property="og:url" content="https://blog.5460cc.com/2019/05/03/javase-002-basic-grammer-03/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="一、Java中的运算符 赋值运算符 算数运算符 关系运算符 逻辑运算符 位运算符 特殊运算符">
+<meta property="og:description" content="一、Java中的运算符 赋值运算符 算术运算符 关系运算符 逻辑运算符 位运算符 特殊运算符">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-03T12:27:07.086Z">
+<meta property="og:updated_time" content="2019-05-05T14:25:19.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVASE学习笔记—002 Java语法基础—（3）运算符和表达式">
-<meta name="twitter:description" content="一、Java中的运算符 赋值运算符 算数运算符 关系运算符 逻辑运算符 位运算符 特殊运算符">
+<meta name="twitter:description" content="一、Java中的运算符 赋值运算符 算术运算符 关系运算符 逻辑运算符 位运算符 特殊运算符">
 
 
 
@@ -400,7 +400,7 @@
       
         <h2 id="一、Java中的运算符"><a href="#一、Java中的运算符" class="headerlink" title="一、Java中的运算符"></a>一、Java中的运算符</h2><ol>
 <li>赋值运算符</li>
-<li>算数运算符</li>
+<li>算术运算符</li>
 <li>关系运算符</li>
 <li>逻辑运算符</li>
 <li>位运算符</li>
@@ -421,7 +421,28 @@
 <li>双目运算符（两个操作数，运算方向从左往右）：+，-，*（乘），/（商），%（模，求余）</li>
 <li>单目运算符（一个操作数）：++（自增1），–（自减1）</li>
 </ul>
-
+<p><strong>n++ 和 ++n 的区别：</strong></p>
+<ul>
+<li>n++，n的值先参与表达式运算，运算完再自增1</li>
+<li>++n，n先自增1，再参与表达式运算</li>
+</ul>
+<p>常量无法进行自增/自减运算。</p>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p>关系运算符用来对2个操作数进行比较运算，得出最终的boolean结果</p>
+<blockquote>
+<p>关系运算符：&gt;， &lt;， &gt;=， &lt;=， ==， !=</p>
+</blockquote>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>逻辑运算符用来连接boolean类型变量、常量或关系表达式，计算后得到新的boolean结果</p>
+<blockquote>
+<p>逻辑运算符：!（逻辑非），&amp;&amp;（逻辑与），||（逻辑或）</p>
+</blockquote>
+<ul>
+<li>（表达式1）&amp;&amp; （表达式2）：短路与，前面的表达式是false，则整个表达式结果一定是false，后面的表达式就不会运算。</li>
+<li>（表达式1）|| （表达式2）：短路或，前面的表达式是true，则整个表达式结果一定是true，后面的表达式就不会运算。</li>
+</ul>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p>按位运算是将数据在内存中二进制存储按照位运算计算得出最终结果。</p>
+<p>位运算符：<br>&amp;：按位与（对整型和布尔计算），不短路<br>|：按位或（对整型和布尔计算），不短路<br>~：按位非（只对整型计算）<br>^：按位异或（对整型和布尔计算），true^true结果是false，false^false结果是false，true^false结果是true，false^true结果是true</p>
+<p><strong>位运算符对整数进行运算时，符号位也参与运算</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">~<span class="number">15</span>的结果是-<span class="number">16</span></span><br><span class="line"></span><br><span class="line">运算过程</span><br><span class="line">~ <span class="number">0</span> <span class="number">1111</span>   <span class="number">15</span>的二进制</span><br><span class="line">--------</span><br><span class="line">  <span class="number">1</span> <span class="number">0000</span>   负数，补码</span><br><span class="line"> <span class="number">11</span> <span class="number">0000</span>   -<span class="number">16</span>原码</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -611,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Java中的运算符"><span class="nav-number">1.</span> <span class="nav-text">一、Java中的运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值运算符"><span class="nav-number">1.1.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Scanner接收键盘输入值"><span class="nav-number">1.2.</span> <span class="nav-text">使用Scanner接收键盘输入值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算符"><span class="nav-number">1.3.</span> <span class="nav-text">算术运算符</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Java中的运算符"><span class="nav-number">1.</span> <span class="nav-text">一、Java中的运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值运算符"><span class="nav-number">1.1.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Scanner接收键盘输入值"><span class="nav-number">1.2.</span> <span class="nav-text">使用Scanner接收键盘输入值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术运算符"><span class="nav-number">1.3.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系运算符"><span class="nav-number">1.4.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">1.5.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#位运算符"><span class="nav-number">1.6.</span> <span class="nav-text">位运算符</span></a></li></ol></li></ol></div>
             
 
           </div>
