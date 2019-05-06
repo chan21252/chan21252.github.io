@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVASE学习笔记—003 数组]]></title>
+    <url>%2F2019%2F05%2F06%2Fjavase-003-array%2F</url>
+    <content type="text"><![CDATA[一、数组的声明数组的声明：数据类型[] 数据变量名; 创建数组： new方式创建：new 数据类型[size]; 静态方式创建并赋值：{元素1，元素2，元素3，…，元素n} 数组创建时必需指定其长度，且长度不能更改 二、数组在内存中的存储结构int[] ages = {25, 12, 100, 36, 9} {25, 12, 100, 36, 9}数组实际的值位于JVM的堆中，长度为5，元素索引是0-4。ages变量位于JVM栈中，存储数组的地址，指向堆中的数组。 int数组，未指定元素初始值，默认为0；double类型数组元素默认为0.0。 三、数组元素的访问数组元素使用下标（索引）进行访问。 1234int[] ages = &#123;25, 12, 100, 36, 9&#125;;for(int i=0; i&lt;ages.length; i++)&#123; System.out.println(ages[i]);&#125; 四、多维数组12345678double[][] arrays; //二维数组声明arrays = new double[3][4]; //创建/*多维数组创建时可以只指定第一维的数据第二维的数组长度，可以在给第一维元素赋值时指定*/int[][][] arrays2 = new int[3][][];]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVASE学习笔记—002 Java语法基础—（3）运算符和表达式]]></title>
     <url>%2F2019%2F05%2F03%2Fjavase-002-basic-grammer-03%2F</url>
-    <content type="text"><![CDATA[一、Java中的运算符 赋值运算符 算术运算符 关系运算符 逻辑运算符 位运算符 特殊运算符 赋值运算符赋值运算符用来将一个数据赋值给一个变量。 常用的赋值运算符： =，+=，-=，/=，*=，%= 1234567int num = 5;/*求和赋值，左侧变量一定要声明并初始化num += 10; 等价于 num = num + 10;先计算num+10得出结果，赋值给num*/num += 10; 运算方向：从右往左int quantity = 5000; //右边计算得出结果，赋值给等号左边 使用Scanner接收键盘输入值（1）创建一个Scanner对象。Scanner是JDK1.6版本开始支持的一个类，位于java.util包中。要接收从键盘输入值，要给Scanner传入System.in参数 （2）调用Scanner对象的nextInt()方法，程序会进入等待，接收用户输入一个整数 123456789101112131415import java.util.Scanner;public class AssignOpr &#123; public static void main(String[] args) &#123; //创建一个扫描仪对象 Scanner input = new Scanner(System.in); int n2; System.out.println("请输入一个整数"); n2 = input.nextInt(); int n3 = 100; n3 -= n2; System.out.println("n3-n2结果是 " + n3); &#125;&#125; 算术运算符 双目运算符（两个操作数，运算方向从左往右）：+，-，*（乘），/（商），%（模，求余） 单目运算符（一个操作数）：++（自增1），–（自减1） n++ 和 ++n 的区别： n++，n的值先参与表达式运算，运算完再自增1 ++n，n先自增1，再参与表达式运算 常量无法进行自增/自减运算。 关系运算符关系运算符用来对2个操作数进行比较运算，得出最终的boolean结果 关系运算符：&gt;， &lt;， &gt;=， &lt;=， ==， != 逻辑运算符逻辑运算符用来连接boolean类型变量、常量或关系表达式，计算后得到新的boolean结果 逻辑运算符：!（逻辑非），&amp;&amp;（逻辑与），||（逻辑或） （表达式1）&amp;&amp; （表达式2）：短路与，前面的表达式是false，则整个表达式结果一定是false，后面的表达式就不会运算。 （表达式1）|| （表达式2）：短路或，前面的表达式是true，则整个表达式结果一定是true，后面的表达式就不会运算。 位运算符按位运算是将数据在内存中二进制存储按照位运算计算得出最终结果。 位运算符：&amp;：按位与（对整型和布尔计算），不短路|：按位或（对整型和布尔计算），不短路~：按位非（只对整型计算）^：按位异或（对整型和布尔计算），true^true结果是false，false^false结果是false，true^false结果是true，false^true结果是true 位运算符对整数进行运算时，符号位也参与运算 1234567~15的结果是-16运算过程~ 0 1111 15的二进制-------- 1 0000 负数，补码 11 0000 -16原码]]></content>
+    <content type="text"><![CDATA[一、Java中的运算符 赋值运算符 算术运算符 关系运算符 逻辑运算符 位运算符 特殊运算符 赋值运算符赋值运算符用来将一个数据赋值给一个变量。 常用的赋值运算符： =，+=，-=，/=，*=，%= 1234567int num = 5;/*求和赋值，左侧变量一定要声明并初始化num += 10; 等价于 num = num + 10;先计算num+10得出结果，赋值给num*/num += 10; 运算方向：从右往左int quantity = 5000; //右边计算得出结果，赋值给等号左边 使用Scanner接收键盘输入值（1）创建一个Scanner对象。Scanner是JDK1.6版本开始支持的一个类，位于java.util包中。要接收从键盘输入值，要给Scanner传入System.in参数 （2）调用Scanner对象的nextInt()方法，程序会进入等待，接收用户输入一个整数 123456789101112131415import java.util.Scanner;public class AssignOpr &#123; public static void main(String[] args) &#123; //创建一个扫描仪对象 Scanner input = new Scanner(System.in); int n2; System.out.println("请输入一个整数"); n2 = input.nextInt(); int n3 = 100; n3 -= n2; System.out.println("n3-n2结果是 " + n3); &#125;&#125; 算术运算符 双目运算符（两个操作数，运算方向从左往右）：+，-，*（乘），/（商），%（模，求余） 单目运算符（一个操作数）：++（自增1），–（自减1） n++ 和 ++n 的区别： n++，n的值先参与表达式运算，运算完再自增1 ++n，n先自增1，再参与表达式运算 常量无法进行自增/自减运算。 关系运算符关系运算符用来对2个操作数进行比较运算，得出最终的boolean结果 关系运算符：&gt;， &lt;， &gt;=， &lt;=， ==， != 逻辑运算符逻辑运算符用来连接boolean类型变量、常量或关系表达式，计算后得到新的boolean结果 逻辑运算符：!（逻辑非），&amp;&amp;（逻辑与），||（逻辑或） （表达式1）&amp;&amp; （表达式2）：短路与，前面的表达式是false，则整个表达式结果一定是false，后面的表达式就不会运算。 （表达式1）|| （表达式2）：短路或，前面的表达式是true，则整个表达式结果一定是true，后面的表达式就不会运算。 位运算符按位运算是将数据在内存中二进制存储按照位运算计算得出最终结果。 位运算符：&amp;：按位与（对整型和布尔计算），不短路|：按位或（对整型和布尔计算），不短路~：按位非（只对整型计算）^：按位异或（对整型和布尔计算），true^true结果是false，false^false结果是false，true^false结果是true，false^true结果是true 位运算符对整数进行运算时，符号位也参与运算 1234567~15的结果是-16运算过程~ 0 1111 15的二进制-------- 1 0000 负数，补码 11 0000 -16原码 移位运算符 &lt;&lt; value &lt;&lt; num （左移） >> value &gt;&gt; num （右移） >>> value &gt;&gt;&gt; num （无符号右移） 左移运算符： 丢弃最高位，低位补0。 移动的位数超过了该类型的最大数，则对移动的位数取模。 在数字没有溢出的情况，对于正数和负数，左移一位相当于乘以2的1次方，左移n位相当于乘以2的n次方。 右移运算符： 符号位不变，左侧补上符号位 按二进制的形式把所有的位数向右移动对应的位数，低位移出（舍弃），高位补符号位，正数补0，负数补1。 右移1位相当于除以2，右移n位相当于除以2的n次方 无符号右移运算符： 忽略符号位扩展，0补最高位 无符号右移和右移运算规则一致，不过最高位无论正负数都补0。 对负数而言，无符号右移有特殊意义。 特殊运算符 new 创建某个引用数据类型的对象 . 某对象属性或方法的引用访问符号 () 包围被优先运算的表达式，或者方法标志 [] 数组类型数据标志 instanceof 判断某对象或者引用是否属于某种类型]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -122,8 +134,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
         <tag>java</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
