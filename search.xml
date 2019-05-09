@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVASE学习笔记—004 面向对象基础概述]]></title>
+    <url>%2F2019%2F05%2F07%2Fjavase-004-OOP%2F</url>
+    <content type="text"><![CDATA[面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程典范，同时也是一种程序开发的抽象方针。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。 一、类的定义Java允许开发者自定义数据类型（定义类），属于引用数据类型。 123456/** * 自定义一个表示人类的数据类型，属于java引用类型 */public class Person &#123;&#125; public：访问控制符class：类关键字Person：标识符，自定义类名 二、创建类的对象一个Java类可以产生N个属于此类型的对象（示例）。类是制造对象的模板；对象是类的具体表现形式。 一个普通的Java类通常使用new运算符创建此类型对象。 12Person perObject;perObject = new Person(); 三、对象在JVM中的存储Person perObject = new Person();Person perObject2 = perObject; perOject变量存储在栈（Stack）中，保存的是Person对象的引用地址new Person()创建了一个Person对象，对象数据存储在堆（Heap）中。 perObject赋值给perObject2变量，赋值的是对象的引用地址，perObject2中存储的也是同一个对象的地址。 四、类的实例成员属性定义和访问实例成员属性的定义1234567public class Person &#123; String name; //姓名 int age; //年龄 String address; //地址 char sex; //性别 double height; //身高&#125; 实例属性属于对象所有，生命周期和所属对象的生命周期相同。不同对象的属性值是不相同的，不同对象的属性不能共享。 实例成员属性的访问成员实例属性属于对象，访问（赋值/取值）必须通过对象完成。 1234567891011121314151617public class TestPerson &#123; public static void main(String[] args) &#123; Person p1 = new Person(); p1.name = "任盈盈"; p1.address = "黑木崖"; p1.age = 20; p1.height = 165.50; p1.sex = '女'; System.out.println(p1.name); System.out.println(p1.address); System.out.println(p1.age); System.out.println(p1.height); System.out.println(p1.sex); &#125;&#125; 五、访问修饰符访问修饰符表明此属性可以在哪些范围内可以进行访问。 六、类的属性和常量属性static修饰的属性是类属性，归类所有，类的所有对象共享static属性。 final修饰的属性是常量，必须显式赋值，任何时候都不能修改常量的值。常量也使用static修饰符。 访问静态（static修饰）属性，建议使用类名.属性名来访问。 类的静态属性在jvm中的存储public static String feature = “person”; feature变量存储于栈中，保存的是字符串的地址，指向”person”字符串。 “person”字符串存储于堆的静态区中。 静态属性随着类的加载被加载，优于实例成员属性。 七、构造方法构造方法： 构造方法名称和类名完全相同，没有返回类型。 new创建对象时，会调用构造方法初始化对象。 如果类中没有显式定义构造方法，会调用一个默认无参的public构造方法。 构造方法的分类： 无参数的构造方法。 带参数的构造方法，作用是初始化当前对象的成员属性。 this关键字this关键字表示当前对象。当局部变量和成员实例属性重名时，可以使用this关键字来指向成员属性。 构造方法重载根据具体业务情况使用不同的构造方法对对象进行初始化。 任何显式定义的构造方法都会覆盖系统默认的无参构造方法，如果想使用无参构造方法，必须重新显式定义。 重载方法： 函数名相同 参数列表不同：个数不同，类型不同 函数名相同，参数列表相同，仅返回值类型不同不是重载！ 八、set和get方法类的成员属性往往被设置为private，get和set方法为成员属性提供了一种安全访问方式。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVASE学习笔记—003 数组]]></title>
     <url>%2F2019%2F05%2F06%2Fjavase-003-array%2F</url>
     <content type="text"><![CDATA[一、数组的声明数组的声明：数据类型[] 数据变量名; 创建数组： new方式创建：new 数据类型[size]; 静态方式创建并赋值：{元素1，元素2，元素3，…，元素n} 数组创建时必需指定其长度，且长度不能更改 二、数组在内存中的存储结构int[] ages = {25, 12, 100, 36, 9} {25, 12, 100, 36, 9}数组实际的值位于JVM的堆中，长度为5，元素索引是0-4。ages变量位于JVM栈中，存储数组的地址，指向堆中的数组。 int数组，未指定元素初始值，默认为0；double类型数组元素默认为0.0。 三、数组元素的访问数组元素使用下标（索引）进行访问。 1234int[] ages = &#123;25, 12, 100, 36, 9&#125;;for(int i=0; i&lt;ages.length; i++)&#123; System.out.println(ages[i]);&#125; 四、多维数组12345678double[][] arrays; //二维数组声明arrays = new double[3][4]; //创建/*多维数组创建时可以只指定第一维的数据第二维的数组长度，可以在给第一维元素赋值时指定*/int[][][] arrays2 = new int[3][][];]]></content>
