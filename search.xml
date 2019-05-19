@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVASE学习笔记—007 Java常用类库]]></title>
+    <url>%2F2019%2F05%2F19%2Fjavase-007-class-library-01%2F</url>
+    <content type="text"><![CDATA[一、Object类Object类是所有类的父类 常用方法toString返回Object对象的字符串表示形式。此方法可以在任意类中进行重写。 equals判断给定对象是否与当前对象相等。此方法可以在任意类中进行重写。 1234//目标对象和当前对象相同返回truepublic boolean equals(Object obj)&#123; return (this == obj);&#125; getClass返回当前对象的运行时类(Class)对象。此方法不可以被重写。 1public final native Class&lt;?&gt; getClass(); hashCode方法返回对象int类型的哈希码值。此方法为提高哈希表性能而支持，子类重写通常没有意义。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVASE学习笔记—006 面向对象—抽象、接口和内部类]]></title>
     <url>%2F2019%2F05%2F15%2Fjavase-006-OOP-abstract%2F</url>
     <content type="text"><![CDATA[一、抽象类抽象类的定义123public abstract class Animal&#123; public abstract void run();&#125; 抽象类的特点 抽象类通常应包含抽象方法 抽象类不能使用final关键字修饰 抽象类自身不能够实例化 抽象类就是用来被继承的 抽象类的继承和创建 抽象类被非抽象类继承必须实现抽象类的所有抽象方法 抽象类被抽象类继承，可以不实现父类的抽象方法 抽象类对象的实例化必须通过创建非抽象的子类对象实现 抽象类对象都是上转型对象 适配器抽象类的非抽象子类，只实现抽象类的部分功能 为抽象类定义适配器类，对所有抽象方法提供空实现 非抽象子类继承适配器类，只重写需要的父类方法 对象运行时多态jvm在运行时创建和使用某个对象时，才能确定对象具体是哪种数据类型。 二、接口关键字 interface 接口的特征： 接口中的属性只能是公共静态的常量 接口中只允许定义公共、抽象的实例方法 三、内部类内部类的作用 通过外部类访问从而被限定使用权限 内部类所定义功能更多时候只为外部类使用 内部类某些功能使用更加安全 内部类定义和创建 内部类必须定义在某个类当中，所在类为外部类 内部类可以使用public，protected，private访问修饰符 内部类可以使用abstract，final，static修饰符 内部类没有单独的java源文件，只有class文件 内部类class文件名称规范：外部类名$内部类名.class 内部类的访问，只能通过外部类访问 内部类的种类 普通内部类 静态内部类 局部内部类 匿名类对象 匿名类对象就是没有名称类型的对象 匿名类对象经常作为接口和抽象类的实现 匿名类对象可以减少接口或抽象类实现类的定义 匿名类对象一定属于它实现的父级类型 四、静态代码块静态代码块的内容 访问静态属性 调用静态方法 允许定义局部变量和常量 允许定义局部 不能访问实例属性和方法 不能定义方法 静态代码块的加载 静态代码块属于类，随类的加载而加载 静态代码块在静态属性初始化后与调用构造器之前加载 静态代码块在加载时通常做一些静态属性或常量赋值、调用静态方法。如果想在产生类对象之前，在类加载时完成一些初始化可以使用静态代码块]]></content>
@@ -170,8 +182,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>mysql</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
