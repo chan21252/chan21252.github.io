@@ -93,7 +93,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/004-oop/01.jpg">
 <meta property="og:image" content="http://image.5460cc.com/image/jpg/java/javase/004-oop/02.png">
-<meta property="og:updated_time" content="2019-05-09T13:45:36.864Z">
+<meta property="og:updated_time" content="2019-05-18T06:24:47.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVASE学习笔记—004 面向对象基础概述">
 <meta name="twitter:description" content="面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程典范，同时也是一种程序开发的抽象方针。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关">
@@ -415,22 +415,22 @@
 <p>perOject变量存储在栈（Stack）中，保存的是Person对象的引用地址<br>new Person()创建了一个Person对象，对象数据存储在堆（Heap）中。</p>
 <p>perObject赋值给perObject2变量，赋值的是对象的引用地址，perObject2中存储的也是同一个对象的地址。</p>
 <p><img src="http://image.5460cc.com/image/jpg/java/javase/004-oop/01.jpg" alt=""></p>
-<h3 id="四、类的实例成员属性定义和访问"><a href="#四、类的实例成员属性定义和访问" class="headerlink" title="四、类的实例成员属性定义和访问"></a>四、类的实例成员属性定义和访问</h3><h4 id="实例成员属性的定义"><a href="#实例成员属性的定义" class="headerlink" title="实例成员属性的定义"></a>实例成员属性的定义</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String name;    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">int</span> age;        <span class="comment">//年龄</span></span><br><span class="line">    String address; <span class="comment">//地址</span></span><br><span class="line">    <span class="keyword">char</span> sex;       <span class="comment">//性别</span></span><br><span class="line">    <span class="keyword">double</span> height;  <span class="comment">//身高</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四、类的实例成员属性定义和访问"><a href="#四、类的实例成员属性定义和访问" class="headerlink" title="四、类的实例成员属性定义和访问"></a>四、类的实例成员属性定义和访问</h2><h3 id="实例成员属性的定义"><a href="#实例成员属性的定义" class="headerlink" title="实例成员属性的定义"></a>实例成员属性的定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    String name;    <span class="comment">//姓名</span></span><br><span class="line">    <span class="keyword">int</span> age;        <span class="comment">//年龄</span></span><br><span class="line">    String address; <span class="comment">//地址</span></span><br><span class="line">    <span class="keyword">char</span> sex;       <span class="comment">//性别</span></span><br><span class="line">    <span class="keyword">double</span> height;  <span class="comment">//身高</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>实例属性属于对象所有，生命周期和所属对象的生命周期相同。不同对象的属性值是不相同的，不同对象的属性不能共享。</p>
-<h4 id="实例成员属性的访问"><a href="#实例成员属性的访问" class="headerlink" title="实例成员属性的访问"></a>实例成员属性的访问</h4><p>成员实例属性属于对象，访问（赋值/取值）必须通过对象完成。</p>
+<h3 id="实例成员属性的访问"><a href="#实例成员属性的访问" class="headerlink" title="实例成员属性的访问"></a>实例成员属性的访问</h3><p>成员实例属性属于对象，访问（赋值/取值）必须通过对象完成。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPerson</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person p1 = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line">        p1.name = <span class="string">"任盈盈"</span>;</span><br><span class="line">        p1.address = <span class="string">"黑木崖"</span>;</span><br><span class="line">        p1.age = <span class="number">20</span>;</span><br><span class="line">        p1.height = <span class="number">165.50</span>;</span><br><span class="line">        p1.sex = <span class="string">'女'</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(p1.name);</span><br><span class="line">        System.out.println(p1.address);</span><br><span class="line">        System.out.println(p1.age);</span><br><span class="line">        System.out.println(p1.height);</span><br><span class="line">        System.out.println(p1.sex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="五、访问修饰符"><a href="#五、访问修饰符" class="headerlink" title="五、访问修饰符"></a>五、访问修饰符</h3><p>访问修饰符表明此属性可以在哪些范围内可以进行访问。</p>
+<h2 id="五、访问修饰符"><a href="#五、访问修饰符" class="headerlink" title="五、访问修饰符"></a>五、访问修饰符</h2><p>访问修饰符表明此属性可以在哪些范围内可以进行访问。</p>
 <p><img src="http://image.5460cc.com/image/jpg/java/javase/004-oop/02.png" alt=""></p>
-<h3 id="六、类的属性和常量属性"><a href="#六、类的属性和常量属性" class="headerlink" title="六、类的属性和常量属性"></a>六、类的属性和常量属性</h3><p>static修饰的属性是类属性，归类所有，类的所有对象共享static属性。</p>
+<h2 id="六、类的属性和常量属性"><a href="#六、类的属性和常量属性" class="headerlink" title="六、类的属性和常量属性"></a>六、类的属性和常量属性</h2><p>static修饰的属性是类属性，归类所有，类的所有对象共享static属性。</p>
 <p>final修饰的属性是常量，必须显式赋值，任何时候都不能修改常量的值。常量也使用static修饰符。</p>
 <p>访问静态（static修饰）属性，建议使用类名.属性名来访问。</p>
-<h4 id="类的静态属性在jvm中的存储"><a href="#类的静态属性在jvm中的存储" class="headerlink" title="类的静态属性在jvm中的存储"></a>类的静态属性在jvm中的存储</h4><p>public static String feature = “person”;</p>
+<h3 id="类的静态属性在jvm中的存储"><a href="#类的静态属性在jvm中的存储" class="headerlink" title="类的静态属性在jvm中的存储"></a>类的静态属性在jvm中的存储</h3><p>public static String feature = “person”;</p>
 <ol>
 <li>feature变量存储于栈中，保存的是字符串的地址，指向”person”字符串。</li>
 <li>“person”字符串存储于堆的静态区中。</li>
 <li>静态属性随着类的加载被加载，优于实例成员属性。</li>
 </ol>
-<h3 id="七、构造方法"><a href="#七、构造方法" class="headerlink" title="七、构造方法"></a>七、构造方法</h3><p>构造方法：</p>
+<h2 id="七、构造方法"><a href="#七、构造方法" class="headerlink" title="七、构造方法"></a>七、构造方法</h2><p>构造方法：</p>
 <ol>
 <li>构造方法名称和类名完全相同，没有返回类型。</li>
 <li>new创建对象时，会调用构造方法初始化对象。</li>
@@ -441,8 +441,8 @@
 <li>无参数的构造方法。</li>
 <li>带参数的构造方法，作用是初始化当前对象的成员属性。</li>
 </ol>
-<h4 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h4><p>this关键字表示当前对象。<br>当局部变量和成员实例属性重名时，可以使用this关键字来指向成员属性。</p>
-<h4 id="构造方法重载"><a href="#构造方法重载" class="headerlink" title="构造方法重载"></a>构造方法重载</h4><p>根据具体业务情况使用不同的构造方法对对象进行初始化。</p>
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><p>this关键字表示当前对象。<br>当局部变量和成员实例属性重名时，可以使用this关键字来指向成员属性。</p>
+<h3 id="构造方法重载"><a href="#构造方法重载" class="headerlink" title="构造方法重载"></a>构造方法重载</h3><p>根据具体业务情况使用不同的构造方法对对象进行初始化。</p>
 <p>任何显式定义的构造方法都会覆盖系统默认的无参构造方法，如果想使用无参构造方法，必须重新显式定义。</p>
 <p>重载方法：</p>
 <ol>
@@ -450,7 +450,28 @@
 <li>参数列表不同：个数不同，类型不同</li>
 <li>函数名相同，参数列表相同，仅返回值类型不同不是重载！</li>
 </ol>
-<h3 id="八、set和get方法"><a href="#八、set和get方法" class="headerlink" title="八、set和get方法"></a>八、set和get方法</h3><p>类的成员属性往往被设置为private，get和set方法为成员属性提供了一种安全访问方式。</p>
+<h2 id="八、set和get方法"><a href="#八、set和get方法" class="headerlink" title="八、set和get方法"></a>八、set和get方法</h2><p>类的成员属性往往被设置为private，get和set方法为成员属性提供了一种安全访问方式。</p>
+<h2 id="九、类的方法"><a href="#九、类的方法" class="headerlink" title="九、类的方法"></a>九、类的方法</h2><p>方法是解决问题的手段，就是为完成某个功能而存在；方法必须先定义后使用。</p>
+<h3 id="类的成员实例方法"><a href="#类的成员实例方法" class="headerlink" title="类的成员实例方法"></a>类的成员实例方法</h3><p>实例方法定义：<br>[访问修饰符 ] 返回类型 方法名称([参数列表 ]){<br>    功能代码…<br>    [return… ]<br>}</p>
+<p>实例方法调用：<br>对象.方法名([实参列表 ]);</p>
+<h3 id="方法的参数"><a href="#方法的参数" class="headerlink" title="方法的参数"></a>方法的参数</h3><p>值参数：<br>如果参数是值类型，参数传递是将实参中的数据拷贝一个副本，传递给形参。在调用过程中改变形参的值，不会改变实参中存储的值。</p>
+<p>引用类型参数：<br>如果参数是引用类型，参数传递是将实参中的地址引用传递给形参，实参和形参指向同一个对象，修改形参的对象的数据，实参的数据也会改变。</p>
+<h3 id="方法的返回值"><a href="#方法的返回值" class="headerlink" title="方法的返回值"></a>方法的返回值</h3><p>如果方法的定义有返回值，则必须使用<strong>return</strong>关键字返回一个符合返回值类型的值。<br>如果方法中使用了多个return，则必须保证只有一个return被执行，就是说方法只能有一个返回值。</p>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>静态方法属于类所有，与对象无关， 通常不会因为对象不同而改变方法的功能算法，静态方法必须使用关键字static修饰。</p>
+<p>注意：</p>
+<ol>
+<li>静态方法中只能访问静态属性和静态方法</li>
+<li>静态方法不能直接访问实例属性和调用实例方法</li>
+<li>this关键字不能出现在静态方法中</li>
+</ol>
+<h3 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h3><p>方法重载是面向对象语言多态的特性，同名方法完成类似的功能，方法算法有所不同。</p>
+<p>特点：</p>
+<ol>
+<li>在同一个类中</li>
+<li>方法名称完全相同</li>
+<li>参数必须有所不同（参数个数不同或者类型不同（位置不同））</li>
+</ol>
+<h2 id="十、示例代码"><a href="#十、示例代码" class="headerlink" title="十、示例代码"></a>十、示例代码</h2><p><a href="https://github.com/chan21252/javase/tree/master/src/unit6" target="_blank" rel="noopener">https://github.com/chan21252/javase/tree/master/src/unit6</a></p>
 
       
     </div>
@@ -492,6 +513,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/13/javase-005-OOP-inheritance/" rel="prev" title="JAVASE学习笔记—005 面向对象—继承">
+                JAVASE学习笔记—005 面向对象—继承 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -570,7 +595,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、类的定义"><span class="nav-number">1.</span> <span class="nav-text">一、类的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、创建类的对象"><span class="nav-number">2.</span> <span class="nav-text">二、创建类的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、对象在JVM中的存储"><span class="nav-number">3.</span> <span class="nav-text">三、对象在JVM中的存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#四、类的实例成员属性定义和访问"><span class="nav-number">3.1.</span> <span class="nav-text">四、类的实例成员属性定义和访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例成员属性的定义"><span class="nav-number">3.1.1.</span> <span class="nav-text">实例成员属性的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例成员属性的访问"><span class="nav-number">3.1.2.</span> <span class="nav-text">实例成员属性的访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、访问修饰符"><span class="nav-number">3.2.</span> <span class="nav-text">五、访问修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、类的属性和常量属性"><span class="nav-number">3.3.</span> <span class="nav-text">六、类的属性和常量属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类的静态属性在jvm中的存储"><span class="nav-number">3.3.1.</span> <span class="nav-text">类的静态属性在jvm中的存储</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、构造方法"><span class="nav-number">3.4.</span> <span class="nav-text">七、构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#this关键字"><span class="nav-number">3.4.1.</span> <span class="nav-text">this关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法重载"><span class="nav-number">3.4.2.</span> <span class="nav-text">构造方法重载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、set和get方法"><span class="nav-number">3.5.</span> <span class="nav-text">八、set和get方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、类的定义"><span class="nav-number">1.</span> <span class="nav-text">一、类的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、创建类的对象"><span class="nav-number">2.</span> <span class="nav-text">二、创建类的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、对象在JVM中的存储"><span class="nav-number">3.</span> <span class="nav-text">三、对象在JVM中的存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、类的实例成员属性定义和访问"><span class="nav-number">4.</span> <span class="nav-text">四、类的实例成员属性定义和访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例成员属性的定义"><span class="nav-number">4.1.</span> <span class="nav-text">实例成员属性的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例成员属性的访问"><span class="nav-number">4.2.</span> <span class="nav-text">实例成员属性的访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、访问修饰符"><span class="nav-number">5.</span> <span class="nav-text">五、访问修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、类的属性和常量属性"><span class="nav-number">6.</span> <span class="nav-text">六、类的属性和常量属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的静态属性在jvm中的存储"><span class="nav-number">6.1.</span> <span class="nav-text">类的静态属性在jvm中的存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、构造方法"><span class="nav-number">7.</span> <span class="nav-text">七、构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this关键字"><span class="nav-number">7.1.</span> <span class="nav-text">this关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法重载"><span class="nav-number">7.2.</span> <span class="nav-text">构造方法重载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、set和get方法"><span class="nav-number">8.</span> <span class="nav-text">八、set和get方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、类的方法"><span class="nav-number">9.</span> <span class="nav-text">九、类的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类的成员实例方法"><span class="nav-number">9.1.</span> <span class="nav-text">类的成员实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法的参数"><span class="nav-number">9.2.</span> <span class="nav-text">方法的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法的返回值"><span class="nav-number">9.3.</span> <span class="nav-text">方法的返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法"><span class="nav-number">9.4.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法重载"><span class="nav-number">9.5.</span> <span class="nav-text">方法重载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、示例代码"><span class="nav-number">10.</span> <span class="nav-text">十、示例代码</span></a></li></ol></div>
             
 
           </div>

@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVASE学习笔记—006 面向对象—抽象、接口和内部类]]></title>
+    <url>%2F2019%2F05%2F15%2Fjavase-006-OOP-abstract%2F</url>
+    <content type="text"><![CDATA[一、抽象类抽象类的定义123public abstract class Animal&#123; public abstract void run();&#125; 抽象类的特点 抽象类通常应包含抽象方法 抽象类不能使用final关键字修饰 抽象类自身不能够实例化 抽象类就是用来被继承的 抽象类的继承和创建 抽象类被非抽象类继承必须实现抽象类的所有抽象方法 抽象类被抽象类继承，可以不实现父类的抽象方法 抽象类对象的实例化必须通过创建非抽象的子类对象实现 抽象类对象都是上转型对象 适配器抽象类的非抽象子类，只实现抽象类的部分功能 为抽象类定义适配器类，对所有抽象方法提供空实现 非抽象子类继承适配器类，只重写需要的父类方法 对象运行时多态jvm在运行时创建和使用某个对象时，才能确定对象具体是哪种数据类型。 二、接口关键字 interface 接口的特征： 接口中的属性只能是公共静态的常量 接口中只允许定义公共、抽象的实例方法 三、内部类内部类的作用 通过外部类访问从而被限定使用权限 内部类所定义功能更多时候只为外部类使用 内部类某些功能使用更加安全 内部类定义和创建 内部类必须定义在某个类当中，所在类为外部类 内部类可以使用public，protected，private访问修饰符 内部类可以使用abstract，final，static修饰符 内部类没有单独的java源文件，只有class文件 内部类class文件名称规范：外部类名$内部类名.class 内部类的访问，只能通过外部类访问 内部类的种类 普通内部类 静态内部类 局部内部类 匿名类对象 匿名类对象就是没有名称类型的对象 匿名类对象经常作为接口和抽象类的实现 匿名类对象可以减少接口或抽象类实现类的定义 匿名类对象一定属于它实现的父级类型 四、静态代码块静态代码块的内容 访问静态属性 调用静态方法 允许定义局部变量和常量 允许定义局部 不能访问实例属性和方法 不能定义方法 静态代码块的加载 静态代码块属于类，随类的加载而加载 静态代码块在静态属性初始化后与调用构造器之前加载 静态代码块在加载时通常做一些静态属性或常量赋值、调用静态方法。如果想在产生类对象之前，在类加载时完成一些初始化可以使用静态代码块]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVASE学习笔记—005 面向对象—继承]]></title>
+    <url>%2F2019%2F05%2F13%2Fjavase-005-OOP-inheritance%2F</url>
+    <content type="text"><![CDATA[一、类继承机制的目的 继承是类和类之间的关系，非对象之间的关系。 继承是面向对象语言典型的特征之一。 继承是一个类（父类）到另一个类（子类）的功能延续，体现功能的复用 二、继承机制 一个类可以被多个类同时继承。 一个类只能有一个直接父类，java不支持多继承。 继承具有传递性，祖父-&gt;父亲-&gt;儿子-&gt;孙子。 final关键字修饰的类不能被继承。 三、继承语法关键字：extends 123public class Child extends Father&#123;&#125; 四、子类对象的创建创建子类对象总是要先创建一个父类对象，默认子类的构造方法总是自动调用父类的无参构造方法。 五、子类访问父类成员的限制 子类无法直接访问父类的private成员 构造方法不能被继承 向上转型对象不能访问子类中新添加的属性，访问需要强制类型转换为子类类型 final修饰的方法不能在子类中被重写 六、方法重写 子类重写父类方法，方法名称和父类方法名完全相同 方法的参数个数和类型完全相同，返回类型完全相同 方法的访问修饰符访问级别不低于父类同名的方法 重写限制 final修饰的父类方法在子类中不能被重写 static修饰的父类方法，在子类中不能被重写，只能覆盖 七、super关键字super关键字与this关键字都代表对象。super关键字只能在存在继承关系的子类中出现，代表父类对象。 super出现在子类构造器中，标识调用父类构造方法 super出现在子类方法中，标识访问父类的方法和属性]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVASE学习笔记—004 面向对象基础概述]]></title>
     <url>%2F2019%2F05%2F07%2Fjavase-004-OOP%2F</url>
-    <content type="text"><![CDATA[面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程典范，同时也是一种程序开发的抽象方针。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。 一、类的定义Java允许开发者自定义数据类型（定义类），属于引用数据类型。 123456/** * 自定义一个表示人类的数据类型，属于java引用类型 */public class Person &#123;&#125; public：访问控制符class：类关键字Person：标识符，自定义类名 二、创建类的对象一个Java类可以产生N个属于此类型的对象（示例）。类是制造对象的模板；对象是类的具体表现形式。 一个普通的Java类通常使用new运算符创建此类型对象。 12Person perObject;perObject = new Person(); 三、对象在JVM中的存储Person perObject = new Person();Person perObject2 = perObject; perOject变量存储在栈（Stack）中，保存的是Person对象的引用地址new Person()创建了一个Person对象，对象数据存储在堆（Heap）中。 perObject赋值给perObject2变量，赋值的是对象的引用地址，perObject2中存储的也是同一个对象的地址。 四、类的实例成员属性定义和访问实例成员属性的定义1234567public class Person &#123; String name; //姓名 int age; //年龄 String address; //地址 char sex; //性别 double height; //身高&#125; 实例属性属于对象所有，生命周期和所属对象的生命周期相同。不同对象的属性值是不相同的，不同对象的属性不能共享。 实例成员属性的访问成员实例属性属于对象，访问（赋值/取值）必须通过对象完成。 1234567891011121314151617public class TestPerson &#123; public static void main(String[] args) &#123; Person p1 = new Person(); p1.name = "任盈盈"; p1.address = "黑木崖"; p1.age = 20; p1.height = 165.50; p1.sex = '女'; System.out.println(p1.name); System.out.println(p1.address); System.out.println(p1.age); System.out.println(p1.height); System.out.println(p1.sex); &#125;&#125; 五、访问修饰符访问修饰符表明此属性可以在哪些范围内可以进行访问。 六、类的属性和常量属性static修饰的属性是类属性，归类所有，类的所有对象共享static属性。 final修饰的属性是常量，必须显式赋值，任何时候都不能修改常量的值。常量也使用static修饰符。 访问静态（static修饰）属性，建议使用类名.属性名来访问。 类的静态属性在jvm中的存储public static String feature = “person”; feature变量存储于栈中，保存的是字符串的地址，指向”person”字符串。 “person”字符串存储于堆的静态区中。 静态属性随着类的加载被加载，优于实例成员属性。 七、构造方法构造方法： 构造方法名称和类名完全相同，没有返回类型。 new创建对象时，会调用构造方法初始化对象。 如果类中没有显式定义构造方法，会调用一个默认无参的public构造方法。 构造方法的分类： 无参数的构造方法。 带参数的构造方法，作用是初始化当前对象的成员属性。 this关键字this关键字表示当前对象。当局部变量和成员实例属性重名时，可以使用this关键字来指向成员属性。 构造方法重载根据具体业务情况使用不同的构造方法对对象进行初始化。 任何显式定义的构造方法都会覆盖系统默认的无参构造方法，如果想使用无参构造方法，必须重新显式定义。 重载方法： 函数名相同 参数列表不同：个数不同，类型不同 函数名相同，参数列表相同，仅返回值类型不同不是重载！ 八、set和get方法类的成员属性往往被设置为private，get和set方法为成员属性提供了一种安全访问方式。]]></content>
+    <content type="text"><![CDATA[面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的程序编程典范，同时也是一种程序开发的抽象方针。它可能包含数据、属性、代码与方法。对象则指的是类的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关连的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。 一、类的定义Java允许开发者自定义数据类型（定义类），属于引用数据类型。 123456/** * 自定义一个表示人类的数据类型，属于java引用类型 */public class Person &#123;&#125; public：访问控制符class：类关键字Person：标识符，自定义类名 二、创建类的对象一个Java类可以产生N个属于此类型的对象（示例）。类是制造对象的模板；对象是类的具体表现形式。 一个普通的Java类通常使用new运算符创建此类型对象。 12Person perObject;perObject = new Person(); 三、对象在JVM中的存储Person perObject = new Person();Person perObject2 = perObject; perOject变量存储在栈（Stack）中，保存的是Person对象的引用地址new Person()创建了一个Person对象，对象数据存储在堆（Heap）中。 perObject赋值给perObject2变量，赋值的是对象的引用地址，perObject2中存储的也是同一个对象的地址。 四、类的实例成员属性定义和访问实例成员属性的定义1234567public class Person &#123; String name; //姓名 int age; //年龄 String address; //地址 char sex; //性别 double height; //身高&#125; 实例属性属于对象所有，生命周期和所属对象的生命周期相同。不同对象的属性值是不相同的，不同对象的属性不能共享。 实例成员属性的访问成员实例属性属于对象，访问（赋值/取值）必须通过对象完成。 1234567891011121314151617public class TestPerson &#123; public static void main(String[] args) &#123; Person p1 = new Person(); p1.name = "任盈盈"; p1.address = "黑木崖"; p1.age = 20; p1.height = 165.50; p1.sex = '女'; System.out.println(p1.name); System.out.println(p1.address); System.out.println(p1.age); System.out.println(p1.height); System.out.println(p1.sex); &#125;&#125; 五、访问修饰符访问修饰符表明此属性可以在哪些范围内可以进行访问。 六、类的属性和常量属性static修饰的属性是类属性，归类所有，类的所有对象共享static属性。 final修饰的属性是常量，必须显式赋值，任何时候都不能修改常量的值。常量也使用static修饰符。 访问静态（static修饰）属性，建议使用类名.属性名来访问。 类的静态属性在jvm中的存储public static String feature = “person”; feature变量存储于栈中，保存的是字符串的地址，指向”person”字符串。 “person”字符串存储于堆的静态区中。 静态属性随着类的加载被加载，优于实例成员属性。 七、构造方法构造方法： 构造方法名称和类名完全相同，没有返回类型。 new创建对象时，会调用构造方法初始化对象。 如果类中没有显式定义构造方法，会调用一个默认无参的public构造方法。 构造方法的分类： 无参数的构造方法。 带参数的构造方法，作用是初始化当前对象的成员属性。 this关键字this关键字表示当前对象。当局部变量和成员实例属性重名时，可以使用this关键字来指向成员属性。 构造方法重载根据具体业务情况使用不同的构造方法对对象进行初始化。 任何显式定义的构造方法都会覆盖系统默认的无参构造方法，如果想使用无参构造方法，必须重新显式定义。 重载方法： 函数名相同 参数列表不同：个数不同，类型不同 函数名相同，参数列表相同，仅返回值类型不同不是重载！ 八、set和get方法类的成员属性往往被设置为private，get和set方法为成员属性提供了一种安全访问方式。 九、类的方法方法是解决问题的手段，就是为完成某个功能而存在；方法必须先定义后使用。 类的成员实例方法实例方法定义：[访问修饰符 ] 返回类型 方法名称([参数列表 ]){ 功能代码… [return… ]} 实例方法调用：对象.方法名([实参列表 ]); 方法的参数值参数：如果参数是值类型，参数传递是将实参中的数据拷贝一个副本，传递给形参。在调用过程中改变形参的值，不会改变实参中存储的值。 引用类型参数：如果参数是引用类型，参数传递是将实参中的地址引用传递给形参，实参和形参指向同一个对象，修改形参的对象的数据，实参的数据也会改变。 方法的返回值如果方法的定义有返回值，则必须使用return关键字返回一个符合返回值类型的值。如果方法中使用了多个return，则必须保证只有一个return被执行，就是说方法只能有一个返回值。 静态方法静态方法属于类所有，与对象无关， 通常不会因为对象不同而改变方法的功能算法，静态方法必须使用关键字static修饰。 注意： 静态方法中只能访问静态属性和静态方法 静态方法不能直接访问实例属性和调用实例方法 this关键字不能出现在静态方法中 方法重载方法重载是面向对象语言多态的特性，同名方法完成类似的功能，方法算法有所不同。 特点： 在同一个类中 方法名称完全相同 参数必须有所不同（参数个数不同或者类型不同（位置不同）） 十、示例代码https://github.com/chan21252/javase/tree/master/src/unit6]]></content>
       <categories>
         <category>java</category>
       </categories>
@@ -146,8 +170,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
         <tag>java</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>

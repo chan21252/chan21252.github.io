@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="linux,nodejs,">
+  <meta name="keywords" content="chan, blog, hexo">
 
 
 
@@ -83,18 +83,16 @@
 
 
 
-<meta name="description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz">
-<meta name="keywords" content="linux,nodejs">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux源代码安装nodejs">
-<meta property="og:url" content="https://blog.5460cc.com/2018/12/09/install-nodejs-on-centos/index.html">
+<meta name="description" content="辜负了锦绣年华">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chan&#39;s Blog">
+<meta property="og:url" content="https://blog.5460cc.com/categories/java/page/3/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
-<meta property="og:description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz">
+<meta property="og:description" content="辜负了锦绣年华">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-16T04:37:44.471Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux源代码安装nodejs">
-<meta name="twitter:description" content="下载官网：http://nodejs.cn/download/1wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz">
+<meta name="twitter:title" content="Chan&#39;s Blog">
+<meta name="twitter:description" content="辜负了锦绣年华">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://blog.5460cc.com/2018/12/09/install-nodejs-on-centos/">
+  <link rel="canonical" href="https://blog.5460cc.com/categories/java/page/3/">
 
 
 
 
 
-  <title>Linux源代码安装nodejs | Chan's Blog</title>
+  <title>分类: java | Chan's Blog</title>
   
 
 
@@ -159,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -295,181 +293,57 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>java<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2018/12/09/install-nodejs-on-centos/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chan's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2018/12/16/install-jdk-on-centos/" itemprop="url">
+              
+                <span itemprop="name">Linux安装jdk</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">Linux源代码安装nodejs</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T16:01:44+08:00">
-                2018-12-09
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2018-12-16T12:45:23+08:00" content="2018-12-16">
+          12-16
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>官网：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">http://nodejs.cn/download/</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cdn.npm.taobao.org/dist/node/v10.14.1/node-v10.14.1.tar.gz</span><br></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<h2 id="安装依赖工具"><a href="#安装依赖工具" class="headerlink" title="安装依赖工具"></a>安装依赖工具</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install python gcc make g++ wget</span><br></pre></td></tr></table></figure>
-<h2 id="解压编译安装"><a href="#解压编译安装" class="headerlink" title="解压编译安装"></a>解压编译安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#解压</span></span><br><span class="line">tar -zvxf node-v10.14.1.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译&amp;安装</span></span><br><span class="line"><span class="built_in">cd</span> node-v10.14.1/</span><br><span class="line">./configure --prefix=/opt/nodejs</span><br><span class="line">make prefix=/opt/nodejs</span><br><span class="line">make prefix=/opt/nodejs install</span><br></pre></td></tr></table></figure>
-<h3 id="编译报错"><a href="#编译报错" class="headerlink" title="编译报错"></a>编译报错</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span>: no python2.7 <span class="keyword">in</span> (/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/git/bin:/root/bin)</span><br><span class="line">ERROR: Did not find a new enough assembler, install one or build with</span><br><span class="line">       --openssl-no-asm.</span><br><span class="line">       Please refer to BUILDING.md</span><br></pre></td></tr></table></figure>
-<h3 id="安装python2-7"><a href="#安装python2-7" class="headerlink" title="安装python2.7"></a>安装python2.7</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line">curl https://www.python.org/ftp/python/2.7.14/Python-2.7.14.tgz -o python-2.7.14.tgz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf Python-2.7.14.tgz</span><br><span class="line"><span class="built_in">cd</span> Python-2.7.14</span><br><span class="line">./configure</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译&amp;安装</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看版本</span></span><br><span class="line">python --version</span><br></pre></td></tr></table></figure>
-<h2 id="查看版本"><a href="#查看版本" class="headerlink" title="查看版本"></a>查看版本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/12/09/install-nginx-on-centos/" rel="next" title="Linux源代码安装nginx">
-                <i class="fa fa-chevron-left"></i> Linux源代码安装nginx
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/09/deploy-hexo2server-by-git/" rel="prev" title="git自动部署hexo博客到服务器">
-                git自动部署hexo博客到服务器 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/categories/java/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/java/">1</a><a class="page-number" href="/categories/java/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
 
 
           </div>
@@ -477,10 +351,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -501,17 +371,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -589,22 +450,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载"><span class="nav-number">1.</span> <span class="nav-text">下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖工具"><span class="nav-number">2.</span> <span class="nav-text">安装依赖工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解压编译安装"><span class="nav-number">3.</span> <span class="nav-text">解压编译安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译报错"><span class="nav-number">3.1.</span> <span class="nav-text">编译报错</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装python2-7"><span class="nav-number">3.2.</span> <span class="nav-text">安装python2.7</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看版本"><span class="nav-number">4.</span> <span class="nav-text">查看版本</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -745,10 +590,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
