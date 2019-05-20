@@ -86,14 +86,14 @@
 <meta name="description" content="一、Object类Object类是所有类的父类 常用方法toString返回Object对象的字符串表示形式。此方法可以在任意类中进行重写。 equals判断给定对象是否与当前对象相等。此方法可以在任意类中进行重写。 1234//目标对象和当前对象相同返回truepublic boolean equals(Object obj)&amp;#123;    return (this == obj);&amp;#12">
 <meta name="keywords" content="java,javase">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVASE学习笔记—007 Java常用类库">
+<meta property="og:title" content="JAVASE学习笔记—007 Java常用类库—Object类，包装类，System类">
 <meta property="og:url" content="https://blog.5460cc.com/2019/05/19/javase-007-class-library-01/index.html">
 <meta property="og:site_name" content="Chan&#39;s Blog">
 <meta property="og:description" content="一、Object类Object类是所有类的父类 常用方法toString返回Object对象的字符串表示形式。此方法可以在任意类中进行重写。 equals判断给定对象是否与当前对象相等。此方法可以在任意类中进行重写。 1234//目标对象和当前对象相同返回truepublic boolean equals(Object obj)&amp;#123;    return (this == obj);&amp;#12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-19T13:57:28.295Z">
+<meta property="og:updated_time" content="2019-05-20T12:45:39.527Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVASE学习笔记—007 Java常用类库">
+<meta name="twitter:title" content="JAVASE学习笔记—007 Java常用类库—Object类，包装类，System类">
 <meta name="twitter:description" content="一、Object类Object类是所有类的父类 常用方法toString返回Object对象的字符串表示形式。此方法可以在任意类中进行重写。 equals判断给定对象是否与当前对象相等。此方法可以在任意类中进行重写。 1234//目标对象和当前对象相同返回truepublic boolean equals(Object obj)&amp;#123;    return (this == obj);&amp;#12">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>JAVASE学习笔记—007 Java常用类库 | Chan's Blog</title>
+  <title>JAVASE学习笔记—007 Java常用类库—Object类，包装类，System类 | Chan's Blog</title>
   
 
 
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JAVASE学习笔记—007 Java常用类库</h1>
+          <h1 class="post-title" itemprop="name headline">JAVASE学习笔记—007 Java常用类库—Object类，包装类，System类</h1>
         
 
         <div class="post-meta">
@@ -406,6 +406,59 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> Class&lt;?&gt; getClass();</span><br></pre></td></tr></table></figure>
 <h4 id="hashCode方法"><a href="#hashCode方法" class="headerlink" title="hashCode方法"></a>hashCode方法</h4><p>返回对象int类型的哈希码值。此方法为提高哈希表性能而支持，子类重写通常没有意义。</p>
 <a id="more"></a>
+<h2 id="二、基本数据类型包装类"><a href="#二、基本数据类型包装类" class="headerlink" title="二、基本数据类型包装类"></a>二、基本数据类型包装类</h2><p>Java的8种基本数据类型都对应有一个包装类。</p>
+<h3 id="Integer类"><a href="#Integer类" class="headerlink" title="Integer类"></a>Integer类</h3><h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Integer</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Integer</span><span class="params">(String numStr)</span></span>;  <span class="comment">//字符串只包含数字字符</span></span><br><span class="line"></span><br><span class="line">Integer intObj = <span class="number">5</span>; <span class="comment">//也可以直接使用int常量来创建Integer对象</span></span><br></pre></td></tr></table></figure>
+<h4 id="常量："><a href="#常量：" class="headerlink" title="常量："></a>常量：</h4><ol>
+<li>Integer.MAX_VALUE</li>
+<li>Integer.MIN_VALUE</li>
+<li>Integer.BYTES    //字节数=4</li>
+<li>Integer.SIZE     //位数=32</li>
+</ol>
+<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h4><ol>
+<li>compareTo，比较大小</li>
+<li>intValue（shortValue，longValue，floatValue，doubleValue），返回Integer对象的int值，实现从对象转换为基本数据类型</li>
+<li>static int parseInt(String s)，静态方法，将s转换为10进制的int值返回<ol>
+<li>重载方法：static int parseInt(String s, int radix)，radix表示s的进制</li>
+</ol>
+</li>
+<li>static Integer valueOf(int i)，返回一个值是i的Integer对象<ol>
+<li>重载：static Integer valueOf(String s)</li>
+<li>重载：static Integer valueOf(String s, int radix)</li>
+</ol>
+</li>
+<li>static String toBinaryString(int i)，返回i的二进制形式的字符串<ol>
+<li>Integer.toOctalString(int i);   //八进制</li>
+<li>Integer.toHexString(int i);     //十六进制</li>
+</ol>
+</li>
+</ol>
+<h3 id="Character类"><a href="#Character类" class="headerlink" title="Character类"></a>Character类</h3><h4 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h4><ol>
+<li>public Character(char c)</li>
+<li>public static Character valueOf(char c)</li>
+</ol>
+<h4 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h4><ol>
+<li>public char charValue()，返回此对象的char值</li>
+<li>public int compareTo(Character get)，比较大小</li>
+<li>public String toString()，返回此对象char值的字符串形式</li>
+</ol>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><ol>
+<li>Character.isLowerCase(char c)，判断是否是小写字母</li>
+<li>其他检查字符的方法，参考JDK API文档</li>
+</ol>
+<h2 id="三、System类"><a href="#三、System类" class="headerlink" title="三、System类"></a>三、System类</h2><p>System表示当前运行的JVM。System提供了标准输入、输出对象和错误输出流对象，垃圾回收，系统信息等。<br>System不能被实例化，是只读的。</p>
+<h3 id="获取输入、输出流"><a href="#获取输入、输出流" class="headerlink" title="获取输入、输出流"></a>获取输入、输出流</h3><ol>
+<li>System.out   标准输出流</li>
+<li>System.in    标准输入流</li>
+<li>System.err   错误输出流</li>
+</ol>
+<h3 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h3><ol>
+<li>exit(int status) 退出系统</li>
+<li>gc() 通知垃圾回收系统期望快速回收垃圾以释放内存空间</li>
+<li>currentTimeMillis()  当前系统的毫秒时间戳</li>
+<li>getProperties()  获取当前系统属性的map集合</li>
+<li>getProperty(String key)  获取某个属性的属性值</li>
+</ol>
+
       
     </div>
     
@@ -446,6 +499,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/20/javase-007-class-library-02/" rel="prev" title="JAVASE学习笔记—007 Java常用类库—String类">
+                JAVASE学习笔记—007 Java常用类库—String类 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -524,7 +581,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Object类"><span class="nav-number">1.</span> <span class="nav-text">一、Object类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#toString-NaN"><span class="nav-number">1.1.1.</span> <span class="nav-text">toString</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#equals"><span class="nav-number">1.1.2.</span> <span class="nav-text">equals</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getClass"><span class="nav-number">1.1.3.</span> <span class="nav-text">getClass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hashCode方法"><span class="nav-number">1.1.4.</span> <span class="nav-text">hashCode方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Object类"><span class="nav-number">1.</span> <span class="nav-text">一、Object类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#toString-NaN"><span class="nav-number">1.1.1.</span> <span class="nav-text">toString</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#equals"><span class="nav-number">1.1.2.</span> <span class="nav-text">equals</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getClass"><span class="nav-number">1.1.3.</span> <span class="nav-text">getClass</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hashCode方法"><span class="nav-number">1.1.4.</span> <span class="nav-text">hashCode方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、基本数据类型包装类"><span class="nav-number">2.</span> <span class="nav-text">二、基本数据类型包装类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Integer类"><span class="nav-number">2.1.</span> <span class="nav-text">Integer类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法"><span class="nav-number">2.1.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量："><span class="nav-number">2.1.2.</span> <span class="nav-text">常量：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用方法-1"><span class="nav-number">2.1.3.</span> <span class="nav-text">常用方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Character类"><span class="nav-number">2.2.</span> <span class="nav-text">Character类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">实例方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态方法"><span class="nav-number">2.2.3.</span> <span class="nav-text">静态方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、System类"><span class="nav-number">3.</span> <span class="nav-text">三、System类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取输入、输出流"><span class="nav-number">3.1.</span> <span class="nav-text">获取输入、输出流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他方法"><span class="nav-number">3.2.</span> <span class="nav-text">其他方法</span></a></li></ol></li></ol></div>
             
 
           </div>
