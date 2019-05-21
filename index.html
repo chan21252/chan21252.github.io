@@ -400,8 +400,7 @@
 
       
         
-          
-            <h2 id="一、String类概述"><a href="#一、String类概述" class="headerlink" title="一、String类概述"></a>一、String类概述</h2><p>String类代表字符串。Java中所有的字符串字面值都是此类的实例。<br>字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。</p>
+          <h2 id="一、String类概述"><a href="#一、String类概述" class="headerlink" title="一、String类概述"></a>一、String类概述</h2><p>String类代表字符串。Java中所有的字符串字面值都是此类的实例。<br>字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。</p>
 <h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><ol>
 <li>默认无参构造器</li>
 <li>byte数组构造器</li>
@@ -410,8 +409,26 @@
 <li>字符串构造器</li>
 <li>StringBuffer构造器</li>
 </ol>
-
-          
+<h2 id="二、String类常用方法"><a href="#二、String类常用方法" class="headerlink" title="二、String类常用方法"></a>二、String类常用方法</h2><ol>
+<li>euqals(String another)                   比较字符串的字面值是否相等</li>
+<li>charAt(int index)                        返回字符串指定索引位置的字符</li>
+<li>startWith(String prefix)                 验证字符串是否已指定字符串开始或结尾</li>
+<li>trim()                                   去除字符串首尾的空格。新建一个字符串，原字符串不变。</li>
+<li>indeOf(int ch, int index)                有多个重载，返回指定字符/字符串在目标字符串中第一个匹配的索引位置。</li>
+<li>split()                                  将字符串用指定字符串分割</li>
+<li>toCharArray()                            字符串转为char数组</li>
+<li>toLowerCase()/toUpperCase()              字符串转大写，小写</li>
+<li>subString(int start, int end)            提取子串。新建一个字符串，原字符串不变。起止索引越界会报错。</li>
+<li>repalce(String oldStr, String newStr)   替换字符串中的字符/字符串。</li>
+<li>valueOf(Object obj)                     返回指定对象的字符串形式</li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/20/javase-007-class-library-02/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

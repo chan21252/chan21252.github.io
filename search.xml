@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[JAVASE学习笔记—007 Java常用类库—String类]]></title>
     <url>%2F2019%2F05%2F20%2Fjavase-007-class-library-02%2F</url>
-    <content type="text"><![CDATA[一、String类概述String类代表字符串。Java中所有的字符串字面值都是此类的实例。字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。 构造方法 默认无参构造器 byte数组构造器 char数组构造器 char数组，指定开始索引和长度的构造器 字符串构造器 StringBuffer构造器]]></content>
+    <content type="text"><![CDATA[一、String类概述String类代表字符串。Java中所有的字符串字面值都是此类的实例。字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。 构造方法 默认无参构造器 byte数组构造器 char数组构造器 char数组，指定开始索引和长度的构造器 字符串构造器 StringBuffer构造器 二、String类常用方法 euqals(String another) 比较字符串的字面值是否相等 charAt(int index) 返回字符串指定索引位置的字符 startWith(String prefix) 验证字符串是否已指定字符串开始或结尾 trim() 去除字符串首尾的空格。新建一个字符串，原字符串不变。 indeOf(int ch, int index) 有多个重载，返回指定字符/字符串在目标字符串中第一个匹配的索引位置。 split() 将字符串用指定字符串分割 toCharArray() 字符串转为char数组 toLowerCase()/toUpperCase() 字符串转大写，小写 subString(int start, int end) 提取子串。新建一个字符串，原字符串不变。起止索引越界会报错。 repalce(String oldStr, String newStr) 替换字符串中的字符/字符串。 valueOf(Object obj) 返回指定对象的字符串形式]]></content>
       <categories>
         <category>java</category>
       </categories>
