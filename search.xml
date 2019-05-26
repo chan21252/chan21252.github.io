@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVASE学习笔记—007 Java常用类库—List、Set、Map集合接口及实现类]]></title>
+    <url>%2F2019%2F05%2F26%2Fjavase-007-class-library-04%2F</url>
+    <content type="text"><![CDATA[一、List接口和实现类List接口继承自—Collection—Iterable。Iterable接口以循环迭代方式访问集合中的数据元素，定义了唯一一个返回指向集合的Iterable迭代器。它主要通过foreach方式处理集合中的元素。它的任何实现类都可以通过获取指向集合的迭代实现对集合的遍历。List接口间接继承Iterable接口，它的直接父接口Collection定义了更多操作方法。 常用方法 booleadn add(Object o) 在List末尾添加元素 void add(int index, Object element) 在指定索引位置添加元素 void clear() 清空List boolean contains(Object o) 是否包含对象o Object get(int index) 获取指定索引的元素 boolean isEmpty() List是否为空 Iterator iterator() 获取迭代器，Iterable接口的方法 Object remove(int index) 移除指定索引的元素 boolean remove(Object o) 移除指定对象 Object set(int index, Object element) 设置指定索引的元素，返回旧元素 int indexOf(String target, int fromIndex) int size() 返回List的长度 增删改查： 增 add 查 获取元素 get 包含元素 contains 遍历集合 for、iterator 集合长度 size 获取字符串元素索引 indexOf 改 新元素代替旧元素 set 删 删除元素 remove 清空集合 clear 是否为空 isEmpty() List接口实现类——ArrayListArrayList类是List接口长度可变数组的实现。ArrayList是非线程安全的。ArrayList查找访问集合元素速度比较快，删除、插入随机元素操作比较慢。 List接口实现类——VectorVector是向量集合，是List接口长度可变数组的实现。Vector是线程安全的。Vector相比ArrayList效率要低，多用于被多个线程同时访问的数据处理。 Vector除了List的方法，还实现返回Enumeration枚举接口的方法elements()。 二、Set接口和实现类Set接口规范Set接口继承自—Collection—Iterable。Set接口只能存储不相同的对象。Set接口是数学Set的抽象描述。和List不同，Set中的元素不带任何索引，不能使用索引访问元素。Set接口添加，遍历比较慢，随机删除修改数据速度较List快。 常用方法 Object[] toArray() Set实现类——HashSetHashSet由哈希表支持，不保证set的迭代顺序，允许使用null元素。HashSet是非线程安全的。 Set实现类——TreeSetTreeSet实现了NavigableSet接口，NavigableSet继承了SortedSet接口。TreeSet底层是由TreeMap实现的。TreeSet可以在创建时，用自定义的Comparator进行排序。TreeSet不是线程安全的。 常用方法 public TreeSet(Comparator comparator) 指定自定义排序 public Iterator descendingIterator() 返回倒序迭代器 public E last() 获取最后一个元素 public E first() 获取第一个元素 TreeSet自定义排序 自定义java.util.Comparator接口的实现类，实现compare方法 调用TreeSet的Comparator类型构造器创建对象 Set实现类——LinkedHashSet基于哈希表和链表的Set，是有序的，元素按照添加的顺序排序。LinkedHashList由于需要维护元素顺序，因此效率比HashSet低。 实践遍历List时候修改List长度，抛出异常123456789101112for (Object o : list1)&#123; if (list2.contains(data))&#123; list1.remove(o); //改变List长度 &#125;else &#123; list3.add(o);&#125;/*Exception in thread "main" java.util.ConcurrentModificationException at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909) at java.util.ArrayList$Itr.next(ArrayList.java:859) at work.collection.exercise04.main(exercise04.java:131)*/ 调用堆栈： ArrayList$Itr.next()调用checkForComodification()方法 checkForComodification()方法，if(modCount != expectedModCount)，抛出 ConcurrentModificationException ArrayList类的boolean remove(Object o)方法，调用fastRemove(int index)方法fastRemove()方法中，modCount++; 因此，modCount != expectedModCount，抛出异常 解析：ArrayList线程不安全，List保证其遍历时不被修改，采用的是用一个计数器的机制。在开始遍历前，先记录当前的modCount值，而后每次访问下一个元素之前，都会检查下modCount值是否变化，如果有变化，说明List的长度有变化。一旦长度有变化，就会抛出ConcurrentModificationException异常。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVASE学习笔记—007 Java常用类库—日期时间类、Math类]]></title>
+    <url>%2F2019%2F05%2F23%2Fjavase-007-class-library-03%2F</url>
+    <content type="text"><![CDATA[一、Date类Date类表示特定的时间，精确到毫秒。 创建对象 Date() 用当前系统时间创建Date对象 Date(long date) 用毫秒时间戳创建Date对象 常用方法 after(Date when) when是否在当前时间之后 befor(Date when) when是否在当前时间之前 compareTo(Date anotherDate) 比较两个时间的先后 long getTime() 获取Date对象的时间戳 setTime(long time) 设置Date对象的时间戳 toString() 二、DateFormat类 字符串转换为Date对象 DateFormat.getInstance().parse(String) Date对象转为字符串 DateFormat.getInstance().format(Date) 创建对象DateFormat(String format) format的形式 yyyy-MM-dd hh:mm:ss 子类：SimpleDateFormat 三、Calendar类创建对象 public static Calender getInstance() public static Calender getInstance(Locale aLocale) 常量字段 AM/PM YEAR/MONTH（0开始）/DATE HOUR（12h）/HOUR_OF_DAY（24小时）/MINUTE/SECOND/MILLISECOND 常用方法 set(int field, int value) 设置日历字段的值，多个重载 get(int field) 获取指定字段的值 add(int field, int value) 增加日历字段的值 after/before(Object when) 比较时间在之前/后 compareTo(Calender anotherCal) 比较日历对象时间的先后 Date getTime() 返回日历对象时间的Date对象 四、Math类Math类定义了数学运算的基本功能，Math类所有属性和方法都是静态的，因此Math类不需要创建实例。Math类是final修饰的，也不能被继承。 常量字段 E 自然对数的底数 PI 圆周率 常用方法 abs 求绝对值 cbrt 求立方根 ceil(double num) 返回大于等于num最小的double值（向上取整） floor(double num) 返回小于等于num最大的double值（向下取整） max/min(double a, double b) 求较大/较小值 pow(double a, double b) 返回a的b次幂 random 产生0.0-1.0的随机数]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVASE学习笔记—007 Java常用类库—String类]]></title>
     <url>%2F2019%2F05%2F20%2Fjavase-007-class-library-02%2F</url>
-    <content type="text"><![CDATA[一、String类概述String类代表字符串。Java中所有的字符串字面值都是此类的实例。字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。 构造方法 默认无参构造器 byte数组构造器 char数组构造器 char数组，指定开始索引和长度的构造器 字符串构造器 StringBuffer构造器 二、String类常用方法 euqals(String another) 比较字符串的字面值是否相等 charAt(int index) 返回字符串指定索引位置的字符 startWith(String prefix) 验证字符串是否已指定字符串开始或结尾 trim() 去除字符串首尾的空格。新建一个字符串，原字符串不变。 indeOf(int ch, int index) 有多个重载，返回指定字符/字符串在目标字符串中第一个匹配的索引位置。 split() 将字符串用指定字符串分割 toCharArray() 字符串转为char数组 toLowerCase()/toUpperCase() 字符串转大写，小写 subString(int start, int end) 提取子串。新建一个字符串，原字符串不变。起止索引越界会报错。 repalce(String oldStr, String newStr) 替换字符串中的字符/字符串。 valueOf(Object obj) 返回指定对象的字符串形式]]></content>
+    <content type="text"><![CDATA[一、String类概述String类代表字符串。Java中所有的字符串字面值都是此类的实例。字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。 构造方法 默认无参构造器 byte数组构造器 char数组构造器 char数组，指定开始索引和长度的构造器 字符串构造器 StringBuffer构造器 二、String类常用方法 euqals(String another) 比较字符串的字面值是否相等 charAt(int index) 返回字符串指定索引位置的字符 startWith(String prefix) 验证字符串是否已指定字符串开始或结尾 trim() 去除字符串首尾的空格。新建一个字符串，原字符串不变。 indeOf(int ch, int index) 有多个重载，返回指定字符/字符串在目标字符串中第一个匹配的索引位置。 split() 将字符串用指定字符串分割 toCharArray() 字符串转为char数组 toLowerCase()/toUpperCase() 字符串转大写，小写 subString(int start, int end) 提取子串。新建一个字符串，原字符串不变。起止索引越界会报错。 repalce(String oldStr, String newStr) 替换字符串中的字符/字符串。 valueOf(Object obj) 返回指定对象的字符串形式 三、StringBuilderStringBuilder和StringBuffer是可以修改字符串内容的类。StringBuffer是线程安全的，建议在多线程中使用。StringBuilder是非线程安全的，建议在单线程应用中使用，执行效率更高。 构造方法 默认无参构造器 指定缓冲区大小构造器 String字符串构造器 CharSequence构造器 常用方法 append(Object obj) 在末尾添加字符串 delete(int start, int end) 删除指定起止索引的字符串内容 deleteCharAt(int index) 删除指定索引位置的字符 insert(int offset, Object obj) 在指定位置插入字符串 replace(int start, int end, String str) 用字符串替换指定起止索引的内容 reverse() 内容反转 setLength(int newLength) 设置字符串长度，长度减少后，超出长度的内容被丢弃 setChatAt(int index, int ch) 设置指定索引位置的字符]]></content>
       <categories>
         <category>java</category>
       </categories>

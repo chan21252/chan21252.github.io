@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Chan&#39;s Blog">
 <meta property="og:description" content="一、String类概述String类代表字符串。Java中所有的字符串字面值都是此类的实例。字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。 构造方法 默认无参构造器 byte数组构造器 char数组构造器 char数组，指定开始索引和长度的构造器 字符串构造器 StringBuffer构造器  二、String类常用方法 euqals(String another)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-21T13:30:53.023Z">
+<meta property="og:updated_time" content="2019-05-26T03:15:05.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVASE学习笔记—007 Java常用类库—String类">
 <meta name="twitter:description" content="一、String类概述String类代表字符串。Java中所有的字符串字面值都是此类的实例。字符串在JVM中是以常理方式存储，它们的值在创建后不能更改，只能被覆盖。 构造方法 默认无参构造器 byte数组构造器 char数组构造器 char数组，指定开始索引和长度的构造器 字符串构造器 StringBuffer构造器  二、String类常用方法 euqals(String another)">
@@ -421,6 +421,23 @@
 <li>valueOf(Object obj)                     返回指定对象的字符串形式</li>
 </ol>
 <a id="more"></a>
+<h2 id="三、StringBuilder"><a href="#三、StringBuilder" class="headerlink" title="三、StringBuilder"></a>三、StringBuilder</h2><p>StringBuilder和StringBuffer是可以修改字符串内容的类。<br>StringBuffer是线程安全的，建议在多线程中使用。<br>StringBuilder是非线程安全的，建议在单线程应用中使用，执行效率更高。</p>
+<h3 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h3><ol>
+<li>默认无参构造器</li>
+<li>指定缓冲区大小构造器</li>
+<li>String字符串构造器</li>
+<li>CharSequence构造器</li>
+</ol>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>append(Object obj)                       在末尾添加字符串</li>
+<li>delete(int start, int end)               删除指定起止索引的字符串内容</li>
+<li>deleteCharAt(int index)                  删除指定索引位置的字符</li>
+<li>insert(int offset, Object obj)           在指定位置插入字符串</li>
+<li>replace(int start, int end, String str)  用字符串替换指定起止索引的内容</li>
+<li>reverse()                                内容反转</li>
+<li>setLength(int newLength)                 设置字符串长度，长度减少后，超出长度的内容被丢弃</li>
+<li>setChatAt(int index, int ch)             设置指定索引位置的字符</li>
+</ol>
 
       
     </div>
@@ -462,6 +479,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/23/javase-007-class-library-03/" rel="prev" title="JAVASE学习笔记—007 Java常用类库—日期时间类、Math类">
+                JAVASE学习笔记—007 Java常用类库—日期时间类、Math类 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -540,7 +561,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -611,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、String类概述"><span class="nav-number">1.</span> <span class="nav-text">一、String类概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">1.1.</span> <span class="nav-text">构造方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、String类常用方法"><span class="nav-number">2.</span> <span class="nav-text">二、String类常用方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、String类概述"><span class="nav-number">1.</span> <span class="nav-text">一、String类概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法"><span class="nav-number">1.1.</span> <span class="nav-text">构造方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、String类常用方法"><span class="nav-number">2.</span> <span class="nav-text">二、String类常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、StringBuilder"><span class="nav-number">3.</span> <span class="nav-text">三、StringBuilder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造方法-1"><span class="nav-number">3.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">3.2.</span> <span class="nav-text">常用方法</span></a></li></ol></li></ol></div>
             
 
           </div>

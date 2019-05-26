@@ -308,6 +308,389 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/05/26/javase-007-class-library-04/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/26/javase-007-class-library-04/" itemprop="url">JAVASE学习笔记—007 Java常用类库—List、Set、Map集合接口及实现类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-26T11:16:34+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、List接口和实现类"><a href="#一、List接口和实现类" class="headerlink" title="一、List接口和实现类"></a>一、List接口和实现类</h2><p>List接口继承自—Collection—Iterable。<br>Iterable接口以循环迭代方式访问集合中的数据元素，定义了唯一一个返回指向集合的Iterable迭代器。它主要通过foreach方式处理集合中的元素。它的任何实现类都可以通过获取指向集合的迭代实现对集合的遍历。<br>List接口间接继承Iterable接口，它的直接父接口Collection定义了更多操作方法。</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>booleadn add(Object o)                   在List末尾添加元素</li>
+<li>void add(int index, Object element)      在指定索引位置添加元素</li>
+<li>void clear()                             清空List</li>
+<li>boolean contains(Object o)               是否包含对象o</li>
+<li>Object get(int index)                    获取指定索引的元素</li>
+<li>boolean isEmpty()                        List是否为空</li>
+<li>Iterator<e> iterator()                   获取迭代器，Iterable接口的方法</e></li>
+<li>Object remove(int index)                 移除指定索引的元素</li>
+<li>boolean remove(Object o)                 移除指定对象</li>
+<li>Object set(int index, Object element)    设置指定索引的元素，返回旧元素</li>
+<li>int indexOf(String target, int fromIndex)</li>
+<li>int size()                              返回List的长度</li>
+</ol>
+<p>增删改查：</p>
+<ol>
+<li>增<ol>
+<li>add</li>
+</ol>
+</li>
+<li>查<ol>
+<li>获取元素 get</li>
+<li>包含元素 contains</li>
+<li>遍历集合 for、iterator</li>
+<li>集合长度 size</li>
+<li>获取字符串元素索引 indexOf</li>
+</ol>
+</li>
+<li>改<ol>
+<li>新元素代替旧元素 set</li>
+</ol>
+</li>
+<li>删<ol>
+<li>删除元素 remove</li>
+<li>清空集合 clear</li>
+<li>是否为空 isEmpty()</li>
+</ol>
+</li>
+</ol>
+<h3 id="List接口实现类——ArrayList"><a href="#List接口实现类——ArrayList" class="headerlink" title="List接口实现类——ArrayList"></a>List接口实现类——ArrayList</h3><p>ArrayList类是List接口长度可变数组的实现。<br>ArrayList是非线程安全的。<br>ArrayList查找访问集合元素速度比较快，删除、插入随机元素操作比较慢。</p>
+<h3 id="List接口实现类——Vector"><a href="#List接口实现类——Vector" class="headerlink" title="List接口实现类——Vector"></a>List接口实现类——Vector</h3><p>Vector是向量集合，是List接口长度可变数组的实现。<br>Vector是线程安全的。<br>Vector相比ArrayList效率要低，多用于被多个线程同时访问的数据处理。</p>
+<p><strong>Vector除了List的方法，还实现返回Enumeration枚举接口的方法elements()。</strong></p>
+<h2 id="二、Set接口和实现类"><a href="#二、Set接口和实现类" class="headerlink" title="二、Set接口和实现类"></a>二、Set接口和实现类</h2><h3 id="Set接口规范"><a href="#Set接口规范" class="headerlink" title="Set接口规范"></a>Set接口规范</h3><p>Set接口继承自—Collection—Iterable。<br>Set接口只能存储不相同的对象。Set接口是数学Set的抽象描述。<br>和List不同，Set中的元素不带任何索引，不能使用索引访问元素。<br>Set接口添加，遍历比较慢，随机删除修改数据速度较List快。</p>
+<h3 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>Object[] toArray()</li>
+</ol>
+<h3 id="Set实现类——HashSet"><a href="#Set实现类——HashSet" class="headerlink" title="Set实现类——HashSet"></a>Set实现类——HashSet</h3><p>HashSet由哈希表支持，不保证set的迭代顺序，允许使用null元素。<br>HashSet是非线程安全的。</p>
+<h3 id="Set实现类——TreeSet"><a href="#Set实现类——TreeSet" class="headerlink" title="Set实现类——TreeSet"></a>Set实现类——TreeSet</h3><p>TreeSet实现了NavigableSet接口，NavigableSet继承了SortedSet接口。<br>TreeSet底层是由TreeMap实现的。<br>TreeSet可以在创建时，用自定义的Comparator进行排序。<br>TreeSet不是线程安全的。</p>
+<h4 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="常用方法"></a>常用方法</h4><ol>
+<li>public TreeSet(Comparator<e> comparator) 指定自定义排序</e></li>
+<li>public Iterator<e> descendingIterator()  返回倒序迭代器    </e></li>
+<li>public E last()  获取最后一个元素</li>
+<li>public E first() 获取第一个元素</li>
+</ol>
+<h4 id="TreeSet自定义排序"><a href="#TreeSet自定义排序" class="headerlink" title="TreeSet自定义排序"></a>TreeSet自定义排序</h4><ol>
+<li>自定义java.util.Comparator接口的实现类，实现compare方法</li>
+<li>调用TreeSet的Comparator类型构造器创建对象</li>
+</ol>
+<h3 id="Set实现类——LinkedHashSet"><a href="#Set实现类——LinkedHashSet" class="headerlink" title="Set实现类——LinkedHashSet"></a>Set实现类——LinkedHashSet</h3><p>基于哈希表和链表的Set，是有序的，元素按照添加的顺序排序。<br>LinkedHashList由于需要维护元素顺序，因此效率比HashSet低。 </p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="遍历List时候修改List长度，抛出异常"><a href="#遍历List时候修改List长度，抛出异常" class="headerlink" title="遍历List时候修改List长度，抛出异常"></a>遍历List时候修改List长度，抛出异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Object o : list1)&#123;</span><br><span class="line">    <span class="keyword">if</span> (list2.contains(data))&#123;</span><br><span class="line">        list1.remove(o);    <span class="comment">//改变List长度</span></span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        list3.add(o);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Exception in thread "main" java.util.ConcurrentModificationException</span></span><br><span class="line"><span class="comment">	at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909)</span></span><br><span class="line"><span class="comment">	at java.util.ArrayList$Itr.next(ArrayList.java:859)</span></span><br><span class="line"><span class="comment">	at work.collection.exercise04.main(exercise04.java:131)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>调用堆栈：</p>
+<ol>
+<li>ArrayList$Itr.next()调用checkForComodification()方法</li>
+<li>checkForComodification()方法，if(modCount != expectedModCount)，抛出 ConcurrentModificationException</li>
+<li>ArrayList类的boolean remove(Object o)方法，调用fastRemove(int index)方法<br>fastRemove()方法中，modCount++;</li>
+</ol>
+<p>因此，modCount != expectedModCount，抛出异常</p>
+<p>解析：<br>ArrayList线程不安全，List保证其遍历时不被修改，采用的是用一个计数器的机制。<br>在开始遍历前，先记录当前的modCount值，而后每次访问下一个元素之前，都会检查下modCount值是否变化，如果有变化，说明List的长度有变化。<br>一旦长度有变化，就会抛出ConcurrentModificationException异常。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/05/23/javase-007-class-library-03/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chan's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/23/javase-007-class-library-03/" itemprop="url">JAVASE学习笔记—007 Java常用类库—日期时间类、Math类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-23T13:56:31+08:00">
+                2019-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="一、Date类"><a href="#一、Date类" class="headerlink" title="一、Date类"></a>一、Date类</h2><p>Date类表示特定的时间，精确到毫秒。</p>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><ol>
+<li>Date()           用当前系统时间创建Date对象</li>
+<li>Date(long date)  用毫秒时间戳创建Date对象</li>
+</ol>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>after(Date when)             when是否在当前时间之后</li>
+<li>befor(Date when)             when是否在当前时间之前</li>
+<li>compareTo(Date anotherDate)  比较两个时间的先后</li>
+<li>long getTime()               获取Date对象的时间戳</li>
+<li>setTime(long time)           设置Date对象的时间戳</li>
+<li>toString()</li>
+</ol>
+<h2 id="二、DateFormat类"><a href="#二、DateFormat类" class="headerlink" title="二、DateFormat类"></a>二、DateFormat类</h2><ol>
+<li>字符串转换为Date对象<ol>
+<li>DateFormat.getInstance().parse(String)</li>
+</ol>
+</li>
+<li>Date对象转为字符串<ol>
+<li>DateFormat.getInstance().format(Date)</li>
+</ol>
+</li>
+<li>创建对象DateFormat(String format)<ol>
+<li>format的形式 yyyy-MM-dd hh:mm:ss</li>
+</ol>
+</li>
+</ol>
+<p>子类：SimpleDateFormat</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/23/javase-007-class-library-03/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/05/20/javase-007-class-library-02/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1536,310 +1919,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/05/01/javase-002-basic-grammer-01/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chan's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/01/javase-002-basic-grammer-01/" itemprop="url">JAVASE学习笔记—002 Java语法基础—（1）变量、常量、标识符和关键字</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-01T19:53:40+08:00">
-                2019-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一、Java类的简单定义"><a href="#一、Java类的简单定义" class="headerlink" title="一、Java类的简单定义"></a>一、Java类的简单定义</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>单词的含义：</p>
-<ul>
-<li>public: 访问修饰符关键字，含义是所有人都能访问该类</li>
-<li>class：表示类的关键字</li>
-<li>Test：类的名字</li>
-<li>{}：大括号表示类体，括号内是类的具体内容</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/01/javase-002-basic-grammer-01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.5460cc.com/2019/04/28/javase-001-environment-config/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chan's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/28/javase-001-environment-config/" itemprop="url">JAVASE学习笔记—001 环境配置和HelloWorld</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-28T19:13:45+08:00">
-                2019-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一、JDK下载安装"><a href="#一、JDK下载安装" class="headerlink" title="一、JDK下载安装"></a>一、JDK下载安装</h2><h3 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1 下载"></a>1.1 下载</h3><p>Java是Sun公司推出的产品，Sun公司现已被Oracle公司收购。我们可以去Oracle的官网下载Java开发工具（JDK）。Oracle官网：<a href="https://www.oracle.com/index.html" target="_blank" rel="noopener">https://www.oracle.com/index.html</a>。接着选择Menu-&gt;Products-&gt;Java-&gt;JavaSE，在页面底部找到<strong>Java for developer</strong>进行下载。目前JDK7和8版本使用比较广泛，这里下载的是JDK8的Windows版本。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/28/javase-001-environment-config/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1887,7 +1971,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
