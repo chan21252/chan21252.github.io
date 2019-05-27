@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Chan&#39;s Blog">
 <meta property="og:description" content="一、List接口和实现类List接口继承自—Collection—Iterable。Iterable接口以循环迭代方式访问集合中的数据元素，定义了唯一一个返回指向集合的Iterable迭代器。它主要通过foreach方式处理集合中的元素。它的任何实现类都可以通过获取指向集合的迭代实现对集合的遍历。List接口间接继承Iterable接口，它的直接父接口Collection定义了更多操作方法。 常用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-26T10:27:16.707Z">
+<meta property="og:updated_time" content="2019-05-27T14:23:21.109Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVASE学习笔记—007 Java常用类库—List、Set、Map集合接口及实现类">
 <meta name="twitter:description" content="一、List接口和实现类List接口继承自—Collection—Iterable。Iterable接口以循环迭代方式访问集合中的数据元素，定义了唯一一个返回指向集合的Iterable迭代器。它主要通过foreach方式处理集合中的元素。它的任何实现类都可以通过获取指向集合的迭代实现对集合的遍历。List接口间接继承Iterable接口，它的直接父接口Collection定义了更多操作方法。 常用">
@@ -467,6 +467,35 @@
 </ol>
 <p>因此，modCount != expectedModCount，抛出异常</p>
 <p>解析：<br>ArrayList线程不安全，List保证其遍历时不被修改，采用的是用一个计数器的机制。<br>在开始遍历前，先记录当前的modCount值，而后每次访问下一个元素之前，都会检查下modCount值是否变化，如果有变化，说明List的长度有变化。<br>一旦长度有变化，就会抛出ConcurrentModificationException异常。</p>
+<h2 id="三、Map接口和实现类"><a href="#三、Map接口和实现类" class="headerlink" title="三、Map接口和实现类"></a>三、Map接口和实现类</h2><p>Map是存储键值对象的顶级集合接口。<br>存储在Map集合中的键值对象必须确保键是唯一的，添加键相同的对象到Map中会产生覆盖。</p>
+<h3 id="常用方法-3"><a href="#常用方法-3" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
+<li>增<ol>
+<li>添加一个键值对象 put</li>
+</ol>
+</li>
+<li>删<ol>
+<li>删除某个键的键值对象 remove</li>
+<li>清空 clear</li>
+</ol>
+</li>
+<li>查<ol>
+<li>根据键查找值 get</li>
+<li>是否包含某个键 containsKey</li>
+<li>是否包含某个值 containsValue</li>
+<li>集合长度 size</li>
+<li>获取键的集合 keySet</li>
+<li>获取值得集合 values</li>
+<li>是否为空 isEmpty</li>
+</ol>
+</li>
+<li>改<ol>
+<li>覆盖 put</li>
+</ol>
+</li>
+</ol>
+<h3 id="Map实现类——HashMap"><a href="#Map实现类——HashMap" class="headerlink" title="Map实现类——HashMap"></a>Map实现类——HashMap</h3><p>HashMap是基于哈希表的Map接口实现类。<br>HashMap不保证映射的顺序。<br>HashMap不是线程安全的。</p>
+<h3 id="Map实现类——TreeMap"><a href="#Map实现类——TreeMap" class="headerlink" title="Map实现类——TreeMap"></a>Map实现类——TreeMap</h3><p>TreeMap基于红黑树的NavigableMap实现。NavigableMap是SortedMap的子接口。<br>TreeMap依据自然顺序对键进行排序，可以指定Comparator排序规则。<br>TreeMap不是线程安全的。</p>
+<h3 id="Map实现类——Hashtable"><a href="#Map实现类——Hashtable" class="headerlink" title="Map实现类——Hashtable"></a>Map实现类——Hashtable</h3><p>Hashtable是线程安全的，但是效率比HashMap低。<br>Hashtable不能存储null键值。<br>Hashtable和HashMap的用法几乎是一样的。</p>
 
       
     </div>
@@ -657,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、List接口和实现类"><span class="nav-number">1.</span> <span class="nav-text">一、List接口和实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口实现类——ArrayList"><span class="nav-number">1.2.</span> <span class="nav-text">List接口实现类——ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口实现类——Vector"><span class="nav-number">1.3.</span> <span class="nav-text">List接口实现类——Vector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Set接口和实现类"><span class="nav-number">2.</span> <span class="nav-text">二、Set接口和实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set接口规范"><span class="nav-number">2.1.</span> <span class="nav-text">Set接口规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法-1"><span class="nav-number">2.2.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set实现类——HashSet"><span class="nav-number">2.3.</span> <span class="nav-text">Set实现类——HashSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set实现类——TreeSet"><span class="nav-number">2.4.</span> <span class="nav-text">Set实现类——TreeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用方法-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TreeSet自定义排序"><span class="nav-number">2.4.2.</span> <span class="nav-text">TreeSet自定义排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set实现类——LinkedHashSet"><span class="nav-number">2.5.</span> <span class="nav-text">Set实现类——LinkedHashSet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践"><span class="nav-number">3.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历List时候修改List长度，抛出异常"><span class="nav-number">3.1.</span> <span class="nav-text">遍历List时候修改List长度，抛出异常</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、List接口和实现类"><span class="nav-number">1.</span> <span class="nav-text">一、List接口和实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">1.1.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口实现类——ArrayList"><span class="nav-number">1.2.</span> <span class="nav-text">List接口实现类——ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口实现类——Vector"><span class="nav-number">1.3.</span> <span class="nav-text">List接口实现类——Vector</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Set接口和实现类"><span class="nav-number">2.</span> <span class="nav-text">二、Set接口和实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set接口规范"><span class="nav-number">2.1.</span> <span class="nav-text">Set接口规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法-1"><span class="nav-number">2.2.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set实现类——HashSet"><span class="nav-number">2.3.</span> <span class="nav-text">Set实现类——HashSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set实现类——TreeSet"><span class="nav-number">2.4.</span> <span class="nav-text">Set实现类——TreeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用方法-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TreeSet自定义排序"><span class="nav-number">2.4.2.</span> <span class="nav-text">TreeSet自定义排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set实现类——LinkedHashSet"><span class="nav-number">2.5.</span> <span class="nav-text">Set实现类——LinkedHashSet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实践"><span class="nav-number">3.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历List时候修改List长度，抛出异常"><span class="nav-number">3.1.</span> <span class="nav-text">遍历List时候修改List长度，抛出异常</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、Map接口和实现类"><span class="nav-number">4.</span> <span class="nav-text">三、Map接口和实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法-3"><span class="nav-number">4.1.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map实现类——HashMap"><span class="nav-number">4.2.</span> <span class="nav-text">Map实现类——HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map实现类——TreeMap"><span class="nav-number">4.3.</span> <span class="nav-text">Map实现类——TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map实现类——Hashtable"><span class="nav-number">4.4.</span> <span class="nav-text">Map实现类——Hashtable</span></a></li></ol></li></ol></div>
             
 
           </div>
