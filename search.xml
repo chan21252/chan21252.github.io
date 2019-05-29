@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JAVASE学习笔记—009 异常处理]]></title>
+    <url>%2F2019%2F05%2F29%2Fjavase-009-exception%2F</url>
+    <content type="text"><![CDATA[一、Java异常体系 Throwable Error Exception RuntimeException 非RuntimeException Java异常分为运行时异常和编译型异常。运行时异常只有在程序运行时被发现和处理。编译型异常在编译阶段就能被发现，并且必须处理。通常自定义异常都是编译型异常。 二、声明和抛出异常1234//方法中抛出的异常，只能是方法声明的异常类型方法名() throws 异常类型1,异常类型2&#123; throw 异常对象&#125; 三、捕获和处理异常 调用声明了编译型异常的方法必须进行异常捕获和处理 使用try…catch捕获处理异常 finally语句块中是必须执行的代码 或者调用方法声明中继续抛出异常，由上层调用者处理 12345678910111213141516try&#123; //可能抛出异常的代码&#125;catch(IOException e)&#123; //处理IO异常&#125;catch(Exception e)&#123; //多个catch嵌套，后面的异常类型范围更大 //处理其他异常&#125;finally&#123; //一定会执行的语句&#125;//JDK1.7以上版本新特性try&#123;&#125;catch(异常类型1 | 异常类型2 e)&#123; //异常1和异常2不能有继承关系&#125; 异常常用的方法 getMessage() 获取异常信息 printStack() 打印异常方法调用堆栈 四、自定义异常 自定义异常必须直接/间接继承Exception类 通常在Java预定义异常不能满足要求时，会自定义异常。]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JAVASE学习笔记—008 泛型]]></title>
+    <url>%2F2019%2F05%2F28%2Fjavase-008-generic%2F</url>
+    <content type="text"><![CDATA[一、Java泛型概述泛型是JavaSE1.5版本添加的特性。 泛型，即“参数化类型”。顾名思义，就是将类型由原来的具体的类型参数化，类似于方法中的变量参数，此时类型也定义成参数形式（可以称之为类型形参），然后在使用/调用时传入具体的类型（类型实参）。 泛型在java中不是一种数据类型，是一种在编译时的特殊语法，它能够让jvm在执行时擦除泛型描述，还原成未应用泛型的语法规则。 泛型的语法： 泛型的优点 提高开发效率和数据类型安全 在编译阶段确定数据类型是否符合要求，避免错误发生 避免对象强制类型转换操作 支持动态确定数据类型 二、泛型在集合中的使用123456789Map&lt;String, Set&lt;Employee&gt;&gt; map = new HashMap&lt;String, Set&lt;Employee&gt;&gt;();//泛型没有继承关系List&lt;Integer&gt; intList = new ArrayList&lt;Integer&gt;();List&lt;Number&gt; numList = new ArrayList&lt;Number&gt;();//numList = intList; //错误，泛型没有继承关系//通配符泛型List&lt;?&gt; list = intList; //动态确定类型 三、带泛型的类123456789101112public class Generic&lt;T&gt;&#123; public String getClassName(T t)&#123; return t.getClass().getName(); &#125;&#125;public class TestGenerClass&#123; public static void main(String[] main)&#123; Generic&lt;Integer&gt; gClass = new Generic&lt;Integer&gt;(); gClass.getClassName(new Integer(600)); &#125;&#125; 多用于对不同类型对象进行相同操作时，在程序运行时确定传入参数的类型。 四、带泛型的接口1234567891011121314151617181920212223242526/** * 泛型接口 */public interface GenericInterface&lt;T&gt;&#123; void save(T t);&#125;/** * 实现类未指定泛型参数类型 */public class ImpClass&lt;T&gt; implements ImpClass&lt;T&gt;&#123; @override void save(T t)&#123; //to-do &#125;&#125;/** * 实现类指定泛型参数类型 */public class ImpClass implements ImpClass&lt;String&gt;&#123; @override void save(String str)&#123; //to-do &#125;&#125;]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>javase</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[JAVASE学习笔记—007 Java常用类库—List、Set、Map集合接口及实现类]]></title>
     <url>%2F2019%2F05%2F26%2Fjavase-007-class-library-04%2F</url>
     <content type="text"><![CDATA[一、List接口和实现类List接口继承自—Collection—Iterable。Iterable接口以循环迭代方式访问集合中的数据元素，定义了唯一一个返回指向集合的Iterable迭代器。它主要通过foreach方式处理集合中的元素。它的任何实现类都可以通过获取指向集合的迭代实现对集合的遍历。List接口间接继承Iterable接口，它的直接父接口Collection定义了更多操作方法。 常用方法 booleadn add(Object o) 在List末尾添加元素 void add(int index, Object element) 在指定索引位置添加元素 void clear() 清空List boolean contains(Object o) 是否包含对象o Object get(int index) 获取指定索引的元素 boolean isEmpty() List是否为空 Iterator iterator() 获取迭代器，Iterable接口的方法 Object remove(int index) 移除指定索引的元素 boolean remove(Object o) 移除指定对象 Object set(int index, Object element) 设置指定索引的元素，返回旧元素 int indexOf(String target, int fromIndex) int size() 返回List的长度 增删改查： 增 add 查 获取元素 get 包含元素 contains 遍历集合 for、iterator 集合长度 size 获取字符串元素索引 indexOf 改 新元素代替旧元素 set 删 删除元素 remove 清空集合 clear 是否为空 isEmpty() List接口实现类——ArrayListArrayList类是List接口长度可变数组的实现。ArrayList是非线程安全的。ArrayList查找访问集合元素速度比较快，删除、插入随机元素操作比较慢。 List接口实现类——VectorVector是向量集合，是List接口长度可变数组的实现。Vector是线程安全的。Vector相比ArrayList效率要低，多用于被多个线程同时访问的数据处理。 Vector除了List的方法，还实现返回Enumeration枚举接口的方法elements()。 二、Set接口和实现类Set接口规范Set接口继承自—Collection—Iterable。Set接口只能存储不相同的对象。Set接口是数学Set的抽象描述。和List不同，Set中的元素不带任何索引，不能使用索引访问元素。Set接口添加，遍历比较慢，随机删除修改数据速度较List快。 常用方法 Object[] toArray() Set实现类——HashSetHashSet由哈希表支持，不保证set的迭代顺序，允许使用null元素。HashSet是非线程安全的。 Set实现类——TreeSetTreeSet实现了NavigableSet接口，NavigableSet继承了SortedSet接口。TreeSet底层是由TreeMap实现的。TreeSet可以在创建时，用自定义的Comparator进行排序。TreeSet不是线程安全的。 常用方法 public TreeSet(Comparator comparator) 指定自定义排序 public Iterator descendingIterator() 返回倒序迭代器 public E last() 获取最后一个元素 public E first() 获取第一个元素 TreeSet自定义排序 自定义java.util.Comparator接口的实现类，实现compare方法 调用TreeSet的Comparator类型构造器创建对象 Set实现类——LinkedHashSet基于哈希表和链表的Set，是有序的，元素按照添加的顺序排序。LinkedHashList由于需要维护元素顺序，因此效率比HashSet低。 实践遍历List时候修改List长度，抛出异常123456789101112for (Object o : list1)&#123; if (list2.contains(data))&#123; list1.remove(o); //改变List长度 &#125;else &#123; list3.add(o);&#125;/*Exception in thread "main" java.util.ConcurrentModificationException at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:909) at java.util.ArrayList$Itr.next(ArrayList.java:859) at work.collection.exercise04.main(exercise04.java:131)*/ 调用堆栈： ArrayList$Itr.next()调用checkForComodification()方法 checkForComodification()方法，if(modCount != expectedModCount)，抛出 ConcurrentModificationException ArrayList类的boolean remove(Object o)方法，调用fastRemove(int index)方法fastRemove()方法中，modCount++; 因此，modCount != expectedModCount，抛出异常 解析：ArrayList线程不安全，List保证其遍历时不被修改，采用的是用一个计数器的机制。在开始遍历前，先记录当前的modCount值，而后每次访问下一个元素之前，都会检查下modCount值是否变化，如果有变化，说明List的长度有变化。一旦长度有变化，就会抛出ConcurrentModificationException异常。 三、Map接口和实现类Map是存储键值对象的顶级集合接口。存储在Map集合中的键值对象必须确保键是唯一的，添加键相同的对象到Map中会产生覆盖。 常用方法 增 添加一个键值对象 put 删 删除某个键的键值对象 remove 清空 clear 查 根据键查找值 get 是否包含某个键 containsKey 是否包含某个值 containsValue 集合长度 size 获取键的集合 keySet 获取值得集合 values 是否为空 isEmpty 改 覆盖 put Map实现类——HashMapHashMap是基于哈希表的Map接口实现类。HashMap不保证映射的顺序。HashMap不是线程安全的。 Map实现类——TreeMapTreeMap基于红黑树的NavigableMap实现。NavigableMap是SortedMap的子接口。TreeMap依据自然顺序对键进行排序，可以指定Comparator排序规则。TreeMap不是线程安全的。 Map实现类——HashtableHashtable是线程安全的，但是效率比HashMap低。Hashtable不能存储null键值。Hashtable和HashMap的用法几乎是一样的。]]></content>
